@@ -1,12 +1,15 @@
-from data_structures.queue_stuc import QueueNode
-from data_structures.avl_struc import avlNode
+from data_structures import Queue, AvlNode
 
-import agent
+from agent import Agent
+import genome as gnm
 
 # iteration process
 
-agents = QueueNode()
+agents = Queue()
 
-while True:
-    for i in range(agents.getLength):
-        pass
+def run(config):
+    
+
+    while True:
+        for i in range(len(agents)):
+            pass

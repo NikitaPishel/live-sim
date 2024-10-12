@@ -1,19 +1,23 @@
 from random import randint
-from genome import randomGenome
+import genome as gnm
+import data_structures as dts
 
-class agent:
+class Agent:
     def __init__(self, x=0, y=0):
         self.position = [x, y]
         self.direction = 0 # 0-7 from top clockwise
-        self.genome = [] # decision tree
+        self.gen = gnm.Genome() # decision map of an agent
         self.active = True
 
     def getVision(self):
         pass
 
+    def getSensors(self):
+        pass
+
 def createRandomAgent():
-    randAgent = agent(0, 0)
+    randAgent = Agent(0, 0)
 
     randAgent.active = True
     randAgent.direction = randint(0, 7)
-    randAgent.genome = genome.randomGenome()
+    randAgent.genome = gnm.randomGenome()
