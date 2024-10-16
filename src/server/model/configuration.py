@@ -1,3 +1,4 @@
 class Configuration:
     def __new__(cls):
-        pass
+        fieldSize = [32, 32]
+        amountOfCells = 20

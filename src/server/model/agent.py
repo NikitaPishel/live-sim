@@ -6,18 +6,15 @@ class Agent:
     def __init__(self, x=0, y=0):
         self.position = [x, y]
         self.direction = 0 # 0-7 from top clockwise
-        self.gen = gnm.Genome() # decision map of an agent
+
+        self.sensors = [] # decision map of an agent
+        self.id = 0
         self.active = True
+
+        gnm.genMutation(self.sensors)
 
     def getVision(self):
         pass
 
     def getSensors(self):
         pass
-
-def createRandomAgent():
-    randAgent = Agent(0, 0)
-
-    randAgent.active = True
-    randAgent.direction = randint(0, 7)
-    randAgent.genome = gnm.randomGenome()

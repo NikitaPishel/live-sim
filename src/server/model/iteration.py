@@ -1,15 +1,15 @@
 from data_structures import Queue, AvlNode
-
 from agent import Agent
 import genome as gnm
+import configuration
+
+config = configuration.Configuration()
 
 # iteration process
 
 agents = Queue()
 
 def run(config):
-    
-
-    while True:
-        for i in range(len(agents)):
-            pass
+    runSim = True
+    while runSim:
+        pass
