@@ -8,7 +8,7 @@ def getVisionNone(agent) -> float:
 def getVisionCell(agent) -> float:
     pass
 
-def getCompass(agent) -> float:
+def getDir(agent) -> float:
     pass
 
 # Internal commadns
@@ -28,7 +28,7 @@ def outRotate(agent, amp) -> None:
 inputCmd = [
     getVisionNone,
     getVisionCell,
-    getCompass,
+    getDir,
 ]
 
 interCmd = [

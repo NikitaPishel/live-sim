@@ -1,4 +1,4 @@
-from random import randint
+import mutation as mtn
 import genome as gnm
 import data_structures as dts
 
@@ -7,14 +7,8 @@ class Agent:
         self.position = [x, y]
         self.direction = 0 # 0-7 from top clockwise
 
-        self.sensors = [] # decision map of an agent
+        self.joints = [] # decision map of an agent
         self.id = 0
         self.active = True
+        self.joints.append(gnm.Sensor())
 
-        gnm.genMutation(self.sensors)
-
-    def getVision(self):
-        pass
-
-    def getSensors(self):
-        pass
