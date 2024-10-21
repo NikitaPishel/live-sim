@@ -1,6 +1,6 @@
 class Neuron:
-    def __init__(self):
-        self.cmd = None
+    def __init__(self, cmd=None):
+        self.cmd = cmd
         self.joints = []
 
 class Sensor(Neuron):
@@ -24,11 +24,16 @@ class Signal(Neuron):
     def recall(self, agent, amp):
         self.cmd(agent, amp)
 
-def getGenome(neuron, viewedGenome=[]):
-    viewedGenome.append(neuron)
+class GeneRoot:
+    def __init__(self):
+        self.joints = []
+
+    # Need to add loop detection
+def getGenome(root, viewedGenome=[]):
+    viewedGenome.append(root)
     
-    for i in neuron.joints:
+    for i in root.joints:
         if (i in viewedGenome) == False:
             viewedGenome += getGenome(i, viewedGenome)
-    # Need to add loop detection
+
     return viewedGenome

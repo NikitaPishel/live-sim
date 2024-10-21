@@ -7,6 +7,9 @@ class Configuration:
 
             cls.fieldSize = [32, 32]
             cls.amountOfCells = 20
-            cls.mutationChance = 0.1
+            cls.mutationChance = 0.1    # a chance of mutation of a new-born cell
+            cls.newNeuronChance = 0.3   # a chance in which cell adds new neuron instead of new connection
         
         return cls._instance
+
+config = Configuration()

@@ -1,18 +1,16 @@
 from genome import *
 import neuronCmd
 import random as rnd
-from configuration import Configuration
-
-config = Configuration()
+from configuration import config
 
 def _searchNeurons(agentGenome):
-    root = 0
+    sensors = 0
     signals = 0
     processors = 0
 
     for i in agentGenome:
         if isinstance(i, Sensor):
-            root += 1
+            sensors += 1
         
         elif isinstance(i, Processor):
              processors += 1
@@ -21,81 +19,111 @@ def _searchNeurons(agentGenome):
              signals += 1
 
     return {
-        'sns': root,
+        'sns': sensors,
         'prc': processors,
         'sgn': signals
             }
 
-def _rndJointBase(agentGenome):
-    while True:
-        jointBase = rnd.choice(agentGenome)
+def _getDelblJoints(agentGenome, neuronTypes):
+    joints = []
+    for nrnBase in agentGenome:
 
-        if isinstance(jointBase, Signal) == False:
-            return jointBase
+        for nrnRef in nrnBase.joints:
 
-def _rndJointRef(agentGenome):
-    while True:
-        jointRef = rnd.choice(agentGenome)
+            if isinstance(nrnRef, Sensor):
+                if neuronTypes['sns'] > 1:
+                    delPos = {
+                        'base': nrnBase, 
+                        'ref': nrnRef
+                        }
+                    joints.append(delPos)
+            
+            else:
+                delPos = {
+                    'base': nrnBase, 
+                    'ref': nrnRef
+                    }
+                joints.append(delPos)
 
-        if isinstance(jointRef, Sensor) == False:
-            return jointRef
+    return joints
 
-def _addRndNeuron(agentGenome, root):
-        jointBase = _rndJointBase(agentGenome)
+def _delRndJoint(agentGenome, root, neuronTypes, noRootGenome):
+    rndDelJoint = rnd.choice(_getDelblJoints(agentGenome))
+
+    if len(rndDelJoint) > 0:
+        rndJoint = rnd.choice(rndDelJoint)
+        rndJoint['base'].pop('ref')
+        return True
+
+    else:
+        return False
+
+def _getAddblJoints(noRootGenome):
+    joints = []
+
+    for nrnBase in noRootGenome:
+        for nrnRef in noRootGenome:
+            if not isinstance(nrnRef, Sensor):
+                if not (nrnRef in nrnBase.joints):
+                    addPos = {
+                        'base': nrnBase,
+                        'ref': nrnRef
+                    }
+                    joints.append(addPos)
+
+def _getJointBases(noRootGenome):
+    joints = []
+
+    for i in noRootGenome:
+        if not isinstance(i, Signal):
+            joints.append(i)
+    
+    return joints
+
+def _addRndNeuron(noRootGenome, root):
+        jointBase = rnd.choice(_getJointBases(noRootGenome))
         rndCmd = rnd.choice(neuronCmd.allCmd)
 
         if rndCmd in neuronCmd.inputCmd:
-            mutation = Sensor()
-            root.append(mutation)
+            mutation = Sensor(rndCmd)
+            root.joints.append(mutation)
 
         elif rndCmd in neuronCmd.interCmd:
-            mutation = Processor()
+            mutation = Processor(rndCmd)
             jointBase.append(mutation)
     
-        else:
-            mutation = Signal()
+        elif rndCmd in neuronCmd.outputCmd:
+            mutation = Signal(rndCmd)
             jointBase.append(mutation)
         
-        mutation.cmd = rndCmd
-
-def _addRndJoint(agentGenome, root):
-    if len(agentGenome) > 2:
-        if rnd.random() > config.mutationChance:
-            _addRndNeuron(agentGenome, root)
-
         else:
-            jointBase = _rndJointBase(agentGenome)
+            raise Exception(
+                f'Unknown command \'{rndCmd}\' in function \'{_addRndNeuron}\''
+                )
+
+def _addRndJoint(noRootGenome, root):
+    rndJoint = _getAddblJoints()
+
+    if len(rndJoint) > 0:
+        rndJoint['base'].append(rndJoint['ref'])
+
     else:
-        _addRndJoint(agentGenome, root)
-
-def _delRndJoint(agentGenome, root, neuronTypes):
-    while True:
-        nrnJoints = _rndJointRef(agentGenome)
-        randomJoint = rnd.choice(nrnJoints)
-
-        if neuronTypes['sns'] > 1 and isinstance(randomJoint, Sensor):
-            nrnJoints.remove(randomJoint)
-            break
-
-        elif neuronTypes['sgn'] > 1 and isinstance(randomJoint, Signal):
-            nrnJoints.remove(randomJoint)
-            break
-        
-        else:
-            if neuronTypes['prc'] == 0:
-                _addRndJoint(_addRndJoint)
-                break
+        _addRndNeuron(noRootGenome, root)
 
 def mutate(agent):
-    agentGenome = getGenome(agent)
+    agentGenome = getGenome(agent.gene)
     
+    noRootGenome = agentGenome.copy()
+    noRootGenome.pop(0)                 # root always has an index of 0
 
     randomMutation = rnd.choice(['del', 'add'])
 
     if randomMutation == 'add':
-        _addRndJoint(agentGenome, agent.joints)
+        _addRndJoint(noRootGenome, agent.gene)
 
     else:
-        neuronTypes = _searchNeurons(agentGenome)
-        
-        _delRndJoint(agentGenome, agent.joints, neuronTypes)
+        neuronTypes = _searchNeurons(noRootGenome)
+        jointDelted = _delRndJoint(agentGenome, agent.gene, neuronTypes, noRootGenome)
+
+        if not jointDelted:
+            _addRndJoint(noRootGenome, agent.gene)

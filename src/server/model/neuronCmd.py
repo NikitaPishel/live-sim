@@ -1,5 +1,13 @@
 import math
 
+def getSum(amp):
+    ampSum = 0
+
+    for i in range(amp):
+        ampSum += amp
+
+    return ampSum
+
 # Input commands
 
 def getVisionNone(agent) -> float:
@@ -13,12 +21,17 @@ def getDir(agent) -> float:
 
 # Internal commadns
 
-def Rectifier(amp) -> float:
+def reLU(amp) -> float:
+    ampSum = getSum(amp)
+    
     if amp > 0:
         return amp
 
     else:
         return 0
+
+def getProduct(amp):
+    return 
 
 # Output commands
 
@@ -33,7 +46,9 @@ inputCmd = [
 
 interCmd = [
     math.tanh,
-    Rectifier
+    reLU,
+    getProduct
+
 
 ]
 
