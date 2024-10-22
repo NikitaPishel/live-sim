@@ -59,7 +59,7 @@ def _delRndJoint(agentGenome, neuronTypes):
 
 def _getAddblJoints(noRootGenome):
     joints = []
-
+    
     for nrnBase in noRootGenome:
         for nrnRef in noRootGenome:
             if not isinstance(nrnRef, Sensor):
@@ -82,39 +82,47 @@ def _getJointBases(noRootGenome):
     return joints
 
 def _addRndNeuron(noRootGenome, root):
-        jointBase = rnd.choice(_getJointBases(noRootGenome))
         rndCmd = rnd.choice(nrnCmd.allCmd)
 
         if rndCmd in nrnCmd.inputCmd:
-            mutation = Sensor(rndCmd)
+            mutation = Sensor()
             root.joints.append(mutation)
 
         elif rndCmd in nrnCmd.interCmd:
-            mutation = Processor(rndCmd)
-            jointBase.append(mutation)
+            jointBase = rnd.choice(_getJointBases(noRootGenome))
+            mutation = Processor()
+            jointBase.joints.append(mutation)
     
         elif rndCmd in nrnCmd.outputCmd:
-            mutation = Signal(rndCmd)
-            jointBase.append(mutation)
+            jointBase = rnd.choice(_getJointBases(noRootGenome))
+            mutation = Signal()
+            jointBase.joints.append(mutation)
         
         else:
             raise Exception(
                 f'Unknown command \'{rndCmd}\' in function \'{_addRndNeuron}\''
                 )
+        
+        mutation.cmd = rndCmd
 
 def _addRndJoint(noRootGenome, root):
-    rndJoint = _getAddblJoints(noRootGenome)
+    addblJoints = _getAddblJoints(noRootGenome)
+    if len(noRootGenome) <= config.maxGenomeLen:
+        if config.newNeuronChance >= rnd.random():
+            _addRndNeuron(noRootGenome, root)
 
-    if len(rndJoint) > 0:
-        print(f'{rndJoint}\n======\n\n')
-        rndJoint['base'].append(rndJoint['ref'])
+        elif len(addblJoints) > 0:
+            rndJoint = rnd.choice(addblJoints)
+            rndJoint['base'].append(rndJoint['ref'])
 
-    else:
-        _addRndNeuron(noRootGenome, root)
+        else:
+            _addRndNeuron(noRootGenome, root)
 
 def mutate(agent):
     agentGenome = getGenome(agent.gene)
     
+    #print(agentGenome)
+
     noRootGenome = agentGenome.copy()
     noRootGenome.pop(0)                 # root always has an index of 0
 

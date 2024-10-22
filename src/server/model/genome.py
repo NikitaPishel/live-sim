@@ -1,6 +1,6 @@
 class Neuron:
     def __init__(self, cmd=None):
-        self.cmd = cmd
+        self.cmd = cmd      # neuron's command
         self.joints = []
 
 class Sensor(Neuron):
@@ -20,6 +20,7 @@ class Processor(Neuron):
 class Signal(Neuron):
     def __init__(self):
         super().__init__()
+        self.refs = 0   # stores amount of joints that are referenced to this neuron, used to check if can delete a signal
     
     def recall(self, agent, amp):
         self.cmd(agent, amp)
@@ -30,9 +31,11 @@ class GeneRoot:
 
 # Need to add loop detection
 def getGenome(root, viewedGenome=[]):
+    fullGenome = []
+    fullGenome.append(root)
     viewedGenome.append(root)
     for i in root.joints:
         if (i in viewedGenome) == False:
-            viewedGenome += getGenome(i, viewedGenome)
+            fullGenome = getGenome(i, viewedGenome)
 
-    return viewedGenome
+    return fullGenome
