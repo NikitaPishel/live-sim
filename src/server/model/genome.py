@@ -35,7 +35,47 @@ def getGenome(root, viewedGenome=[]):
     fullGenome.append(root)
     viewedGenome.append(root)
     for i in root.joints:
-        if (i in viewedGenome) == False:
-            fullGenome = getGenome(i, viewedGenome)
+        if not (i in viewedGenome):
+            fullGenome += getGenome(i, viewedGenome)
 
     return fullGenome
+
+
+'''
+TEMPORARY TEST CODE
+
+GET GENOME TEST
+
+myGenome = GeneRoot()
+
+myGenome.joints.append(
+    Signal()
+)
+
+signal1 = myGenome.joints[0]
+
+signal1.joints.append(
+    Processor()
+)
+signal1.joints.append(
+    Processor()
+)
+
+signal1.joints[1].joints.append(
+    signal1.joints[0]
+)
+
+signal1.joints[0].joints.append(
+    Processor()
+)
+
+signal1.joints[0].joints[0].joints.append(
+ signal1.joints[1]   
+)
+
+myGenomeArr = getGenome(myGenome)
+print(myGenomeArr)
+
+print(
+    signal1.joints[0].joints[0].joints[0] == signal1.joints[1]
+)'''

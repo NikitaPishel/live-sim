@@ -48,9 +48,10 @@ def _getDelblJoints(agentGenome, neuronTypes):
     return joints
 
 def _delRndJoint(agentGenome, neuronTypes):
-    rndJoint = rnd.choice(_getDelblJoints(agentGenome, neuronTypes))
+    delJoints = _getDelblJoints(agentGenome, neuronTypes)
 
-    if len(rndJoint) > 0:
+    if len(delJoints) > 0:
+        rndJoint = rnd.choice(delJoints)
         rndJoint['base'].remove(rndJoint['ref'])
         return True
 

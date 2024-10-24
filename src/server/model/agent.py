@@ -13,19 +13,14 @@ class Agent:
 
 # Temporary test files
 agents = []
-for i in range(50):
+for i in range(200):
     print('creating agent...')
     agents.append(Agent())
 
     agents[i].gene.joints.append(mtn.Sensor())
     agents[i].gene.joints[0].cmd = rnd.choice(mtn.nrnCmd.inputCmd)
     
-    print('mutating...')
-    try:
-        mtn.mutate(agents[i])
-    
-    except:
-        print('unable to mutate')
+    mtn.mutate(agents[i])
 
     print(mtn.getGenome(agents[i].gene))
     print(f'agent {i} created!')
