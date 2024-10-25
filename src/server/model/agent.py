@@ -12,8 +12,13 @@ class Agent:
         self.id = 0
 
 # Temporary test files
+from time import time
+'''
 agents = []
-for i in range(200):
+
+startTime = time()
+
+for i in range(5000):
     print('creating agent...')
     agents.append(Agent())
 
@@ -24,3 +29,17 @@ for i in range(200):
 
     print(mtn.getGenome(agents[i].gene))
     print(f'agent {i} created!')
+
+endTime = time()
+'''
+startTime = time()
+
+myAgent = Agent()
+myAgent.gene.joints.append(mtn.Sensor())
+
+for i in range(10):
+    print(f'mutation {i} created!')
+    mtn.mutate(myAgent)
+
+endTime = time()
+print(f"operation runtime: {endTime-startTime} sec")

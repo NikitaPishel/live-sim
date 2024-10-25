@@ -21,3 +21,4 @@ I made this project to learn and show my understanding of how computing science 
 • Python syntaxis and structure
 • JS vue framework
 • Python flask framework
+• Python unit tests
