@@ -106,18 +106,33 @@ def _addRndNeuron(noRootGenome, root):
         
         mutation.cmd = rndCmd
 
+def genRndJoint(addblJoints):
+    rndJoint = rnd.choice(addblJoints)
+    rndJoint['base'].append(rndJoint['ref'])
+
 def _addRndJoint(noRootGenome, root):
     addblJoints = _getAddblJoints(noRootGenome)
+    genType = rnd.random()
+
     if len(noRootGenome) <= config.maxGenomeLen:
-        if config.newNeuronChance >= rnd.random():
+        if config.newNeuronChance >= genType:
             _addRndNeuron(noRootGenome, root)
-
+            return True
+        
         elif len(addblJoints) > 0:
-            rndJoint = rnd.choice(addblJoints)
-            rndJoint['base'].append(rndJoint['ref'])
-
+            genRndJoint(addblJoints)
+            return True
+        
         else:
-            _addRndNeuron(noRootGenome, root)
+            return False
+
+    else:
+        if len(addblJoints) > 0:
+            genRndJoint(addblJoints)
+            return True
+        
+        else:
+            return False
 
 def mutate(agent):
     agentGenome = getGenome(agent.gene)
@@ -130,7 +145,11 @@ def mutate(agent):
     randomMutation = rnd.choice(['del', 'add'])
     
     if randomMutation == 'add':
-        _addRndJoint(noRootGenome, agent.gene)
+        jointAdded = _addRndJoint(noRootGenome, agent.gene)
+
+        if not jointAdded:
+            neuronTypes = _searchNeurons(noRootGenome)
+            _delRndJoint(agentGenome, neuronTypes)
 
     else:
         neuronTypes = _searchNeurons(noRootGenome)

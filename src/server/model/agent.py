@@ -12,7 +12,7 @@ class Agent:
         self.id = 0
 
 # Temporary test files
-from time import time
+# from time import time
 '''
 agents = []
 
@@ -32,14 +32,26 @@ for i in range(5000):
 
 endTime = time()
 '''
+
+'''
 startTime = time()
 
 myAgent = Agent()
 myAgent.gene.joints.append(mtn.Sensor())
 
-for i in range(10):
-    print(f'mutation {i} created!')
-    mtn.mutate(myAgent)
+for i in range(20):
+    try:
+        mtn.mutate(myAgent)
+        print(f'mutation {i} created!')
+    
+    except:
+        print('error occured!')
+        
+        agentGenome = gnm.getGenome(myAgent.gene)
+        agentGenome.pop(0)
+
+        print(f'agent genome: {agentGenome}\njoints of root: {myAgent.gene.joints}')
 
 endTime = time()
-print(f"operation runtime: {endTime-startTime} sec")
+print(f'operation runtime: {endTime-startTime} sec')
+'''
