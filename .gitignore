@@ -2,4 +2,6 @@
 
 /env/
 
+# Ignore other folders
 __pycache__/
+ase-img/

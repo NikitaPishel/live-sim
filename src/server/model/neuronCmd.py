@@ -25,7 +25,7 @@ def reLU(amp) -> float:
     ampSum = getSum(amp)
     
     if amp > 0:
-        return amp
+        return ampSum
 
     else:
         return 0
