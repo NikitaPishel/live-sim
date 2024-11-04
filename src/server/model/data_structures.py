@@ -102,9 +102,6 @@ class Queue:
         self.rear = None
         self.front = None
     
-    def searchData(self, data):
-        return self.rear.searchData(data)
-    
     def enqueue(self, data):
         newNode = QueueNode(data)
 
@@ -128,6 +125,9 @@ class Queue:
         else:
             raise Exception('Calling \'deque\' command in an empty Queue')
     
+    def peek(self):
+        return self.front.data
+
     def getLength(self):
         if self.front != None:
             return self.front.itrLength(0)

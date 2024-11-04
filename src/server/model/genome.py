@@ -32,22 +32,24 @@ class GeneRoot:
 # Need to add loop detection
 def getGenome(root, viewedGenome=[]):
     viewedGenome.append(root)
+
     for i in root.joints:
         if not (i in viewedGenome):
-            viewedGenome = getGenome(i, viewedGenome)
+
+            viewedGenome = getGenome(i, viewedGenome.copy())
 
     return viewedGenome
 
 
 '''
-# TEMPORARY TEST CODE
+#   TEMPORARY TEST CODE
 
-#GET GENOME TEST
+# GET GENOME TEST
 
 myGenome = GeneRoot()
 
 myGenome.joints.append(
-    Signal()
+    Sensor()
 )
 
 signal1 = myGenome.joints[0]
@@ -72,7 +74,7 @@ signal1.joints[0].joints[0].joints.append(
 )
 
 myGenome.joints.append(
-    Signal()
+    Sensor()
 )
 
 signal2 = myGenome.joints[1]
