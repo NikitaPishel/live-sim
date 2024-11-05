@@ -96,15 +96,22 @@ myAgent = Agent()
 myAgent.gene.joints.append(gnm.Sensor())
 
 myGenome = gnm.getGenome(myAgent.gene)
-print(f'=====\n{myGenome}')
-
-mtn.mutate(myAgent)
-myGenome = gnm.getGenome(myAgent.gene)
-print(f'=====\n{myGenome}')
-
-mtn.mutate(myAgent)
-myGenome = gnm.getGenome(myAgent.gene)
-print(f'=====\n{myGenome}')
-
 agentGenomeLen = len(myGenome)-1
 print(f'length: {agentGenomeLen}')
+
+print(f'=====--\n')
+
+mtn.mutate(myAgent)
+myGenome = gnm.getGenome(myAgent.gene)
+agentGenomeLen = len(myGenome)-1
+print(f'length: {agentGenomeLen}')
+
+print(f'=====--\n')
+
+mtn.mutate(myAgent)
+myGenome = gnm.getGenome(myAgent.gene)
+agentGenomeLen = len(myGenome)-1
+print(f'length: {agentGenomeLen}')
+
+print(f'=====--\n')
+print(myGenome)

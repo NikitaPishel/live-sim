@@ -133,7 +133,8 @@ def _addRndJoint(noRootGenome, root):
             return True
         
         else:
-            return False
+            _addRndNeuron(noRootGenome, root)
+            return True
 
     else:
         if len(addblJoints) > 0:
@@ -144,9 +145,9 @@ def _addRndJoint(noRootGenome, root):
             return False
 
 def mutate(agent):
-    print(f'{agent.gene.joints} -> {agent.gene.joints[0].joints}')
-    agentGenome = getGenome(agent.gene)
-    print(f'{agent.gene.joints} -> {agent.gene.joints[0].joints}')
+    agentGenome = getGenome(agent.gene, [])
+
+    print(f'!!! Basic genome {agent.gene.joints} -> {agent.gene.joints[0].joints}')
 
     noRootGenome = agentGenome.copy()
     noRootGenome.pop(0)     # root always has an index of 0
