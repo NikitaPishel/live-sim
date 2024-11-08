@@ -53,7 +53,6 @@ def _delRndJoint(agentGenome, neuronTypes):
     if len(delJoints) > 0:
         rndJoint = rnd.choice(delJoints)
         rndJoint['base'].remove(rndJoint['ref'])
-        print(f'random joint deleted: {rndJoint["base"]} -> {rndJoint["ref"]}')
         return True
 
     else:
@@ -91,20 +90,16 @@ def _addRndNeuron(noRootGenome, root):
         if rndCmd in nrnCmd.inputCmd:
             mutation = Sensor()
             root.joints.append(mutation)
-            print(f'Neuron inserted into the root')
 
         elif rndCmd in nrnCmd.interCmd:
             jointBase = rnd.choice(_getJointBases(noRootGenome))
             mutation = Processor()
             jointBase.joints.append(mutation)
-            print(f'Neuron inserted into: {jointBase}')
     
         elif rndCmd in nrnCmd.outputCmd:
             jointBase = rnd.choice(_getJointBases(noRootGenome))
             mutation = Signal()
             jointBase.joints.append(mutation)
-            print(f'Neuron inserted into: {jointBase}')
-            print(jointBase.joints)
         
         else:
             raise Exception(
@@ -112,12 +107,10 @@ def _addRndNeuron(noRootGenome, root):
                 )
         
         mutation.cmd = rndCmd
-        print('random neuron added')
 
 def genRndJoint(addblJoints):
     rndJoint = rnd.choice(addblJoints)
     rndJoint['base'].append(rndJoint['ref'])
-    print(f'random joint added: {rndJoint["base"]} -> {rndJoint["ref"]}')
 
 def _addRndJoint(noRootGenome, root):
     addblJoints = _getAddblJoints(noRootGenome)
@@ -147,34 +140,21 @@ def _addRndJoint(noRootGenome, root):
 def mutate(agent):
     agentGenome = getGenome(agent.gene, [])
 
-    print(f'!!! Basic genome {agent.gene.joints} -> {agent.gene.joints[0].joints}')
-
     noRootGenome = agentGenome.copy()
     noRootGenome.pop(0)     # root always has an index of 0
-    print(f'agnetGenome: {agentGenome}')
-    print(f'noRootGenome: {noRootGenome}')
+
     randomMutation = rnd.choice(['del', 'add'])
     
     if randomMutation == 'add':
-        print('=====\ntrying to add joint...')
         jointAdded = _addRndJoint(noRootGenome, agent.gene)
 
         if not jointAdded:
             neuronTypes = _searchNeurons(noRootGenome)
-            _delRndJoint(agentGenome, neuronTypes)
-            print('failed to add a joint. Trying to delete a joint...\n===')
-
-        else:
-            print('joint successfully added\n=====')
+            _delRndJoint(agentGenome, neuronTypes)\
 
     else:
-        print('=====\ntrying to delete joint...')
         neuronTypes = _searchNeurons(noRootGenome)
         jointDelted = _delRndJoint(agentGenome, neuronTypes)
 
         if not jointDelted:
-            print('failed to delete a joint. Trying to add a joint...')
             _addRndJoint(noRootGenome, agent.gene)
-        
-        else:
-            print('joint successfully deleted\n=====')
