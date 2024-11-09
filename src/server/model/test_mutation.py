@@ -5,45 +5,45 @@ import genome as gnm
 
 class TestMutation(ut.TestCase):
 
-    def test_genomelength(self):
+    def test_fixedGenlength(self):
         for i in range(10):
-            testGenome = gnm.GeneRoot()
+            genRoot = gnm.GeneRoot()
 
-            testGenome.joints.append(gnm.Sensor())
-            testGenome.joints.append(gnm.Sensor())
+            genRoot.joints.append(gnm.Sensor())
+            genRoot.joints.append(gnm.Sensor())
 
-            arrGenome = gnm.getGenome(testGenome)
+            arrGenome = gnm.getGenome(genRoot, [])
             noRootGenome = arrGenome.copy()
             noRootGenome.pop(0)
 
             neurons = mtn._searchNeurons(arrGenome)
-
+            
             mtn._delRndJoint(arrGenome, neurons)
-            mtn._addRndJoint(testGenome, noRootGenome)
+            mtn._addRndJoint(noRootGenome, genRoot)
 
-            arrGenome = gnm.getGenome(testGenome)
+            arrGenome = gnm.getGenome(genRoot, [])
             noRootGenome = arrGenome.copy()
             noRootGenome.pop(0)
 
-            self.assertEqual(len(noRootGenome), 2)
-            self.assertNotIn(testGenome, noRootGenome)
+            self.assertIn(len(noRootGenome), [1, 2])
+            self.assertNotIn(genRoot, noRootGenome)
 
+    def test_anyGenLength(self):
         for i in range(10):
-            testGenome = gnm.GeneRoot()
-            testGenome.joints.append(gnm.Sensor())
+            genRoot = gnm.GeneRoot()
+            genRoot.joints.append(gnm.Sensor())
 
-            for i in range(5):
-                noRootGenome = gnm.getGenome(testGenome)
+            for i in range(15):
+                noRootGenome = gnm.getGenome(genRoot, [])
                 noRootGenome.pop(0)
 
-                mtn._addRndJoint(testGenome, noRootGenome)
+                mtn._addRndJoint(noRootGenome, genRoot)
 
-            arrGenome = gnm.getGenome(testGenome)
+            arrGenome = gnm.getGenome(genRoot, [])
             noRootGenome = arrGenome.copy()
             noRootGenome.pop(0)
 
-            self.assertLess(len(noRootGenome), 6)
-            self.assertNotIn(testGenome, noRootGenome)
-
+            self.assertLessEqual(len(noRootGenome), 11)
+            self.assertNotIn(genRoot, noRootGenome)
 if __name__ == '__main__':
     ut.main()

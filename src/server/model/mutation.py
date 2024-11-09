@@ -66,7 +66,7 @@ def _getAddblJoints(noRootGenome):
 
             for nrnRef in noRootGenome:
                 if not isinstance(nrnRef, Sensor):
-                    if not (nrnRef in nrnBase.joints):
+                    if nrnRef not in nrnBase.joints:
                         addPos = {
                             'base': nrnBase.joints,
                             'ref': nrnRef

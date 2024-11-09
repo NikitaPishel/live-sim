@@ -34,9 +34,9 @@ def getGenome(root, viewedGenome=[]):
     viewedGenome.append(root)
 
     for i in root.joints:
-        if not (i in viewedGenome):
+        if i not in viewedGenome:
 
-            viewedGenome = getGenome(i, viewedGenome.copy())
+            viewedGenome = getGenome(i, viewedGenome)
 
     return viewedGenome
 
