@@ -47,3 +47,55 @@ class TestMutation(ut.TestCase):
             self.assertNotIn(genRoot, noRootGenome)
 if __name__ == '__main__':
     ut.main()
+
+'''
+# SHOULD BE REBUILT INTO UNIT TESTs
+
+# GET GENOME TEST
+
+myGenome = GeneRoot()
+
+myGenome.joints.append(
+    Sensor()
+)
+
+signal1 = myGenome.joints[0]
+
+signal1.joints.append(
+    Processor()
+)
+signal1.joints.append(
+    Processor()
+)
+
+signal1.joints[1].joints.append(
+    signal1.joints[0]
+)
+
+signal1.joints[0].joints.append(
+    Processor()
+)
+
+signal1.joints[0].joints[0].joints.append(
+ signal1.joints[1]   
+)
+
+myGenome.joints.append(
+    Sensor()
+)
+
+signal2 = myGenome.joints[1]
+
+signal2.joints.append(
+    Processor()
+)
+
+myGenomeArr = getGenome(myGenome)
+print(myGenomeArr)
+
+print(
+    signal1.joints[0].joints[0].joints[0] == signal1.joints[1]
+)
+
+print(len(myGenomeArr))
+'''
