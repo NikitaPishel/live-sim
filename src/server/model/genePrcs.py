@@ -21,11 +21,17 @@ def runGene(root):
     active = True
     timer = 0
     actions = 0
+    
     while active:
         timer += 1
         
         if timer >= config.mutationTimeLimit:
-            neuron = runQueue.peek()
+            active = False
+
+            if actions >= config.maxActions:
+                active = False
+
+        neuron = runQueue.peek()
 
         neuron.recall()
 
@@ -41,8 +47,6 @@ def runGene(root):
             neuron.recall()
             actions += 1
 
-            if actions >= config.maxActions:
-                active = False
-
         _enqueueJoints(neuron, runQueue)
-            
+        
+        runQueue.dequeue()
