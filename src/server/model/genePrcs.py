@@ -1,21 +1,22 @@
-# This file will contain code that will run agent's gene
-
+# This file will contains code that will run agent's gene
 # breadth-first search
-
 import genome as gnm
 import data_structures as dts
 from configuration import config
 
-def _enqueueJoints(neuron, runQueue):
+def _enqueueJoints(nrnCalls, runQueue):
     for i in neuron.joints:
-        runQueue.enqueue(i)
+        queueCall = {'nrn': i, 'inp': nrnCalls[i]}}
+        runQueue.enqueue(queueCall)
 
 def _saveInput(neuron):
     pass
 
 def runGene(root):
     runQueue = dts.Queue()
+    nrnCalls  = {} 
 
+    # neuron call - {nrn: {nrnOut:0.456}, ...}
     _enqueueJoints(neuron, runQueue)
     
     active = True
@@ -31,9 +32,7 @@ def runGene(root):
             if actions >= config.maxActions:
                 active = False
 
-        neuron = runQueue.peek()
-
-        neuron.recall()
+        currentCall = runQueue.peek()
 
         if isinstance(neuron, gnm.Sensor):
             nrnOutput = neuron.recall()
@@ -47,6 +46,6 @@ def runGene(root):
             neuron.recall()
             actions += 1
 
-        _enqueueJoints(neuron, runQueue)
+        _enqueueJoints(currentCall, runQueue)
         
         runQueue.dequeue()
