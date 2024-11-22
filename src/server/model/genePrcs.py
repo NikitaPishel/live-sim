@@ -59,3 +59,31 @@ def runGene(root):
         _enqueueJoints(currentCall, runQueue)
         
         runQueue.dequeue()
+
+
+
+# TEST СODE
+
+# should be rebuilt into a unit test
+
+def snsInp():
+    return 0.45
+
+def sgnOut(amp):
+    print(amp)
+
+tRoot = gnm.GeneRoot()
+
+tRoot.joints.append(gnm.Sensor)
+tRoot.joints[0].cmd = snsInput
+
+tRoot.joints[0].joints.append(gnm.Processor())
+tRoot.joints[0].joints.append(gnm.Processor())
+
+tRoot.joints[0].joints[0].joints.append(
+tRoot.joints[0].joints[1]
+)
+
+tRoot.joints[0].joints[0].joints[0].joints.append(gnm.Signal)
+
+tRoot.joints[0].joints[0].joints[0].joints[0].cmd = sgnOut
