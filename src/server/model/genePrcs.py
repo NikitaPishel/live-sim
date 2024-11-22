@@ -1,7 +1,9 @@
 # This file will contains code that will run agent's gene
 # breadth-first search
+import agent
 import genome as gnm
 import data_structures as dts
+import neuronCmd as cmds
 from configuration import config
 
 def _enqueueJoints(nrnData, runQueue, neuron):
@@ -15,11 +17,12 @@ def _saveInput(nrnOut, nrnData, neuron):
     for child in neuon.joints:
         nrnData[child][neuron] =  nrnOut
 
-def runGene(root):
+def runGene(agent):
+    root = agent.gene
     runQueue = dts.Queue()
-    # nrnData - {<child nrn>: {<parent nrn>: 0.452}}
     nrnData  = {}
-    
+    # nrnData - {<child nrn>: {<parent nrn>: 0.452}}
+
     _enqueueJoints(nrnData, runQueue, root)
     
     active = True
@@ -40,30 +43,32 @@ def runGene(root):
         nrnInp = currentCall['input']
 
         if isinstance(neuron, gnm.Sensor):
-            nrnOut = neuron.recall()
+            nrnOut = neuron.recall(agent)
             _saveInput(nrnOut, nrnData, neuron)
         
-        if isinstance(neuron, gnm.Processor):
+        elif isinstance(neuron, gnm.Processor):
             nrnInp = currentCall['input']
             nrnOut = neuron.recall(nrnInp)
             _saveInput(nrnOut, nrnData, neuron)
 
-        if isinstance(neuron, gnm.Sensor):
+        elif isinstance(neuron, gnm.Sensor):
             nnrnInp = currentCall['input']
             euron.recall(nrnInp)
             actions += 1
 
             if actions >= config.maxActions:
                 active = False
+        
+        else:
+            raise Exception(
+                f'Non-classified neuron type \'{neuron}\''
+                )
 
         _enqueueJoints(currentCall, runQueue)
         
         runQueue.dequeue()
 
-
-
 # TEST СODE
-
 # should be rebuilt into a unit test
 
 def snsInp():
@@ -74,16 +79,23 @@ def sgnOut(amp):
 
 tRoot = gnm.GeneRoot()
 
-tRoot.joints.append(gnm.Sensor)
-tRoot.joints[0].cmd = snsInput
+tRoot.joints.append(gnm.Sensor())
+tRoot.joints[0].cmd = snsInp
 
 tRoot.joints[0].joints.append(gnm.Processor())
 tRoot.joints[0].joints.append(gnm.Processor())
 
 tRoot.joints[0].joints[0].joints.append(
-tRoot.joints[0].joints[1]
-)
+    tRoot.joints[0].joints[1]
+    )
 
-tRoot.joints[0].joints[0].joints[0].joints.append(gnm.Signal)
+tRoot.joints[0].joints[0].joints[0].joints.append(
+    gnm.Signal
+    )
 
 tRoot.joints[0].joints[0].joints[0].joints[0].cmd = sgnOut
+
+tAgent = agent.Agent()
+tAgent.gene = tRoot
+
+runGene(tAgent)
