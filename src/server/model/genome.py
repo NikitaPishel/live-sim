@@ -8,7 +8,7 @@ class Sensor(Neuron):
         super().__init__()
     
     def recall(self, agent):
-        self.cmd(self.agent)
+        self.cmd(agent)
 
 class Processor(Neuron):
     def __init__(self):
@@ -29,7 +29,7 @@ class GeneRoot:
     def __init__(self):
         self.joints = []
 
-# Need to add loop detection
+# DFS search
 def getGenome(root, viewedGenome=[]):
     viewedGenome.append(root)
 

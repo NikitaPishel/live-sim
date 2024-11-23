@@ -8,14 +8,21 @@ from configuration import config
 
 def _enqueueJoints(nrnData, runQueue, neuron):
     for child in neuron.joints:
-        nrnInp = list(nrnData[child].values())
+        if isinstance(neuron, gnm.Sensor):
+            queueCall = {'nrn': child, 'input': []}
 
-        queueCall = {'nrn': child, 'input': nrnInp}
+        else:
+            nrnInp = list(nrnData[child].values())
+            queueCall = {'nrn': child, 'input': nrnInp}
+
         runQueue.enqueue(queueCall)
 
 def _saveInput(nrnOut, nrnData, neuron):
-    for child in neuon.joints:
-        nrnData[child][neuron] =  nrnOut
+    for child in neuron.joints:
+        if child not in nrnData:
+            nrnData[child] =  {}
+
+        nrnData[child][neuron] = nrnOut
 
 def runGene(agent):
     root = agent.gene
@@ -23,6 +30,7 @@ def runGene(agent):
     nrnData  = {}
     # nrnData - {<child nrn>: {<parent nrn>: 0.452}}
 
+    _saveInput(None, nrnData, root)
     _enqueueJoints(nrnData, runQueue, root)
     
     active = True
@@ -32,14 +40,14 @@ def runGene(agent):
     while active:
         timer += 1
         
-        if timer >= config.mutationTimeLimit:
+        if timer >= config.geneTime:
             active = False
 
         if actions >= config.maxActions:
             active = False
 
         currentCall = runQueue.peek()
-        neuron = cuurentCall['nrn']
+        neuron = currentCall['nrn']
         nrnInp = currentCall['input']
 
         if isinstance(neuron, gnm.Sensor):
@@ -53,7 +61,7 @@ def runGene(agent):
 
         elif isinstance(neuron, gnm.Sensor):
             nnrnInp = currentCall['input']
-            euron.recall(nrnInp)
+            neuron.recall(nrnInp)
             actions += 1
 
             if actions >= config.maxActions:
@@ -64,14 +72,14 @@ def runGene(agent):
                 f'Non-classified neuron type \'{neuron}\''
                 )
 
-        _enqueueJoints(currentCall, runQueue)
+        _enqueueJoints(nrnData, runQueue, neuron)
         
         runQueue.dequeue()
 
 # TEST СODE
 # should be rebuilt into a unit test
 
-def snsInp():
+def snsInp(agent):
     return 0.45
 
 def sgnOut(amp):

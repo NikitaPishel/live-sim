@@ -17,10 +17,10 @@ class Configuration:
             cls.maxActions = 1
 
             if cls.maxActions < 1:
-                raise Exception('configErr: maxActions below')
+                raise Exception('configErr, maxActions below 1')
             
             cls.geneTimeType = 'fixed'
-            cls.geneTimeValue = None
+            cls.geneTimeValue = 100
 
             if cls.geneTimeType == 'fixed':
                 cls.geneTime = cls.geneTimeValue
