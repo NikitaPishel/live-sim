@@ -8,12 +8,12 @@ from configuration import config
 
 def _enqueueJoints(nrnData, runQueue, neuron):
     for child in neuron.joints:
-        if isinstance(neuron, gnm.Sensor):
-            queueCall = {'nrn': child, 'input': []}
-
-        else:
+        if child in nrnData.keys():
             nrnInp = list(nrnData[child].values())
             queueCall = {'nrn': child, 'input': nrnInp}
+
+        else:
+            queueCall = {'nrn': child, 'input': []}
 
         runQueue.enqueue(queueCall)
 
@@ -30,7 +30,6 @@ def runGene(agent):
     nrnData  = {}
     # nrnData - {<child nrn>: {<parent nrn>: 0.452}}
 
-    _saveInput(None, nrnData, root)
     _enqueueJoints(nrnData, runQueue, root)
     
     active = True
@@ -48,8 +47,7 @@ def runGene(agent):
 
         currentCall = runQueue.peek()
         neuron = currentCall['nrn']
-        nrnInp = currentCall['input']
-
+        
         if isinstance(neuron, gnm.Sensor):
             nrnOut = neuron.recall(agent)
             _saveInput(nrnOut, nrnData, neuron)
@@ -60,8 +58,8 @@ def runGene(agent):
             _saveInput(nrnOut, nrnData, neuron)
 
         elif isinstance(neuron, gnm.Sensor):
-            nnrnInp = currentCall['input']
-            neuron.recall(nrnInp)
+            nrnInp = currentCall['input']
+            neuron.recall(agent, nrnInp)
             actions += 1
 
             if actions >= config.maxActions:
@@ -91,7 +89,10 @@ tRoot.joints.append(gnm.Sensor())
 tRoot.joints[0].cmd = snsInp
 
 tRoot.joints[0].joints.append(gnm.Processor())
+tRoot.joints[0].joints[0].cmd = cmds.tanhList
+
 tRoot.joints[0].joints.append(gnm.Processor())
+tRoot.joints[0].joints[1].cmd = cmds.tanhList
 
 tRoot.joints[0].joints[0].joints.append(
     tRoot.joints[0].joints[1]

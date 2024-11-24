@@ -2,9 +2,9 @@ import math
 
 def getSum(amp):
     ampSum = 0
-
-    for i in range(amp):
-        ampSum += amp
+    print(amp)
+    for i in amp:
+        ampSum += i
 
     return ampSum
 
@@ -20,6 +20,10 @@ def getDir(agent) -> float:
     return agent.dir
 
 # Internal commadns
+
+def tanhList(amp):
+    ampSum = getSum(amp)
+    return math.tanh(ampSum)
 
 def reLU(amp) -> float:
     ampSum = getSum(amp)
@@ -56,7 +60,7 @@ inputCmd = [
 ]
 
 interCmd = [
-    math.tanh,
+    tanhList,
     reLU,
     getProduct
 
