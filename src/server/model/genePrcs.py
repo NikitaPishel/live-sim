@@ -10,10 +10,11 @@ def _enqueueJoints(nrnData, runQueue, neuron):
     for child in neuron.joints:
         if child in nrnData.keys():
             nrnInp = list(nrnData[child].values())
-            queueCall = {'nrn': child, 'input': nrnInp}
 
         else:
-            queueCall = {'nrn': child, 'input': []}
+            nrnInp = []
+
+        queueCall = {'nrn': child, 'input': []}
 
         runQueue.enqueue(queueCall)
 
@@ -57,7 +58,7 @@ def runGene(agent):
             nrnOut = neuron.recall(nrnInp)
             _saveInput(nrnOut, nrnData, neuron)
 
-        elif isinstance(neuron, gnm.Sensor):
+        elif isinstance(neuron, gnm.Signal):
             nrnInp = currentCall['input']
             neuron.recall(agent, nrnInp)
             actions += 1
@@ -80,8 +81,8 @@ def runGene(agent):
 def snsInp(agent):
     return 0.45
 
-def sgnOut(amp):
-    print(amp)
+def sgnOut(agent, amp):
+    print(f'{agent} -> {amp}')
 
 tRoot = gnm.GeneRoot()
 
@@ -99,7 +100,7 @@ tRoot.joints[0].joints[0].joints.append(
     )
 
 tRoot.joints[0].joints[0].joints[0].joints.append(
-    gnm.Signal
+    gnm.Signal()
     )
 
 tRoot.joints[0].joints[0].joints[0].joints[0].cmd = sgnOut
