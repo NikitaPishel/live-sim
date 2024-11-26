@@ -20,10 +20,11 @@ def _enqueueJoints(nrnData, runQueue, neuron):
 
 def _saveInput(nrnOut, nrnData, neuron):
     for child in neuron.joints:
-        if child not in nrnData:
+        if child not in nrnData.keys():
             nrnData[child] =  {}
 
         nrnData[child][neuron] = nrnOut
+#        print(f'nrnData: {nrnData}')
 
 def runGene(agent):
     root = agent.gene
@@ -52,11 +53,13 @@ def runGene(agent):
         if isinstance(neuron, gnm.Sensor):
             nrnOut = neuron.recall(agent)
             _saveInput(nrnOut, nrnData, neuron)
+            print(f'sns output: {nrnOut}')
         
         elif isinstance(neuron, gnm.Processor):
             nrnInp = currentCall['input']
             nrnOut = neuron.recall(nrnInp)
             _saveInput(nrnOut, nrnData, neuron)
+            print(f'prcs output: {nrnOut}')
 
         elif isinstance(neuron, gnm.Signal):
             nrnInp = currentCall['input']
@@ -79,10 +82,11 @@ def runGene(agent):
 # should be rebuilt into a unit test
 
 def snsInp(agent):
+    print('sns input: 0.45')
     return 0.45
 
 def sgnOut(agent, amp):
-    print(f'{agent} -> {amp}')
+    print(f'{amp} -> {agent}')
 
 tRoot = gnm.GeneRoot()
 
