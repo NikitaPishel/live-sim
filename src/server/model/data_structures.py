@@ -126,7 +126,11 @@ class Queue:
             raise Exception('Calling \'deque\' command in an empty Queue')
     
     def peek(self):
-        return self.front.data
+        if self.front == None:
+            return None
+        
+        else:
+            return self.front.data
 
     def getLength(self):
         if self.front != None:
