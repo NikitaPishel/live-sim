@@ -21,8 +21,10 @@ def _enqueueJoints(nrnData, runQueue, neuron):
 def _saveInput(nrnOut, nrnData, neuron):
     for child in neuron.joints:
         if child not in nrnData.keys():
+            print(f'creating data record for {child}...')
             nrnData[child] =  {}
 
+        print(f'wrriting {nrnOut} into {child}')
         nrnData[child][neuron] = nrnOut
 #        print(f'nrnData: {nrnData}')
 
@@ -40,6 +42,7 @@ def runGene(agent):
 
     while active:
         timer += 1
+        print(f'timer: {timer}')
         
         if timer >= config.geneTime:
             active = False
@@ -48,35 +51,42 @@ def runGene(agent):
             active = False
 
         currentCall = runQueue.peek()
-        neuron = currentCall['nrn']
         
-        if isinstance(neuron, gnm.Sensor):
-            nrnOut = neuron.recall(agent)
-            _saveInput(nrnOut, nrnData, neuron)
-            print(f'sns output: {nrnOut}')
-        
-        elif isinstance(neuron, gnm.Processor):
-            nrnInp = currentCall['input']
-            nrnOut = neuron.recall(nrnInp)
-            _saveInput(nrnOut, nrnData, neuron)
-            print(f'prcs output: {nrnOut}')
-
-        elif isinstance(neuron, gnm.Signal):
-            nrnInp = currentCall['input']
-            neuron.recall(agent, nrnInp)
-            actions += 1
-
-            if actions >= config.maxActions:
-                active = False
+        if currentCall == None:
+            active = False
         
         else:
-            raise Exception(
-                f'Non-classified neuron type \'{neuron}\''
-                )
+            neuron = currentCall['nrn']
+            
+            if isinstance(neuron, gnm.Sensor):
+                nrnOut = neuron.recall(agent)
+                _saveInput(nrnOut, nrnData, neuron)
+                print(f'sns output: {nrnOut}')
+            
+            elif isinstance(neuron, gnm.Processor):
+                nrnInp = currentCall['input']
+                nrnOut = neuron.recall(nrnInp)
+                _saveInput(nrnOut, nrnData, neuron)
+                print(f'prcs output: {nrnOut}')
 
-        _enqueueJoints(nrnData, runQueue, neuron)
-        
-        runQueue.dequeue()
+            elif isinstance(neuron, gnm.Signal):
+                nrnInp = currentCall['input']
+                nrnRun = neuron.recall(agent, nrnInp)
+                
+                if nrnRun:
+                    actions += 1
+
+                    if actions >= config.maxActions:
+                        active = False
+
+            else:
+                raise Exception(
+                    f'Non-classified neuron type \'{neuron}\''
+                    )
+
+            _enqueueJoints(nrnData, runQueue, neuron)
+            
+            runQueue.dequeue()
 
 # TEST СODE
 # should be rebuilt into a unit test
@@ -103,11 +113,11 @@ tRoot.joints[0].joints[0].joints.append(
     tRoot.joints[0].joints[1]
     )
 
-tRoot.joints[0].joints[0].joints[0].joints.append(
+tRoot.joints[0].joints[1].joints.append(
     gnm.Signal()
     )
 
-tRoot.joints[0].joints[0].joints[0].joints[0].cmd = sgnOut
+tRoot.joints[0].joints[1].joints[0].cmd = sgnOut
 
 tAgent = agent.Agent()
 tAgent.gene = tRoot

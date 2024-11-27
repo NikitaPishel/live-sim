@@ -41,19 +41,25 @@ def getProduct(amp):
 
 # Output commands
 
-def outRotate(agent, amp) -> None:
+def outRotate(agent, amp) -> bool:
     ampProc = math.tanh(getSum(amp))
 
-def outMove(agent, amp) -> None:
+def outMove(agent, amp) -> bool:
     ampProc = math.tanh(getSum(amp))
     
     moveCords = [0, 0]
 
-    if agent.dir > 0:
-        moveCords[0] = 1
-    
-    if agent.dir >= -0.25 and agent.dir <= 0.25:
-        moveCords[1] = 1
+    if ampProc > 0:
+        if agent.dir > 0:
+            moveCords[0] = 1
+        
+        if agent.dir >= -0.25 and agent.dir <= 0.25:
+            moveCords[1] = 1
+
+        return True
+
+    else:
+        return False
 
 inputCmd = [
     getVisionNone,
