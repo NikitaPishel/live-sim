@@ -10,12 +10,15 @@ def _enqueueJoints(nrnData, runQueue, neuron):
     for child in neuron.joints:
         if child in nrnData.keys():
             nrnInp = list(nrnData[child].values())
+            print(f"inserting input: {nrnInp}")
 
         else:
             nrnInp = []
+            print('no input found, returing empty list')
 
-        queueCall = {'nrn': child, 'input': []}
-
+        queueCall = {'nrn': child, 'input': nrnInp}
+        
+        print(f'enqueueing nrn call: {queueCall}')
         runQueue.enqueue(queueCall)
 
 def _saveInput(nrnOut, nrnData, neuron):
@@ -24,7 +27,7 @@ def _saveInput(nrnOut, nrnData, neuron):
             print(f'creating data record for {child}...')
             nrnData[child] =  {}
 
-        print(f'wrriting {nrnOut} into {child}')
+        print(f'writing {nrnOut} into {child}')
         nrnData[child][neuron] = nrnOut
 #        print(f'nrnData: {nrnData}')
 
@@ -57,6 +60,7 @@ def runGene(agent):
         
         else:
             neuron = currentCall['nrn']
+            print(f'recieving nrnInput: {currentCall['input']}')
             
             if isinstance(neuron, gnm.Sensor):
                 nrnOut = neuron.recall(agent)
@@ -87,6 +91,7 @@ def runGene(agent):
             _enqueueJoints(nrnData, runQueue, neuron)
             
             runQueue.dequeue()
+    print(nrnData)
 
 # TEST СODE
 # should be rebuilt into a unit test
