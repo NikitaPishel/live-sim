@@ -2,8 +2,6 @@ import math
 
 def getSum(amp):
     ampSum = 0
-    
-    print(f'nrnCall: []')
 
     for i in amp:
         ampSum += i

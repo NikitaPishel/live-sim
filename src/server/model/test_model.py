@@ -2,6 +2,9 @@ import unittest as ut
 
 import mutation as mtn
 import genome as gnm
+import neuronCmd as cmds
+import genePrcs
+import agent
 
 class TestMutation(ut.TestCase):
 
@@ -68,7 +71,6 @@ class TestMutation(ut.TestCase):
 
         signal2.joints.append(gnm.Processor())
         myGenomeArr = gnm.getGenome(myGenome)
-        print(myGenomeArr)
 
         self.assertEqual(
         signal1.joints[0].joints[0].joints[0],
@@ -76,5 +78,42 @@ class TestMutation(ut.TestCase):
         )
         self.assertEqual(len(myGenomeArr), 7)
 
+    def test_genePrcsNrnJump(self):
+        tOut = []
+        
+        def snsInp(agent):
+            return 0.45
+
+        def sgnOut(agent, amp):
+            tOut.append(amp)
+        
+        tRoot = gnm.GeneRoot()
+
+        tRoot.joints.append(gnm.Sensor())
+        tRoot.joints[0].cmd = snsInp
+
+        tRoot.joints[0].joints.append(gnm.Processor())
+        tRoot.joints[0].joints[0].cmd = cmds.tanhList
+
+        tRoot.joints[0].joints.append(gnm.Processor())
+        tRoot.joints[0].joints[1].cmd = cmds.tanhList
+
+        tRoot.joints[0].joints[0].joints.append(
+            tRoot.joints[0].joints[1]
+            )
+
+        tRoot.joints[0].joints[1].joints.append(
+            gnm.Signal()
+            )
+
+        tRoot.joints[0].joints[1].joints[0].cmd = sgnOut
+
+        tAgent = agent.Agent()
+        tAgent.gene = tRoot
+
+        genePrcs.runGene(tAgent)
+
+        self.assertEqual(tOut[0], [0.42189900525000795])
+        self.assertEqual(tOut[1], [0.7023376822305316])
 if __name__ == '__main__':
     ut.main()
