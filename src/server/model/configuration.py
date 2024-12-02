@@ -1,31 +1,25 @@
 import math
 import json
-import os
-
-os.chdir('./src/server/data/presets')
 
 class Configuration:
     _instance = None
 
-    def __new__(cls, filename):
-        if cls._instance is None:
+    def __init__(self, filename):
+        Configuration._instance = self
 
-            cls._instance = super(Configuration, cls).__new__(cls)
+        # Load standart settings
+        self.loadConfig('./src/server/data/presets/standart.json')
+
+        # Load non-standart settings
+        self.loadConfig(filename)
+    
+        # exceptional settings
+        if self.maxActions < 1:
+            raise Exception('configErr, maxActions below 1')
         
-            # Load standart settings
-            cls.loadConfig('standart.json')
+        if self.geneTime < 1:
+            raise Exception('configErr, maxActions below 1')
 
-            # Load non-standart settings
-            cls.loadConfig(filename)
-        
-            # exceptional settings
-            if cls.maxActions < 1:
-                raise Exception('configErr, maxActions below 1')
-            
-            if cls.geneTime < 1:
-                raise Exception('configErr, maxActions below 1')
-
-        return cls._instance
 
     @classmethod
     def getInstance(cls, filename):
@@ -71,4 +65,6 @@ class Configuration:
             else:
                 raise Exception('unknow dependency in \'geneRuntime\' variable')
 
-config = Configuration.getInstance('.example.json')
+config = Configuration.getInstance('./src/server/data/presets/.example.json')
+
+print(config.geneTime)
