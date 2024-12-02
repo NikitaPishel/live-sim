@@ -22,33 +22,33 @@ class Configuration:
 
 
     @classmethod
-    def getInstance(cls, filename):
+    def getInstance(cls, filename=None):
         if Configuration._instance == None:
             Configuration(filename)
         return cls._instance
 
     @classmethod
-    def loadConfig(cls, filename):
+    def loadConfig(self, filename):
         with open(filename, 'r') as file:
             settings = json.load(file)
 
         if settings['field size'] != None:
-            cls.fieldSize = settings['field size']
+            self.fieldSize = settings['field size']
 
         if settings['max amount of agents'] != None:
-            cls.maxAgents = settings['max amount of agents']
+            self.maxAgents = settings['max amount of agents']
         
         if settings['max genome length'] != None:
-            cls.maxGenomeLen = settings['max genome length']
+            self.maxGenomeLen = settings['max genome length']
 
         if settings['mutation chance'] != None:
-            cls.mutationChance = settings['mutation chance']
+            self.mutationChance = settings['mutation chance']
 
         if settings['new neuron chance'] != None:
-            cls.newNeuronChance = settings['new neuron chance']
+            self.newNeuronChance = settings['new neuron chance']
 
         if settings['max actions'] != None:
-            cls.maxActions = settings['max actions']
+            self.maxActions = settings['max actions']
 
         geneRuntime = settings['gene runtime']
         if geneRuntime != None:
@@ -56,15 +56,14 @@ class Configuration:
             dependecy = geneRuntime['dependency']
 
             if dependecy == None:
-                cls.geneTime = multiplier * geneRuntime['fixed value']
+                self.geneTime = multiplier * geneRuntime['fixed value']
 
             elif dependecy == 'gene length':
-                cls.geneTime = multiplier * cls.maxGenomeLen
-                math.floor(cls.geneTime)
+                self.geneTime = multiplier * self.maxGenomeLen
+                math.floor(self.geneTime)
             
             else:
                 raise Exception('unknow dependency in \'geneRuntime\' variable')
 
-config = Configuration.getInstance('./src/server/data/presets/.example.json')
-
-print(config.geneTime)
+filePath = './src/server/data/presets/.example.json'
+config = Configuration.getInstance(filePath)
