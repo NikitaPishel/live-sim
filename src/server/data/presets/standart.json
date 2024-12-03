@@ -1,16 +1,17 @@
 {
-    "field size": [32, 32],
-    "max amount of agents": 10,
+    "fieldSize": [32, 32],
+    "maxAmountOfAgents": 10,
+	"startMutation": 5,
 
-    "max genome length": 10,
-    "mutation chance": 0.1,
-    "new neuron chance": 0.3,
+    "maxGenomeLength": 10,
+    "mutationChance": 0.1,
+    "newNeuronChance": 0.3,
 
-    "max actions": 1,
-    "gene runtime": {
+    "maxActions": 1,
+    "geneRuntime": {
         "multiplier": 1,
         "dependency": null,
 
-        "fixed value": 50
+        "fixedValue": 50
     }
 }

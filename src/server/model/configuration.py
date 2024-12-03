@@ -34,33 +34,37 @@ class Configuration:
         with open(filename, 'r') as file:
             settings = json.load(file)
 
-        if settings['field size'] != None:
-            self.fieldSize = settings['field size']
+        if settings['fieldSize'] != None:
+            self.fieldSize = settings['fieldSize']
 
-        if settings['max amount of agents'] != None:
-            self.maxAgents = settings['max amount of agents']
+        if settings['maxAmountOfAgents'] != None:
+            self.maxAgents = settings['maxAmountOfAgents']
         
-        if settings['max genome length'] != None:
-            self.maxGenomeLen = settings['max genome length']
+        if settings['maxGenomeLength'] != None:
+            self.maxGenomeLen = settings['maxGenomeLength']
 
-        if settings['mutation chance'] != None:
-            self.mutationChance = settings['mutation chance']
+        if settings['mutationChance'] != None:
+            self.mutationChance = settings['mutationChance']
 
-        if settings['new neuron chance'] != None:
-            self.newNeuronChance = settings['new neuron chance']
+        if settings['newNeuronChance'] != None:
+            self.newNeuronChance = settings['newNeuronChance']
+        # Amount of mutations that are created on the start of a simulation
+        if settings['startMutation'] != None:
+            self.startMutation = settings['startMutation']
 
-        if settings['max actions'] != None:
-            self.maxActions = settings['max actions']
+        if settings['maxActions'] != None:
+            self.maxActions = settings['maxActions']
 
-        geneRuntime = settings['gene runtime']
+        geneRuntime = settings['geneRuntime']
+
         if geneRuntime != None:
             multiplier = geneRuntime['multiplier']
             dependecy = geneRuntime['dependency']
 
             if dependecy == None:
-                self.geneTime = multiplier * geneRuntime['fixed value']
+                self.geneTime = multiplier * geneRuntime['fixedValue']
 
-            elif dependecy == 'gene length':
+            elif dependecy == 'geneLength':
                 self.geneTime = multiplier * self.maxGenomeLen
                 math.floor(self.geneTime)
             
