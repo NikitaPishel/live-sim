@@ -1,15 +1,25 @@
-from data_structures import Queue, AvlNode
+import random as rnd
+
+import data_structures as dts
 from agent import Agent
 import genome as gnm
-import configuration
-
-config = configuration.Configuration()
+from configuration import config
 
 # iteration process
 
-agents = Queue()
+def runItr():
+    pass
 
-def run(config):
+# Simulation execution code
+def run():
+
+    agents - dts.avlTree()
+    for i in range(config.maxAgents):
+        newAgent = Agent()
+
+        newAgent.pos = rndFreePos()
+        newAgent.dir = rnd.randint(0, 7)
+
     runSim = True
     while runSim:
-        pass
+        itrData = runItr()

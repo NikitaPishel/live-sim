@@ -7,7 +7,7 @@ from configuration import config
 class Agent:
     def __init__(self, x=0, y=0):
         self.pos = [x, y]
-        self.dir = 0 # 8 directions -1 to 1 from down clockwise (south=-1, south-west=-0.75, west=-0.5, etc.)
+        self.dir = 0 # 8 directions 0 to 7 from down clockwise (south=0, south-east=1, east=2, etc.)
 
         self.gene = gnm.GeneRoot() # decision map of an agent
         self.id = 0

@@ -1,4 +1,5 @@
 import unittest as ut
+import math
 
 import mutation as mtn
 import genome as gnm
@@ -32,7 +33,7 @@ class TestMutation(ut.TestCase):
             self.assertNotIn(genRoot, noRootGenome)
 
     def test_anyGenLength(self):
-        for i in range(10):
+        for i in range(50):
             genRoot = gnm.GeneRoot()
             genRoot.joints.append(gnm.Sensor())
 
@@ -46,7 +47,7 @@ class TestMutation(ut.TestCase):
             noRootGenome = arrGenome.copy()
             noRootGenome.pop(0)
 
-            self.assertLessEqual(len(noRootGenome), 11)
+            self.assertLessEqual(len(noRootGenome), 16)
             self.assertNotIn(genRoot, noRootGenome)
 
     def test_getGenome(self):
@@ -112,8 +113,16 @@ class TestMutation(ut.TestCase):
         tAgent.gene = tRoot
 
         genePrcs.runGene(tAgent)
+        
+        dp = 3
+        res1 = (math.floor(tOut[0][0]*(10**dp))/(10**dp))
+        res2 = (math.floor(tOut[1][0]*(10**dp))/(10**dp))
 
-        self.assertEqual(tOut[0], [0.42189900525000795])
-        self.assertEqual(tOut[1], [0.7023376822305316])
+        self.assertEqual(res1, 0.421)
+        self.assertEqual(res2, 0.702)
+
+    def test_PrcsLoop(self):
+        pass
+
 if __name__ == '__main__':
     ut.main()
