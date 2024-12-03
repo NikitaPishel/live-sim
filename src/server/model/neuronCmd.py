@@ -42,6 +42,19 @@ def getProduct(amp):
 def outRotate(agent, amp) -> bool:
     ampProc = math.tanh(getSum(amp))
 
+    if ampProc > 0:
+        ampProc *= 8
+        ampProc = math.floor(ampProc)
+        
+        if ampProc == 8:
+            ampProc -= 1
+
+        agent.dir = ampProc
+        return True
+
+    else:
+        return False
+
 def outMove(agent, amp) -> bool:
     ampProc = math.tanh(getSum(amp))
     
