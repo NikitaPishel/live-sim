@@ -8,10 +8,10 @@ class Configuration:
     def __init__(self, filename):
         Configuration._instance = self
         os.chdir('../')
-        self.serverDir = os.getcwd()
+        self._serverDir = os.getcwd()
 
         # Load standart settings
-        self.loadConfig(f'{self.serverDir}/data/presets/standart.json')
+        self.loadConfig(f'{self._serverDir}/data/presets/standart.json')
 
         # Load non-standart settings
         self.loadConfig(filename)
@@ -71,5 +71,5 @@ class Configuration:
             else:
                 raise Exception('unknow dependency in \'geneRuntime\' variable')
 
-filePath = './data/presets/.example.json'
+filePath = 'C:/projects/now/live-sim/src/server/data/presets/.example.json'
 config = Configuration.getInstance(filePath)

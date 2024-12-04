@@ -5,15 +5,14 @@ from agent import Agent
 import genome as gnm
 from configuration import config
 
-# iteration process
-
+# Single iteration process
 def runItr():
     pass
 
 # Simulation execution code
 def run():
 
-    agents - dts.avlTree()
+    mapTree = dts.avlTree()
     for i in range(config.maxAgents):
         newAgent = Agent()
 
