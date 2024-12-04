@@ -1,7 +1,11 @@
 {
     "fieldSize": null,
     "maxAmountOfAgents": 30,
+<<<<<<< HEAD
     "startMutation": null,
+=======
+	"startMutation": null,
+>>>>>>> 0988d20ffd080c3abbc5831afe126ecaaa93db78
 
     "maxGenomeLength": 23,
     "mutationChance": 0.05,
