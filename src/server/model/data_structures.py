@@ -1,36 +1,74 @@
 class _AvlNode:
-    def __init__(self, lChild=None, rChild=None):
+    def __init__(self):
         self.index = None
         self.data = None
-        self.lChild = lChild
-        self.rChild = rChild
+        self.lChild = None
+        self.rChild = None
         self.height = 1
+        self. balance = 0
+    
+    def updateHeight(self):
+        if self.lChild != None:
+            lHeight = self.lChild.updateHeight() + 1
+        
+        else:
+            lHeight = 0
+
+        if self.rChild != None:
+            rHeight = self.rChild.updateHeight() + 1
+        
+        else:
+            rHeight = 0
+        
+        self.height = max(lHeight, rHeight)
+        self.balance = lHeight - rHeight
+
+        print(f'index: {self.index}')
+        print(f'current heights: {lHeight}, {rHeight}')
+        print(f'current balance: {self.balance}')
+        print('================')
+        self.balanceTree()
+        return self.height
+    
+    def balanceTree(self):
+        if self.balance < -1:
+            if self.rChild.balance != 1:
+                self._lTurn(self)
+                self.updateHeight()
+            
+            else:
+                self._lrTurn(self)
+                self.updateHeight()
+
+        if self.balance > 1:
+            if self.lChild.balance != -1:
+                self._rTurn(self)
+                self.updateHeight()
+            
+            else:
+                self._rlTurn(self)
+                self.updateHeight()
     
     def insertNode(self, index):
         if index < self.index:
-            if self.lChild == None:
+            if self.lChild != None:
+                self.lChild.insertNode(index)
+            
+            else:
                 self.lChild = _AvlNode()
                 self.lChild.index = index
-            
-            else:
-                self.lChild.insertNode(index)
         
-        if index >= self.index:
-            if self.rChild == None:
-                self.rChild = _AvlNode()
-                self.rChild.index = index
-            
-            else:
+        if index > self.index:
+            if self.rChild != None:
                 self.rChild.insertNode(index)
 
-    def delValue(self, index):
-        pass
+            else:
+                self.rChild = _AvlNode()
+                self.rChild.index = index
 
-class AvlTree:
-    def __init__(self):
-        self.root = None
+        else:
+            raise Exception(f'Current tree index \'{index}\' already exists')
 
-    # Internal functions
     def _lTurn(self, node):
         midNode = node.rChild
         
@@ -46,48 +84,43 @@ class AvlTree:
         node = midNode
 
     def _lrTurn(self, node):
-        node.lChild.lTurn()
-        node.rTurn()
+        node.lChild._rTurn()
+        node._lTurn()
 
     def _rlTurn(self, node):
-        node.rChild.rTurn()
-        node.lTurn()
-    
-    def _checkLength(self):
-        if self.lChild != None:
-            lHeight = self.lChild._checkLength() + 1
+        node.rChild._lTurn()
+        node._rTurn()
 
-        else:
-            lHeight = 1
+class AvlTree:
+    def __init__(self):
+        self.root = None
 
-        if self.rChild != None:
-            rHeight = self.rChild._checkLength() + 1
-        
-        else:
-            rHeight = 1
-
-            return max(lHeight, rHeight)
+    # Internal function
 
     # External functions
-    def searchData(self, index):
-        if self.index == self.index:
-            return self.data
-        
-        elif index < self.index:
-            if self.lChild != None:
-                self.lChild.searchData(index)
-        
-        elif index >= self.index:
-            if self.rChild != None:
-                self.rChild.searchData(index)
-    
+    def search(self, index):
+        if self.root != None:
+            self.root.searchByIndex
+
+        else:
+            return None
+
     def insert(self, index):
+        print(f'!!! INSERTING A NODE {index}')
         if self.root != None:
             self.root.insertNode(index)
+            self.root.updateHeight()
         
         else:
             self.root = _AvlNode()
             self.root.index = index
+    
+    def delete(self, index):
+        if self.root != None:
+            self.root._deleteNode(index)
+        
+        else:
+            raise Exception("Deleting a node from an empty tree")
 
 # Test tree
 
@@ -96,7 +129,14 @@ tTree.insert(1)
 tTree.insert(2)
 tTree.insert(3)
 
-print(tTree.root.rChild.rChild.index)
+try:
+    print(tTree.root.rChild.rChild.index)
+    print("Tree haven't balanced")
+
+except:
+    print(tTree.root.rChild.index)
+    print(tTree.root.lChild.index)
+    print("Tree successfully balanced")
 
 # ================================================================
 
