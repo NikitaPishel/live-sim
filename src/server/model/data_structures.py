@@ -33,14 +33,14 @@ class _AvlNode:
     def updateHeight(self):
         if self.lChild != None:
             lHeight = self.lChild.updateHeight()
-            self.rChild = balanceTree(self.rChild)
+            self.rChild = _balanceTree(self.rChild)
         
         else:
             lHeight = 0
 
         if self.rChild != None:
             rHeight = self.rChild.updateHeight()
-            self. rChild = balanceTree(self.rChild)
+            self. rChild = _balanceTree(self.rChild)
 
         else:
             rHeight = 0
@@ -53,31 +53,55 @@ class _AvlNode:
 
         return self.height
 
-def balanceTree(node):
-    if node != None:
-        if node.lChild != None:
-            lHeight = node.lChild.height
+def getBalance(node):
+    if node == None:
+        return 0
 
-        else:
-            lHeight = 0
+    else:
+        if node != None:
+            if node.lChild != None:
+                lHeight = node.lChild.height
 
-        if node.rChild != None:
-            rHeight = node.rChild.height
+            else:
+                lHeight = 0
+
+            if node.rChild != None:
+                rHeight = node.rChild.height
+            
+            else:
+                rHeight = 0
         
-        else:
-            rHeight = 0
+        print(f'! current balance: {lHeight - rHeight}, from {lHeight} {rHeight}')   
+        return lHeight - rHeight     
 
-        print(f'! current balance: {lHeight - rHeight}, from {lHeight} {rHeight}')        
-        balance = lHeight - rHeight
+def _balanceTree(node):
+
+        balance = getBalance(node)
         
         if balance < -1:
-            newTree = _lTurn(node)
-            #print(f'\nreassigned:\n- node: {node.key}\n- left: {node.lChild.key}\n- right: {node.rChild.key}\n')
-            return newTree
+            rBalance = getBalance(node.rChild)
+
+            if rBalance == 1:
+                newTree = _lrTurn(node)
+                #print(f'\nreassigned:\n- node: {node.key}\n- left: {node.lChild.key}\n- right: {node.rChild.key}\n')
+                return newTree
+            
+            else:
+                newTree = _lTurn(node)
+                #print(f'\nreassigned:\n- node: {node.key}\n- left: {node.lChild.key}\n- right: {node.rChild.key}\n')
+                return newTree
 
         elif balance > 1:
-            newTree = _rTurn(node)
-            return newTree
+            lBalance = getBalance(node.lChild)
+
+            if lBalance == -1:
+                newTree = _rlTurn(node)
+                return newTree
+            
+            else:
+                newTree = _rTurn(node)
+                return newTree
+
 
         else:
             return node
@@ -90,7 +114,7 @@ def _lTurn(node):
     newRoot.lChild = node
     node.rChild = midTree
 
-    print(f'New tree:\n- root: {newRoot.key}\n- left: {newRoot.lChild.key}\n- right: {newRoot.rChild.key}\n')
+    #print(f'New tree:\n- root: {newRoot.key}\n- left: {newRoot.lChild.key}\n- right: {newRoot.rChild.key}\n')
     return newRoot
 
 def _rTurn(node):
@@ -101,16 +125,19 @@ def _rTurn(node):
     node.lChild = midTree
     newRoot.rChild = node
 
-    print(f'New tree:\n- root: {newRoot.key}\n- left: {newRoot.lChild.key}\n- right: {newRoot.rChild.key}\n')
+    #print(f'New tree:\n- root: {newRoot.key}\n- left: {newRoot.lChild.key}\n- right: {newRoot.rChild.key}\n')
     return newRoot
 
 def _lrTurn(node):
-    node.lChild._rTurn()
-    node._lTurn()
+    node.rChild = _rTurn(node.rChild)
+    newTree = _lTurn(node)
+
+    return newTree
 
 def _rlTurn(node):
-        node.rChild._lTurn()
-        node._rTurn()
+    node.lChild = _lTurn(node.lChild)
+    newTree = _rTurn(node)
+    return newTree
 
 class AvlTree:
     def __init__(self):
@@ -131,7 +158,7 @@ class AvlTree:
         if self.root != None:
             self.root.insertNode(key)
             self.root.updateHeight()
-            self.root = balanceTree(self.root)
+            self.root = _balanceTree(self.root)
         
         else:
             self.root = _AvlNode()
@@ -148,8 +175,8 @@ class AvlTree:
 
 tTree = AvlTree()
 tTree.insert(3)
-tTree.insert(2)
 tTree.insert(1)
+tTree.insert(2)
 
 try:
     print(f'{tTree.root.key}\n \\\n  {tTree.root.rChild.key}\n   \\\n    {tTree.root.rChild.rChild.key}')
