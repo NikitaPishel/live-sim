@@ -47,10 +47,6 @@ class _AvlNode:
         
         self.height = max(lHeight, rHeight) + 1
 
-        print('================')
-        print(f'key: {self.key}')
-        print(f'current heights: {lHeight}, {rHeight}')
-
         return self.height
 
 def getBalance(node):
@@ -71,7 +67,6 @@ def getBalance(node):
             else:
                 rHeight = 0
         
-        print(f'! current balance: {lHeight - rHeight}, from {lHeight} {rHeight}')   
         return lHeight - rHeight     
 
 def _balanceTree(node):
@@ -83,12 +78,10 @@ def _balanceTree(node):
 
             if rBalance == 1:
                 newTree = _lrTurn(node)
-                #print(f'\nreassigned:\n- node: {node.key}\n- left: {node.lChild.key}\n- right: {node.rChild.key}\n')
                 return newTree
             
             else:
                 newTree = _lTurn(node)
-                #print(f'\nreassigned:\n- node: {node.key}\n- left: {node.lChild.key}\n- right: {node.rChild.key}\n')
                 return newTree
 
         elif balance > 1:
@@ -107,25 +100,21 @@ def _balanceTree(node):
             return node
 
 def _lTurn(node):
-    print('\nlTurning...\n')
     newRoot = node.rChild
     midTree = newRoot.lChild
     
     newRoot.lChild = node
     node.rChild = midTree
 
-    #print(f'New tree:\n- root: {newRoot.key}\n- left: {newRoot.lChild.key}\n- right: {newRoot.rChild.key}\n')
     return newRoot
 
 def _rTurn(node):
-    print('\nrTurning...\n')
     newRoot = node.lChild
     midTree = newRoot.rChild
 
     node.lChild = midTree
     newRoot.rChild = node
 
-    #print(f'New tree:\n- root: {newRoot.key}\n- left: {newRoot.lChild.key}\n- right: {newRoot.rChild.key}\n')
     return newRoot
 
 def _lrTurn(node):
@@ -154,7 +143,6 @@ class AvlTree:
             return None
 
     def insert(self, key):
-        print(f'!!! INSERTING A NODE {key}')
         if self.root != None:
             self.root.insertNode(key)
             self.root.updateHeight()
@@ -170,22 +158,6 @@ class AvlTree:
         
         else:
             raise Exception("Deleting a node from an empty tree")
-
-# Test tree
-
-tTree = AvlTree()
-tTree.insert(3)
-tTree.insert(1)
-tTree.insert(2)
-
-try:
-    print(f'{tTree.root.key}\n \\\n  {tTree.root.rChild.key}\n   \\\n    {tTree.root.rChild.rChild.key}')
-    print("Tree haven't balanced")
-
-except:
-    #print(f'{tTree.root.key}')
-    print(f'   {tTree.root.key}\n /   \\\n{tTree.root.lChild.key}     {tTree.root.rChild.key}')
-    print("Tree successfully balanced")
 
 # ================================================================
 

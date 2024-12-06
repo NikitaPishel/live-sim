@@ -6,6 +6,7 @@ import genome as gnm
 import neuronCmd as cmds
 import genePrcs
 import agent
+import data_structures as dts
 
 class TestMutation(ut.TestCase):
 
@@ -123,6 +124,70 @@ class TestMutation(ut.TestCase):
 
     def test_PrcsLoop(self):
         pass
+
+    def test_avl_lTurn(self):
+        tTree = dts.AvlTree()
+        tTree.insert(1)
+        tTree.insert(2)
+        tTree.insert(3)
+
+        self.assertEqual(tTree.root.key, 2)
+        self.assertEqual(tTree.root.lChild.key, 1)
+        self.assertEqual(tTree.root.rChild.key, 3)
+        print('\n\n=======')
+        print('l turn test')
+        print(f' 3\n  \\\n   1\n    \\\n     2')
+        print('\n   ↓')
+        print(f'\n   {tTree.root.key}\n /   \\\n{tTree.root.lChild.key}     {tTree.root.rChild.key}')
+        print("Tree successfully balanced")
+    
+    def test_avl_rTurn(self):
+        tTree = dts.AvlTree()
+        tTree.insert(3)
+        tTree.insert(2)
+        tTree.insert(1)
+
+        self.assertEqual(tTree.root.key, 2)
+        self.assertEqual(tTree.root.lChild.key, 1)
+        self.assertEqual(tTree.root.rChild.key, 3)
+        print('\n\n=======')
+        print('r turn test')
+        print(f'     3\n    /\n   1\n  /\n 2')
+        print('\n   ↓')
+        print(f'\n   {tTree.root.key}\n /   \\\n{tTree.root.lChild.key}     {tTree.root.rChild.key}')
+        print("Tree successfully balanced")
+    
+    def test_avl_lrTurn(self):
+        tTree = dts.AvlTree()
+        tTree.insert(1)
+        tTree.insert(3)
+        tTree.insert(2)
+
+        self.assertEqual(tTree.root.key, 2)
+        self.assertEqual(tTree.root.lChild.key, 1)
+        self.assertEqual(tTree.root.rChild.key, 3)
+        print('\n\n=======')
+        print('lr turn test')
+        print(f'  3\n   \\\n    1\n   /\n  2')
+        print('\n   ↓')
+        print(f'\n   {tTree.root.key}\n /   \\\n{tTree.root.lChild.key}     {tTree.root.rChild.key}')
+        print("Tree successfully balanced")
+    
+    def test_avl_rlurn(self):
+        tTree = dts.AvlTree()
+        tTree.insert(3)
+        tTree.insert(1)
+        tTree.insert(2)
+
+        self.assertEqual(tTree.root.key, 2)
+        self.assertEqual(tTree.root.lChild.key, 1)
+        self.assertEqual(tTree.root.rChild.key, 3)
+        print('\n\n=======')
+        print('rl turn test')
+        print(f'    3\n   /\n  1\n   \\\n    2')
+        print('\n   ↓')
+        print(f'\n   {tTree.root.key}\n /   \\\n{tTree.root.lChild.key}     {tTree.root.rChild.key}')
+        print("Tree successfully balanced")
 
 if __name__ == '__main__':
     ut.main()
