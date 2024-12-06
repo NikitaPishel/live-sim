@@ -29,6 +29,33 @@ class _AvlNode:
         
         else:
             raise Exception(f'Unexpected tree key \'{key}\' was used')
+        
+    def deleteNode(self, key):
+        if key < self.key:
+            if self.lChild == None:
+                raise Exception(f'trying to delete unexisting tree key \'{key}\'')
+            
+            elif self.lChild == self.key:
+                self.lChild = _deleteRoot(key)
+            
+            else:
+                self.lChild.deleteNode(key)
+        
+        elif key > self.key:
+            if self.rChild == None:
+                raise Exception(f'trying to delete unexisting tree key \'{key}\'')
+
+            elif self.rChild == self.key:
+                self.rChild = _deleteRoot(key)
+            
+            else:
+                self.rChild.deleteNode(key)
+        
+        elif self.key == key:
+            pass
+
+        else:
+            raise Exception(f'Unexpected tree key \'{key}\' was used')
 
     def updateHeight(self):
         if self.lChild != None:
@@ -48,6 +75,21 @@ class _AvlNode:
         self.height = max(lHeight, rHeight) + 1
 
         return self.height
+
+def _successor(node):
+    if node.lChild != None:
+        scrNode = _successor(node.lChild)
+        return scrNode
+        
+    else:
+        return node
+
+def _deleteRoot(node):
+    newRoot = _successor(node.rChild)
+
+    newRoot.lChild = node.lChild
+    newRoot.rChild = node.rChild
+    return newRoot
 
 def getBalance(node):
     if node == None:
@@ -154,7 +196,7 @@ class AvlTree:
 
     def delete(self, key):
         if self.root != None:
-            self.root._deleteNode(key)
+            self.root.deleteNode(key)
         
         else:
             raise Exception("Deleting a node from an empty tree")
