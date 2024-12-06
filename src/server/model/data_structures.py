@@ -16,7 +16,7 @@ class _AvlNode:
                 self.lChild = _AvlNode()
                 self.lChild.key = key
         
-        if key > self.key:
+        elif key > self.key:
             if self.rChild != None:
                 self.rChild.insertNode(key)
 
@@ -24,42 +24,63 @@ class _AvlNode:
                 self.rChild = _AvlNode()
                 self.rChild.key = key
 
-        else:
+        elif self.key == key:
             raise Exception(f'Current tree key \'{key}\' already exists')
+        
+        else:
+            raise Exception(f'Unexpected tree key \'{key}\' was used')
 
     def updateHeight(self):
         if self.lChild != None:
-            lHeight = self.lChild.updateHeight() + 1
+            lHeight = self.lChild.updateHeight()
+            self.rChild = balanceTree(self.rChild)
         
         else:
             lHeight = 0
 
         if self.rChild != None:
-            rHeight = self.rChild.updateHeight() + 1
-        
+            rHeight = self.rChild.updateHeight()
+            self. rChild = balanceTree(self.rChild)
+
         else:
             rHeight = 0
         
-        self.height = max(lHeight, rHeight)
-        self.balance = lHeight - rHeight
+        self.height = max(lHeight, rHeight) + 1
 
+        print('================')
         print(f'key: {self.key}')
         print(f'current heights: {lHeight}, {rHeight}')
-        print(f'current balance: {self.balance}')
-        print('================')
-        balanceTree(self)
+
         return self.height
 
 def balanceTree(node):
-    if node.balance < -1:
-        node = _lTurn(node)
-        print(f'\nreassigned:\n- node: {node.key}\n- left: {node.lChild.key}\n- right: {node.rChild.key}\n')
-        
-    elif node.balance > 1:
-        node = _rTurn(node)
+    if node != None:
+        if node.lChild != None:
+            lHeight = node.lChild.height
 
-    else:
-        return node
+        else:
+            lHeight = 0
+
+        if node.rChild != None:
+            rHeight = node.rChild.height
+        
+        else:
+            rHeight = 0
+
+        print(f'! current balance: {lHeight - rHeight}, from {lHeight} {rHeight}')        
+        balance = lHeight - rHeight
+        
+        if balance < -1:
+            newTree = _lTurn(node)
+            #print(f'\nreassigned:\n- node: {node.key}\n- left: {node.lChild.key}\n- right: {node.rChild.key}\n')
+            return newTree
+
+        elif balance > 1:
+            newTree = _rTurn(node)
+            return newTree
+
+        else:
+            return node
 
 def _lTurn(node):
     print('\nlTurning...\n')
@@ -79,7 +100,8 @@ def _rTurn(node):
 
     node.lChild = midTree
     newRoot.rChild = node
-    node = newRoot
+
+    print(f'New tree:\n- root: {newRoot.key}\n- left: {newRoot.lChild.key}\n- right: {newRoot.rChild.key}\n')
     return newRoot
 
 def _lrTurn(node):
@@ -109,11 +131,11 @@ class AvlTree:
         if self.root != None:
             self.root.insertNode(key)
             self.root.updateHeight()
+            self.root = balanceTree(self.root)
         
         else:
             self.root = _AvlNode()
             self.root.key = key
-            self.root.isRoot = True
 
     def delete(self, key):
         if self.root != None:
@@ -125,19 +147,17 @@ class AvlTree:
 # Test tree
 
 tTree = AvlTree()
-tTree.insert(1)
-tTree.insert(2)
 tTree.insert(3)
+tTree.insert(2)
+tTree.insert(1)
 
 try:
-    print(tTree.root.rChild.rChild.key)
+    print(f'{tTree.root.key}\n \\\n  {tTree.root.rChild.key}\n   \\\n    {tTree.root.rChild.rChild.key}')
     print("Tree haven't balanced")
 
 except:
-    print(tTree.root.key)
-    print(tTree.root.lChild)
-    print(tTree.root.rChild)
-    #print(tTree.root.lChild.key)
+    #print(f'{tTree.root.key}')
+    print(f'   {tTree.root.key}\n /   \\\n{tTree.root.lChild.key}     {tTree.root.rChild.key}')
     print("Tree successfully balanced")
 
 # ================================================================
