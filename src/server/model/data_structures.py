@@ -7,6 +7,19 @@ class _AvlNode:
         self.height = 1
         self.balance = 0
     
+    def _searchNode(self, key):
+        if key > self.key and self.rChild != None:
+            return self.rChild._searchNode(key)    
+
+        elif key < self.key and self.lChild != None:
+            return self.lChild._searchNode(key)
+
+        elif self.key == key:
+            return self
+        
+        else:
+            raise Exception(f'Trying to search for unexisting tree key \'{key}\'')
+
     def insertNode(self, key):
         if key < self.key:
             if self.lChild != None:
@@ -29,42 +42,26 @@ class _AvlNode:
         
         else:
             raise Exception(f'Unexpected tree key \'{key}\' was used')
+    
+    def deleteNode(self):
+        if self.lChild != None and self.rChild != None:
+            newNode = self.rChild.lowest()
+            newSubtree = deleteTree(self.rChild, newNode.key)
+            self.rChild = newSubtree
+
+            return newNode
+
+        elif self.lChild != None:
+            newNode =  self.lChild
+
+        elif self.rChild != None:
+            newNode =  self.rChild
         
-    def deleteNode(self, key):
-        print(f'searching node {self.key}...')
-        if key == self.key:
+        return newNode
 
-            if self.lChild != None and self.rChild != None:
-                newRoot = _successor(self.rChild)
-                print(f'successor: {newRoot.key}')
-                newRoot.lChild = self.lChild
-                newRoot.rChild = self.rChild
-            
-            elif self.lChild != None:
-                newRoot = self.lChild
-            
-            elif self.rChild != None:
-                newRoot = self.rChild
-            
-        
-        elif key < self.key:
-            if self.lChild != None:
-                newRoot = self.lChild.deleteNode(key)
-            
-            else:
-                raise Exception(f'trying to delete unexisting tree key \'{key}\'')
-
-        elif key > self.key:
-            if self.rChild != None:
-                newRoot = self.rChild.deleteNode(key)
-
-            else:
-                raise Exception(f'trying to delete unexisting tree key \'{key}\'')
-
-        else:
-            raise Exception(f'Unexpected tree key \'{key}\' was used')
-        
-        return newRoot
+    def findSuccessorParent(self, tree):
+        if tree.lChild.key == self.key:
+            return tree.rChild
 
     def updateHeight(self):
         if self.lChild != None:
@@ -85,14 +82,31 @@ class _AvlNode:
 
         return self.height
 
-def _successor(node):
-    print('searching for successor...')
-    if node.lChild != None:
-        scrNode = _successor(node.lChild)
-        return scrNode
+    def lowest(self):
+        print('searching for lowest...')
+        if self.lChild != None:
+            scrNode = self.lChild.lowest()
+            return scrNode
+            
+        else:
+            return self
+
+def deleteTree(node, key):
+    if node != None:
+        if node.key < key:
+            newRoot = deleteTree(node.rChild, key)
         
-    else:
-        return node
+        elif node.key > key:
+            newRoot = deleteTree(node.rChild, key)
+
+        elif node.key == key:
+            newRoot = node.deleteNode()
+            print(f'new root: {newRoot.key}')
+        
+        else:
+            raise Exception('Trying to delete unexisting tree key \'{key}\'')
+        
+        return newRoot
 
 def getBalance(node):
     if node == None:
@@ -180,12 +194,12 @@ class AvlTree:
     # Internal function
 
     # External functions
-    def search(self, key):
+    def get(self, key):
         if self.root != None:
-            self.root.searchByIndex
+            return self.root._searchNode(key)
 
         else:
-            return None
+            raise Exception(f'Trying to search for unexisting tree key \'{key}\'')
 
     def insert(self, key):
         if self.root != None:
@@ -199,7 +213,7 @@ class AvlTree:
 
     def delete(self, key):
         if self.root != None:
-            self.root = self.root.deleteNode(key)
+            self.root = deleteTree(self.root, key)
         
         else:
             raise Exception("Deleting a node from an empty tree")
@@ -218,8 +232,10 @@ print(f'root before deletion: {tTree.root.key}')
 
 tTree.delete(20)
 
-print(f'root after deletion: {tTree.root.key}')
-print(f'root children:\nleft:{tTree.root.lChild.key}\nright:{tTree.root.rChild.key}')
+print(tTree.get(32).key)
+
+#print(f'root after deletion: {tTree.root.key}')
+#print(f'root children:\nleft:{tTree.root.lChild.key}\nright:{tTree.root.rChild.key}')
 
 # ================================================================
 #   QUEUE
