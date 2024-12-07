@@ -196,6 +196,41 @@ class TestMutation(ut.TestCase):
         print(f'\n   {tTree.root.key}\n /   \\\n{tTree.root.lChild.key}     {tTree.root.rChild.key}')
         print("Tree successfully balanced")
         '''
+    
+    def test_avl_delete(self):
+        tTree = dts.AvlTree()
+
+        tTree.insert(10)
+        tTree.insert(20)
+        tTree.insert(30)
+        tTree.insert(5)
+        tTree.insert(40)
+        tTree.insert(35)
+        tTree.insert(32)
+
+        self.assertEqual(tTree.root.key, 20)
+
+        tTree.delete(20)
+
+        self.assertEqual(tTree.root.key, 30)
+        self.assertEqual(tTree.root.rChild.lChild.key, 32)
+
+    def test_avl_search(self):
+        tTree = dts.AvlTree()
+
+        tTree.insert(10)
+        tTree.insert(20)
+        tTree.insert(30)
+        tTree.insert(5)
+        tTree.insert(40)
+        tTree.insert(35)
+        tTree.insert(32)
+        tTree.insert(59)
+
+        self.assertEqual(tTree.get(32).key, 32)
+        self.assertEqual(tTree.get(5).key, 5)
+        self.assertEqual(tTree.get(59).key, 59)
+        self.assertRaises(Exception, tTree.get, 100)
 
 if __name__ == '__main__':
     ut.main()

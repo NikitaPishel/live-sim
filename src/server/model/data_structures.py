@@ -8,17 +8,22 @@ class _AvlNode:
         self.balance = 0
     
     def _searchNode(self, key):
-        if key > self.key and self.rChild != None:
-            return self.rChild._searchNode(key)    
+        if key > self.key:
+            if self.rChild != None:
+                return self.rChild._searchNode(key)
 
-        elif key < self.key and self.lChild != None:
-            return self.lChild._searchNode(key)
+            else:
+                raise Exception(f'Trying to search for unexisting tree key \'{key}\'')    
+
+        elif key < self.key:
+            if self.lChild != None:
+                return self.lChild._searchNode(key)
+            
+            else:
+                raise Exception(f'Trying to search for unexisting tree key \'{key}\'')    
 
         elif self.key == key:
             return self
-        
-        else:
-            raise Exception(f'Trying to search for unexisting tree key \'{key}\'')
 
     def insertNode(self, key):
         if key < self.key:
@@ -48,8 +53,6 @@ class _AvlNode:
             newNode = self.rChild.lowest()
 
             newSubtree = deleteTree(self.rChild, newNode.key)
-            print(f'old tree: {self.key}')
-            print(f'new subtree: {newSubtree.key}')
             self.rChild = newSubtree
 
             newNode.lChild = self.lChild
@@ -59,7 +62,6 @@ class _AvlNode:
             newNode = self.lChild
 
         elif self.rChild != None:
-            print(f'found 1-childed subtree: {self.rChild.key}')
             newNode = self.rChild
         
         else:
@@ -91,17 +93,15 @@ class _AvlNode:
         return self.height
 
     def lowest(self):
-        print(f'searching for lowest {self.key}...')
         if self.lChild != None:
             scrNode = self.lChild.lowest()
-            print(f'returning lowest: {scrNode.key}')
+            
             return scrNode
             
         else:
             return self
 
 def deleteTree(node, key):
-    print(f'deleting tree {key}')
     if node != None:
         if key < node.key:
             newSub = deleteTree(node.lChild, key)
@@ -116,10 +116,8 @@ def deleteTree(node, key):
             return node
 
         elif node.key == key:
-            print(f'found key to delete: {node.key}')
             newRoot = node.deleteNode()
 
-            print(f'new root: {newRoot.key}')        
             return newRoot
         
     else:
@@ -238,27 +236,6 @@ class AvlTree:
 
         else:
             raise Exception("Deleting a node from an empty tree")
-
-tTree = AvlTree()
-
-tTree.insert(10)
-tTree.insert(20)
-tTree.insert(30)
-tTree.insert(5)
-tTree.insert(40)
-tTree.insert(35)
-tTree.insert(32)
-tTree.insert(69)
-
-print(f'root before deletion: {tTree.root.key}')
-
-tTree.delete(20)
-
-print(tTree.get(32).key)
-node32 = print(tTree.root.rChild.lChild.key)
-
-print(f'root after deletion: {tTree.root.key}')
-print(f'root children:\nleft:{tTree.root.lChild.key}\nright:{tTree.root.rChild.key}')
 
 # ================================================================
 #   QUEUE
