@@ -20,7 +20,10 @@ class _AvlNode:
                 return self.lChild._searchNode(key)
             
             else:
-                raise Exception(f'Trying to search for unexisting tree key \'{key}\'')    
+                raise Exception(f'Trying to search for unexisting tree key \'{key}\'')
+        
+        elif self.key == key:
+            return self
 
     def inTree(self, key):
         if key > self.key:
@@ -226,14 +229,14 @@ class AvlTree:
     # Internal function
 
     # External functions
-    def get(self, key) -> _AvlNode:
+    def get(self, key):
         if self.root != None:
             return self.root._searchNode(key)
 
         else:
             raise Exception(f'Trying to search for unexisting tree key \'{key}\'')
         
-    def setData(self, key, data) -> None:
+    def setData(self, key, data):
         if self.root != None:
             node = self.root._searchNode(key)
 
@@ -242,7 +245,7 @@ class AvlTree:
         else:
             raise Exception(f'Trying to search for unexisting tree key \'{key}\'')
 
-    def insert(self, key, data=None) -> None:
+    def insert(self, key, data=None):
         if self.root != None:
             self.root.insertNode(key, data)
             self.root.updateHeight()
@@ -252,7 +255,7 @@ class AvlTree:
             self.root = _AvlNode()
             self.root.key = key
 
-    def delete(self, key) -> None:
+    def delete(self, key):
         if self.root != None:
             self.root = deleteTree(self.root, key)
 
@@ -263,7 +266,7 @@ class AvlTree:
         else:
             raise Exception("Deleting a node from an empty tree")
     
-    def exists(self, key) -> bool:
+    def exists(self, key):
         if self.root != None:
             keyExists = self.root.inTree(key)
             return keyExists
