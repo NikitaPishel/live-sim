@@ -22,25 +22,42 @@ class _AvlNode:
             else:
                 raise Exception(f'Trying to search for unexisting tree key \'{key}\'')    
 
-        elif self.key == key:
-            return self
+    def inTree(self, key):
+        if key > self.key:
+            if self.rChild != None:
+                return self.rChild.inTree(key)
 
-    def insertNode(self, key):
+            else:
+                return False    
+
+        elif key < self.key:
+            if self.lChild != None:
+                return self.lChild.inTree(key)
+            
+            else:
+                return False
+
+        elif self.key == key:
+            return True
+
+    def insertNode(self, key, data):
         if key < self.key:
             if self.lChild != None:
-                self.lChild.insertNode(key)
+                self.lChild.insertNode(key, data)
             
             else:
                 self.lChild = _AvlNode()
                 self.lChild.key = key
+                self.lChild.data = data
         
         elif key > self.key:
             if self.rChild != None:
-                self.rChild.insertNode(key)
+                self.rChild.insertNode(key, data)
 
             else:
                 self.rChild = _AvlNode()
                 self.rChild.key = key
+                self.rChild.data = data
 
         elif self.key == key:
             raise Exception(f'Current tree key \'{key}\' already exists')
@@ -209,16 +226,25 @@ class AvlTree:
     # Internal function
 
     # External functions
-    def get(self, key):
+    def get(self, key) -> _AvlNode:
         if self.root != None:
             return self.root._searchNode(key)
 
         else:
             raise Exception(f'Trying to search for unexisting tree key \'{key}\'')
-
-    def insert(self, key):
+        
+    def setData(self, key, data) -> None:
         if self.root != None:
-            self.root.insertNode(key)
+            node = self.root._searchNode(key)
+
+            node.data = data
+
+        else:
+            raise Exception(f'Trying to search for unexisting tree key \'{key}\'')
+
+    def insert(self, key, data=None) -> None:
+        if self.root != None:
+            self.root.insertNode(key, data)
             self.root.updateHeight()
             self.root = _balanceTree(self.root)
         
@@ -226,7 +252,7 @@ class AvlTree:
             self.root = _AvlNode()
             self.root.key = key
 
-    def delete(self, key):
+    def delete(self, key) -> None:
         if self.root != None:
             self.root = deleteTree(self.root, key)
 
@@ -236,6 +262,14 @@ class AvlTree:
 
         else:
             raise Exception("Deleting a node from an empty tree")
+    
+    def exists(self, key) -> bool:
+        if self.root != None:
+            keyExists = self.root.inTree(key)
+            return keyExists
+
+        else:
+            return False
 
 # ================================================================
 #   QUEUE
