@@ -25,7 +25,7 @@ def _saveInput(nrnOut, nrnData, neuron):
 
         nrnData[child][neuron] = nrnOut
 
-def runGene(agent):
+def runGene(agent, fieldTree):
     root = agent.gene
     runQueue = dts.Queue()
     nrnData  = {}
@@ -55,7 +55,7 @@ def runGene(agent):
             neuron = currentCall['nrn']
             
             if isinstance(neuron, gnm.Sensor):
-                nrnOut = neuron.recall(agent)
+                nrnOut = neuron.recall(fieldTree, agent)
                 _saveInput(nrnOut, nrnData, neuron)
             
             elif isinstance(neuron, gnm.Processor):
@@ -65,7 +65,7 @@ def runGene(agent):
 
             elif isinstance(neuron, gnm.Signal):
                 nrnInp = currentCall['input']
-                nrnRun = neuron.recall(agent, nrnInp)
+                nrnRun = neuron.recall(fieldTree, agent, nrnInp)
                 
                 if nrnRun:
                     actions += 1

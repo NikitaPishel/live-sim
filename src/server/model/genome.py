@@ -7,8 +7,8 @@ class Sensor(Neuron):
     def __init__(self):
         super().__init__()
     
-    def recall(self, agent) -> float:
-        cmdOut = self.cmd(agent)
+    def recall(self, fieldTree, agent) -> float:
+        cmdOut = self.cmd(fieldTree, agent)
         return cmdOut
 
 class Processor(Neuron):
@@ -24,8 +24,9 @@ class Signal(Neuron):
         super().__init__()
         self.refs = 0   # stores amount of joints that are referenced to this neuron, used to check if can delete a signal
     
-    def recall(self, agent, amp) -> None:
-        self.cmd(agent, amp)
+    def recall(self, fieldTree,  agent, amp) -> None:
+        cmdOut = self.cmd(fieldTree, agent, amp)
+        return cmdOut
 
 class GeneRoot:
     def __init__(self):

@@ -254,6 +254,7 @@ class AvlTree:
         else:
             self.root = _AvlNode()
             self.root.key = key
+            self.root.data = data
 
     def delete(self, key):
         if self.root != None:
