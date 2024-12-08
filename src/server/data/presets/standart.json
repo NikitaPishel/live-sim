@@ -10,7 +10,7 @@
     "maxActions": 1,
     "geneRuntime": {
         "multiplier": 1,
-        "dependency": null,
+        "dependency": "fixed",
 
         "fixedValue": 50
     },

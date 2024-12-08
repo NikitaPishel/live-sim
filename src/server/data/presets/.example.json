@@ -1,20 +1,22 @@
 {
     "fieldSize": null,
-    "maxAmountOfAgents": 32,
+    "maxAmountOfAgents": 4,
 	"startMutation": 10,
 
     "maxGenomeLength": 23,
-    "mutationChance": 0.05,
-    "newNeuronChance": 0.5,
+    "mutationChance": 0.06,
+    "newNeuronChance": 0.2,
 
     "maxActions": null,
     "geneRuntime": {
         "multiplier": 2,
-        "dependency": "geneLength",
+        "dependency": null,
 
-        "fixedValue": 50
+        "fixedValue": null
     },
 
-    "newGenTrigger": null,
-    "triggerConditions": null
+    "newGenTrigger": "timer",
+    "triggerConditions": {
+        "timeLimit": 10
+    }
 }

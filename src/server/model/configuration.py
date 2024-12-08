@@ -58,14 +58,21 @@ class Configuration:
         geneRuntime = settings['geneRuntime']
 
         if geneRuntime != None:
-            multiplier = geneRuntime['multiplier']
-            dependecy = geneRuntime['dependency']
+            if geneRuntime['multiplier'] != None:
+                self._multiplier = geneRuntime['multiplier']
+            
+            if geneRuntime['dependency'] != None:
+                self.dependency = geneRuntime['dependency']
 
-            if dependecy == None:
-                self.geneTime = multiplier * geneRuntime['fixedValue']
+            if self.dependency == 'fixed':
 
-            elif dependecy == 'geneLength':
-                self.geneTime = multiplier * self.maxGenomeLen
+                if geneRuntime['fixedValue'] != None:
+                    self._fixedGeneValue = geneRuntime['fixedValue']
+
+                self.geneTime = self._multiplier * self._fixedGeneValue
+
+            elif self.dependency == 'geneLength':
+                self.geneTime = self._multiplier * self.maxGenomeLen
                 math.floor(self.geneTime)
             
             else:
@@ -75,11 +82,15 @@ class Configuration:
 
         if settings['newGenTrigger'] == 'timer':
             self.trigger = 'timer'
-            self.timeLim = trigParams['timeLimit']
+            
+            if trigParams['timeLimit'] != None:
+                self.timeLim = trigParams['timeLimit']
         
         elif settings['newGenTrigger'] == 'minAgents':
             self.trigger = 'minAgents'
-            self.agentsLim = trigParams['minAmountOfAgents']
+
+            if self.agentsLim != None:
+                self.agentsLim = trigParams['minAmountOfAgents']
 
 filePath = 'C:/projects/now/live-sim/src/server/data/presets/.example.json'
 config = Configuration.getInstance(filePath)
