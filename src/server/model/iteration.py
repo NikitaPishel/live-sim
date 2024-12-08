@@ -7,6 +7,7 @@ from agent import Agent
 import genome as gnm
 from mutation import mutate
 from configuration import config
+from genePrcs import runGene
 
 def addRndAgent(field, agentQueue, maxPos):
     rndID = rnd.randint(0, maxPos)
@@ -17,15 +18,15 @@ def addRndAgent(field, agentQueue, maxPos):
     print(f'agent position: ({xPos}, {yPos})')
     print(f'=============================')
 
-    rndAgent = Agent()
-    rndAgent.pos = [xPos, yPos]
-    rndAgent.dir = rnd.randint(0, 7)
+    newAgent = Agent()
+    newAgent.pos = [xPos, yPos]
+    newAgent.dir = rnd.randint(0, 7)
     
     for i in range(config.startMutation):
-        mutate(rndAgent)
+        mutate(newAgent)
 
-    field.insert(newID, rndAgent)
-    agentQueue.enqueue(rndAgent)
+    field.insert(newID, newAgent)
+    agentQueue.enqueue(newAgent)
 
 # Finding free postion on a map
 def findFree(field, maxPos, currentID):
@@ -64,6 +65,7 @@ def runItr(maxPos, fieldTree, agentQueue):
             
             else:
                 timer += 1
+                print(f'\ntimer: {timer}\n=====')
                 runAgents(maxPos, fieldTree, agentQueue, agentsAmount)
         
         elif config.trigger == 'minAgents':
@@ -73,7 +75,15 @@ def runItr(maxPos, fieldTree, agentQueue):
         print(f'current time: {timer}')
 
 def runAgents(maxPos, fieldTree, agentQueue, agentsAmount):
-    pass
+    for i in range(agentsAmount):
+        currAgent = agentQueue.peek()
+
+        runGene(currAgent, fieldTree)
+
+        print(f'\nagent: {currAgent}\nposition: {currAgent.pos}')
+
+        agentQueue.dequeue()
+        agentQueue.enqueue(currAgent)
 
 # Simulation execution code
 def run():
@@ -87,8 +97,6 @@ def run():
 
     runSim = True
     while runSim:
-        itrData = runItr(maxPos, fieldTree, agentQueue)
-        itrData = runItr(maxPos, fieldTree, agentQueue)
         itrData = runItr(maxPos, fieldTree, agentQueue)
         runSim = False  
 
