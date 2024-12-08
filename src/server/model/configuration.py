@@ -70,6 +70,16 @@ class Configuration:
             
             else:
                 raise Exception('unknow dependency in \'geneRuntime\' variable')
+        
+        trigParams = settings['triggerConditions']
+
+        if settings['newGenTrigger'] == 'timer':
+            self.trigger = 'timer'
+            self.timeLim = trigParams['timeLimit']
+        
+        elif settings['newGenTrigger'] == 'minAgents':
+            self.trigger = 'minAgents'
+            self.agentsLim = trigParams['minAmountOfAgents']
 
 filePath = 'C:/projects/now/live-sim/src/server/data/presets/.example.json'
 config = Configuration.getInstance(filePath)

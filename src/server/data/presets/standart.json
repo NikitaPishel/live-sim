@@ -13,5 +13,10 @@
         "dependency": null,
 
         "fixedValue": 50
+    },
+
+    "newGenTrigger": "timer",
+    "triggerConditions": {
+        "timeLimit": 100
     }
 }

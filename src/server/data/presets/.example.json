@@ -13,5 +13,8 @@
         "dependency": "geneLength",
 
         "fixedValue": 50
-    }
+    },
+
+    "newGenTrigger": null,
+    "triggerConditions": null
 }
