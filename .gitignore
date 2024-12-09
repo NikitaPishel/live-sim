@@ -5,3 +5,4 @@
 # Ignore other folders
 __pycache__/
 ase-img/
+/src/server/data/
