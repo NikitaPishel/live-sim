@@ -83,10 +83,10 @@ class TestMutation(ut.TestCase):
     def test_genePrcsNrnJump(self):
         tOut = []
         
-        def snsInp(agent):
+        def snsInp(fieldTree, agent):
             return 0.45
 
-        def sgnOut(agent, amp):
+        def sgnOut(fieldTree, agent, amp):
             tOut.append(amp)
         
         tRoot = gnm.GeneRoot()
@@ -113,7 +113,7 @@ class TestMutation(ut.TestCase):
         tAgent = agent.Agent()
         tAgent.gene = tRoot
 
-        genePrcs.runGene(tAgent)
+        genePrcs.runGene(tAgent, None)
         
         dp = 3
         res1 = (math.floor(tOut[0][0]*(10**dp))/(10**dp))
