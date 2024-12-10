@@ -15,7 +15,7 @@ def addRndAgent(field, agentQueue, maxPos):
     
     yPos = math.floor(newID/config.fieldSize[1])
     xPos = newID % config.fieldSize[1]      # remainder of a division above = x pos of an agent
-    print(f'agent position: ({xPos}, {yPos})')
+    #print(f'agent position: ({xPos}, {yPos})')
     print(f'=============================')
 
     newAgent = Agent()
@@ -23,6 +23,7 @@ def addRndAgent(field, agentQueue, maxPos):
     newAgent.dir = rnd.randint(0, 7)
     
     for i in range(config.startMutation):
+        #print(f'Mutating {i}...')
         mutate(newAgent)
 
     field.insert(newID, newAgent)
@@ -30,16 +31,16 @@ def addRndAgent(field, agentQueue, maxPos):
 
 # Finding free postion on a map
 def findFree(field, maxPos, currentID):
-    print(f'\ncurrentID: {currentID}')
+    #print(f'\ncurrentID: {currentID}')
 
     occupied = field.exists(currentID)
 
     if not occupied:
-        print(f'ID found: {currentID}')
+        #print(f'ID found: {currentID}')
         return currentID
 
     else:
-        print('cell occupied')
+        #print('cell occupied')
         newID = currentID + 1
 
         if newID > maxPos:
@@ -61,18 +62,23 @@ def runItr(maxPos, fieldTree, agentQueue):
     while iterate:
         if config.trigger == 'timer':
             if timer >= config.timeLim:
-                break
+                iterate = False
             
             else:
                 timer += 1
-                print(f'\ntimer: {timer}\n=====')
+                print(f'=====\ntimer: {timer}\n')
                 runAgents(maxPos, fieldTree, agentQueue, agentsAmount)
         
         elif config.trigger == 'minAgents':
             if agentsAmount <= config.agentsLim:
-                break
-        
-        print(f'current time: {timer}')
+                iterate = False
+            
+            else:
+                runAgents(maxPos, fieldTree, agentQueue, agentsAmount)
+    
+    print('selecting agents...')
+    
+    return selectAgents(agentQueue)
 
 def runAgents(maxPos, fieldTree, agentQueue, agentsAmount):
     for i in range(agentsAmount):
@@ -80,10 +86,30 @@ def runAgents(maxPos, fieldTree, agentQueue, agentsAmount):
 
         runGene(currAgent, fieldTree)
 
-        print(f'\nagent: {currAgent}\nposition: {currAgent.pos}')
+        #print(f'\nagent: {currAgent}\nposition: {currAgent.pos}')
+        #print(f'agent position: {currAgent.pos}')
 
         agentQueue.dequeue()
         agentQueue.enqueue(currAgent)
+
+def selectAgents(agentQueue):
+    slctList = []
+    selecting = True
+    while selecting:
+        currAgent = agentQueue.peek()
+
+        if currAgent == None:
+            selecting = False
+        
+        else:
+            # If an agent is in first for rows (0 to 3) it gets selected
+            if currAgent.pos[0] <= 3:
+                slctList.append(currAgent)
+                print('agent selected')
+            agentQueue.dequeue()
+
+    print(f"selected agents: {slctList}")
+    return slctList
 
 # Simulation execution code
 def run():

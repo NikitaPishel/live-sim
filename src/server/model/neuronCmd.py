@@ -13,14 +13,23 @@ def _getSum(amp):
 
 def posTaken(node, givenPos):
     if node != None:
+        #print(f"checking if agent on {node.data.pos} is on {givenPos}...")
         if node.data.pos == givenPos:
+            #print('position is busy')
             return True
         
         else:
             getLeft = posTaken(node.lChild, givenPos)
             getRight = posTaken(node.rChild, givenPos)
 
-            busy = getLeft or getRight
+            if getLeft:
+                busy = True
+            
+            elif getRight:
+                busy = True
+            
+            else:
+                busy = False
 
             return busy
 
@@ -60,7 +69,6 @@ def invert(amp):
 
 def outRotate(fieldTree, agent, amp) -> bool:
     ampProc = math.tanh(_getSum(amp))
-    print("rotating...")
 
     if ampProc > 0:
         
@@ -78,21 +86,18 @@ def outRotate(fieldTree, agent, amp) -> bool:
             if agent.dir == 8:
                 agent.dir = 0
 
-        print('success')
         return True
 
     else:
-        print('failed')
         return False
 
 def outMove(fieldTree, agent, amp) -> bool:
-    print('moving...')
     ampProc = math.tanh(_getSum(amp))
     
     moveCords = [0, 0]
 
     if ampProc > 0:
-        if agent.dir >= 1 and agent.dir <= 4:
+        if agent.dir >= 1 and agent.dir <= 3:
             moveCords[0] = 1
         
         elif agent.dir >= 5:
@@ -104,27 +109,30 @@ def outMove(fieldTree, agent, amp) -> bool:
         if agent.dir == 7 or agent.dir <= 1:
             moveCords[1] = 1
         
-        elif agent.dir <= 5 or agent.dir >= 3:
+        elif agent.dir <= 5 and agent.dir >= 3:
             moveCords[1] = -1
     
         else:
-            moveCords[0] = 0
+            moveCords[1] = 0
 
         xPos = agent.pos[0] + moveCords[0]
         yPos = agent.pos[1] + moveCords[1]
         newPos = [xPos, yPos]
 
-        if xPos > 0 and xPos <= config.fieldSize[0]:
-            if not yPos > 0 and xPos <= config.fieldSize[1]:
-                if not posTaken(fieldTree.root, newPos):
-                    print("0000029059774460000002905977446000000290594DB0A0")
+        #print(f"botik hoche pohodyt from {agent.pos} u storonu {moveCords} na {newPos}")
+        
+        if xPos >= 0 and xPos < config.fieldSize[0]:
+            if yPos >= 0 and yPos < config.fieldSize[1]:
+
+                busy = posTaken(fieldTree.root, newPos)
+                
+                if not busy:
+                    print('botik pohodyv')
                     agent.pos = newPos
 
-        print('success')
         return True
 
     else:
-        print('failed')
         return False
 
 inputCmd = [
