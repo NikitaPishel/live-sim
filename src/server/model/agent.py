@@ -15,3 +15,12 @@ class Agent:
         rndCmd = rnd.choice(nrnCmd.inputCmd)
         rndSensor.cmd = rndCmd
         self.gene.joints.append(rndSensor)
+    
+    def clone(self):
+        agentClone = Agent()
+
+        agentClone.pos = self.pos
+        agentClone.dir = self.dir
+        agentClone.gene = self.gene
+
+        return agentClone

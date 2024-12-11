@@ -158,3 +158,10 @@ def mutate(agent):
 
         if not jointDelted:
             _addRndJoint(noRootGenome, agent.gene)
+
+def rndMutate(agent):
+    dropChance = rnd.random()
+
+    if dropChance <= config.mutationChance:
+        mutate(agent)
+        print('agent mutated!')

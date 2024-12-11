@@ -5,21 +5,29 @@ from time import time
 import data_structures as dts
 from agent import Agent
 import genome as gnm
-from mutation import mutate
+from mutation import mutate, rndMutate
 from configuration import config
 from genePrcs import runGene
 
-def addRndAgent(field, agentQueue, maxPos):
+def genId(field, maxPos):
     rndID = rnd.randint(0, maxPos)
     newID = findFree(field, maxPos, rndID)
-    
+
+    return newID
+
+def getPos(newID):
     yPos = math.floor(newID/config.fieldSize[1])
     xPos = newID % config.fieldSize[1]      # remainder of a division above = x pos of an agent
+
+    return [xPos, yPos]
+
+def addRndAgent(field, agentQueue, maxPos):
+    newID = genId(field, maxPos)
     #print(f'agent position: ({xPos}, {yPos})')
     print(f'=============================')
 
     newAgent = Agent()
-    newAgent.pos = [xPos, yPos]
+    newAgent.pos = getPos(newID)
     newAgent.dir = rnd.randint(0, 7)
     
     for i in range(config.startMutation):
@@ -111,20 +119,67 @@ def selectAgents(agentQueue):
     print(f"selected agents: {slctList}")
     return slctList
 
+def genEnv(slctList, maxPos):
+    fieldTree = dts.AvlTree()
+    agentQueue = dts.Queue()
+    slctAmount = len(slctList)
+    print(f'agents passed: {slctAmount}')
+
+    if slctAmount == 0:
+        for i in range(config.maxAgents):
+            print(f'creating agent №{i}')
+            addRndAgent(fieldTree, agentQueue, maxPos)
+    
+    else:
+        fixedClones = math.floor(config.maxAgents / slctAmount)
+        rndClones = config.maxAgents % slctAmount
+
+        for i in range(fixedClones):
+            for slctAgent in slctList:
+                print(f'cloning agent {slctAgent}')
+                clonedAgent = slctAgent.clone()
+
+                newID = genId(fieldTree, maxPos)
+                clonedAgent.pos = getPos(newID)
+
+                rndMutate(clonedAgent)
+
+                fieldTree.insert(newID, clonedAgent)
+                agentQueue.enqueue(clonedAgent)
+        
+        for i in range(rndClones):
+            rndIndex = rnd.randint(0, slctAmount-1)
+            print(f'adding random agent {rndIndex}')
+
+            slctAgent = slctList[rndIndex]
+            clonedAgent = slctAgent.clone()
+            print(f'cloning agent {slctAgent}')
+
+            newID = genId(fieldTree, maxPos)
+            clonedAgent.pos = getPos(newID)
+
+            rndMutate(clonedAgent)
+
+            fieldTree.insert(newID, clonedAgent)
+            agentQueue.enqueue(clonedAgent)
+    
+    return {'field': fieldTree, 'queue': agentQueue}
+
 # Simulation execution code
 def run():
     maxPos = config.fieldSize[0] * config.fieldSize[1]
-    fieldTree = dts.AvlTree()
-    agentQueue = dts.Queue()
 
-    for i in range(config.maxAgents):
-        print(f'creating agent №{i}')
-        addRndAgent(fieldTree, agentQueue, maxPos)
+    currEnv = genEnv([], maxPos)
+
+    fieldTree = currEnv['field']
+    agentQueue = currEnv['queue']
 
     runSim = True
-    while runSim:
+    for i in range(50):
         itrData = runItr(maxPos, fieldTree, agentQueue)
-        runSim = False  
+        currEnv = genEnv(itrData, maxPos)
+        fieldTree = currEnv['field']
+        agentQueue = currEnv['queue']
 
 start = time()
 run()
