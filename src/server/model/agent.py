@@ -7,7 +7,6 @@ import neuronCmd as nrnCmd
 class Agent:
     def __init__(self, x=0, y=0):
         self.pos = [x, y]
-        self.dir = 0 # 8 directions 0 to 7 from down clockwise (south=0, south-east=1, east=2, etc.)
 
         self.gene = gnm.GeneRoot() # decision map of an agent
         
@@ -20,7 +19,6 @@ class Agent:
         agentClone = Agent()
 
         agentClone.pos = self.pos
-        agentClone.dir = self.dir
         agentClone.gene = self.gene
 
         return agentClone
