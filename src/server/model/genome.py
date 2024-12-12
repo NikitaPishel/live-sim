@@ -51,12 +51,13 @@ def makeGeneReadable(genome):
     cmdNameTable = {
         nrnCmd.getVisionAny: "getVisionAny",
         nrnCmd.getVisionCell: "getVisionCell",
-        nrnCmd.getDir: "getDir",
         nrnCmd.tanhList: "tanhList",
         nrnCmd.reLU: "reLU",
         nrnCmd.invert: "invert",
-        nrnCmd.outRotate: "outRotate",
-        nrnCmd.outMove: "outMove"
+        nrnCmd.outMoveNorth: "moveNorth",
+        nrnCmd.outMoveSouth: "moveSouth",
+        nrnCmd.outMoveEast: "moveEast",
+        nrnCmd.outMoveWest: "moveWest"
         }
 
     for i in range(len(genome)):
@@ -71,4 +72,4 @@ def makeGeneReadable(genome):
 
         readableGene.append(nrnData)
 
-        return readableGene
+    return readableGene

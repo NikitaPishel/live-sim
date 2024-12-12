@@ -16,11 +16,10 @@ def saveGenome(dataOutput, itrNum, itrData):
     for agentIndex in range(len(itrData)):
         slctGene = gnm.getGenome(itrData[agentIndex].gene, [])
         slctGene.pop(0)
-        print(slctGene)
 
-        slctGene = gnm.makeGeneReadable(slctGene)
+        rdblGene = gnm.makeGeneReadable(slctGene)
 
-        dataOutput[itrNum]['succGenomes'].append(slctGene)
+        dataOutput[itrNum]['succGenomes'].append(rdblGene)
 
 def saveRunData(data, filename):
     with open(f'{config.outputPath}/{filename}', 'w') as path:
@@ -43,7 +42,6 @@ def addRndAgent(field, agentQueue, maxPos):
 
     newAgent = Agent()
     newAgent.pos = getPos(newID)
-    newAgent.dir = rnd.randint(0, 7)
     
     for i in range(config.startMutation):
         mutate(newAgent)
@@ -204,4 +202,4 @@ start = time()
 run(dataFile)
 end = time()
 
-print(f'time taken: {end - start}')
+print(f'time taken: {(end - start)/60} min')
