@@ -119,15 +119,12 @@ def outMove(fieldTree, agent, amp) -> bool:
         yPos = agent.pos[1] + moveCords[1]
         newPos = [xPos, yPos]
 
-        #print(f"botik hoche pohodyt from {agent.pos} u storonu {moveCords} na {newPos}")
-        
         if xPos >= 0 and xPos < config.fieldSize[0]:
             if yPos >= 0 and yPos < config.fieldSize[1]:
 
                 busy = posTaken(fieldTree.root, newPos)
                 
                 if not busy:
-                    print('botik pohodyv')
                     agent.pos = newPos
 
         return True

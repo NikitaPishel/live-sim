@@ -6,6 +6,7 @@
     "maxGenomeLength": 10,
     "mutationChance": 0.1,
     "newNeuronChance": 0.3,
+    "leveledMutation": true,
 
     "maxActions": 1,
     "geneRuntime": {
@@ -18,5 +19,15 @@
     "newGenTrigger": "timer",
     "triggerConditions": {
         "timeLimit": 100
-    }
+    },
+
+    "numberOfIterations": 10,
+
+    "savingLevels": {
+        "passedNumber": 1,
+        "passedGenomes": 100,
+        "iteration": 100
+    },
+
+    "outputPath": "./data/logs"
 }

@@ -161,7 +161,9 @@ def mutate(agent):
 
 def rndMutate(agent):
     dropChance = rnd.random()
-
+    
     if dropChance <= config.mutationChance:
         mutate(agent)
-        print('agent mutated!')
+
+        if config.lvldMutation:
+            rndMutate(agent)

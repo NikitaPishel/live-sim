@@ -1,22 +1,28 @@
 {
-    "fieldSize": null,
-    "maxAmountOfAgents": 32,
-	"startMutation": 10,
+    "fieldSize": [64, 64],
+    "maxAmountOfAgents": 128,
+	"startMutation": 20,
 
-    "maxGenomeLength": 23,
-    "mutationChance": 0.06,
-    "newNeuronChance": 0.2,
+    "maxGenomeLength": 20,
+    "mutationChance": 0.5,
+    "newNeuronChance": 0.5,
+    "leveledMutation": null,
 
-    "maxActions": null,
-    "geneRuntime": {
-        "multiplier": 2,
-        "dependency": null,
-
-        "fixedValue": null
-    },
+    "maxActions": 1,
+    "geneRuntime": null,
 
     "newGenTrigger": "timer",
     "triggerConditions": {
-        "timeLimit": 10
-    }
+        "timeLimit": 100
+    },
+
+    "numberOfIterations": 100,
+
+    "savingLevels": {
+        "passedNumber": 1,
+        "passedGenomes": 10,
+        "iteration": 1
+    },
+
+    "outputPath": null
 }

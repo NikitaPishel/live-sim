@@ -48,6 +48,10 @@ class Configuration:
 
         if settings['newNeuronChance'] != None:
             self.newNeuronChance = settings['newNeuronChance']
+        
+        if settings['leveledMutation'] != None:
+            self.lvldMutation = settings['leveledMutation']
+
         # Amount of mutations that are created on the start of a simulation
         if settings['startMutation'] != None:
             self.startMutation = settings['startMutation']
@@ -91,6 +95,26 @@ class Configuration:
 
             if self.agentsLim != None:
                 self.agentsLim = trigParams['minAmountOfAgents']
+        
+        if settings['numberOfIterations'] != None:
+            self.itrNum = settings['numberOfIterations']
+        
+        if settings['savingLevels'] != None:
+
+            svLvls = settings['savingLevels']
+
+            if svLvls['passedNumber'] != None:
+                self.savePassedNumber = svLvls['passedNumber']
+            
+            if svLvls['passedGenomes'] != None:
+                self.savePassedGenomes = svLvls['passedGenomes']
+            
+            if svLvls['iteration'] != None:
+                self.saveIteration = svLvls['iteration']
+        
+        if settings['outputPath'] != None:
+            self.outputPath = settings['outputPath']
+            
 
 filePath = 'C:/projects/now/live-sim/src/server/data/presets/.example.json'
 config = Configuration.getInstance(filePath)
