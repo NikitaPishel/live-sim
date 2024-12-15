@@ -16,7 +16,7 @@
         "timeLimit": 100
     },
 
-    "numberOfIterations": 100,
+    "numberOfIterations": 10,
 
     "savingLevels": {
         "passedNumber": 1,

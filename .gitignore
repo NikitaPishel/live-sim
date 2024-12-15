@@ -2,7 +2,10 @@
 
 /env/
 
-# Ignore other folders
+# Ignore data except examples
+/src/server/data/
+!example.json
+
+# Other
 __pycache__/
 ase-img/
-/src/server/data/

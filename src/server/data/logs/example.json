@@ -1,0 +1,108 @@
+{
+    "1": {
+        "passedAmount": 16, 
+        "survivability": 12.5
+    },
+
+    "2": {
+        "passedAmount": 19, 
+        "survivability": 14.8
+    }, 
+
+    "3": {
+        "passedAmount": 12, 
+        "survivability": 9.3
+    }, 
+
+    "4": {
+        "passedAmount": 36, 
+        "survivability": 28.1
+    }, 
+
+    "5": {
+        "passedAmount": 11, 
+        "survivability": 8.5
+    },
+
+    "6": {
+        "passedAmount": 49, 
+        "survivability": 38.2
+    }, 
+
+    "7": {
+        "passedAmount": 10, 
+        "survivability": 7.8
+    }, 
+
+    "8": {
+        "passedAmount": 123, 
+        "survivability": 96.0
+    }, 
+
+    "9": {
+        "passedAmount": 11, 
+        "survivability": 8.5
+    }, 
+
+    "10": {
+        "succGenomes": [
+                [
+                    {"id": 0, "command": "getVisionAny", "joints": []}, 
+                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
+                    {"id": 2, "command": "moveEast", "joints": []}, 
+                    {"id": 3, "command": "moveSouth", "joints": []}, 
+                    {"id": 4, "command": "tanhList", "joints": []}
+                ], 
+                [
+                    {"id": 0, "command": "getVisionAny", "joints": []}, 
+                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
+                    {"id": 2, "command": "moveEast", "joints": []}, 
+                    {"id": 3, "command": "moveSouth", "joints": []}, 
+                    {"id": 4, "command": "tanhList", "joints": []}
+                ], 
+                [
+                    {"id": 0, "command": "getVisionAny", "joints": []}, 
+                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
+                    {"id": 2, "command": "moveEast", "joints": []}, 
+                    {"id": 3, "command": "moveSouth", "joints": []}, 
+                    {"id": 4, "command": "tanhList", "joints": []}
+                ], 
+                [
+                    {"id": 0, "command": "getVisionAny", "joints": []}, 
+                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
+                    {"id": 2, "command": "moveEast", "joints": []}, 
+                    {"id": 3, "command": "moveSouth", "joints": []}, 
+                    {"id": 4, "command": "tanhList", "joints": []}
+                ], 
+                [
+                    {"id": 0, "command": "getVisionAny", "joints": []}, 
+                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
+                    {"id": 2, "command": "moveEast", "joints": []}, 
+                    {"id": 3, "command": "moveSouth", "joints": []}, 
+                    {"id": 4, "command": "tanhList", "joints": []}
+                ], 
+                [
+                    {"id": 0, "command": "getVisionAny", "joints": []}, 
+                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]},
+                    {"id": 2, "command": "moveEast", "joints": []}, 
+                    {"id": 3, "command": "moveSouth", "joints": []}, 
+                    {"id": 4, "command": "tanhList", "joints": []}
+                ], 
+                [
+                    {"id": 0, "command": "getVisionAny", "joints": []}, 
+                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
+                    {"id": 2, "command": "moveEast", "joints": []}, 
+                    {"id": 3, "command": "moveSouth", "joints": []}, 
+                    {"id": 4, "command": "tanhList", "joints": []}
+                ], 
+                [
+                    {"id": 0, "command": "getVisionAny", "joints": []}, 
+                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
+                    {"id": 2, "command": "moveEast", "joints": []}, 
+                    {"id": 3, "command": "moveSouth", "joints": []}, 
+                    {"id": 4, "command": "tanhList", "joints": []}
+                ]
+            ], 
+            
+        "passedAmount": 8, 
+        "survivability": 6.2}}
