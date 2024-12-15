@@ -9,21 +9,7 @@ import genome as gnm
 from mutation import mutate, rndMutate
 from configuration import config
 from genePrcs import runGene
-
-def saveGenome(dataOutput, itrNum, itrData):
-    dataOutput[itrNum]['succGenomes'] = []
-
-    for agentIndex in range(len(itrData)):
-        slctGene = gnm.getGenome(itrData[agentIndex].gene, [])
-        slctGene.pop(0)
-
-        rdblGene = gnm.makeGeneReadable(slctGene)
-
-        dataOutput[itrNum]['succGenomes'].append(rdblGene)
-
-def saveRunData(data, filename):
-    with open(f'{config.outputPath}/{filename}', 'w') as path:
-        json.dump(data, path)
+import dataOutput as dtOut
 
 def genId(field, maxPos):
     rndID = rnd.randint(0, maxPos)
@@ -108,6 +94,7 @@ def runAgents(maxPos, fieldTree, agentQueue, agentsAmount):
 def selectAgents(agentQueue):
     slctList = []
     selecting = True
+
     while selecting:
         currAgent = agentQueue.peek()
 
@@ -127,7 +114,10 @@ def genEnv(slctList, maxPos):
     agentQueue = dts.Queue()
 
     slctAmount = len(slctList)
+
+    srv = math.floor((slctAmount / config.maxAgents) * 1000) / 10
     print(f'agents passed: {slctAmount}')
+    print(f'survivability: {srv}%')
 
     if slctAmount == 0:
         for i in range(config.maxAgents):
@@ -168,7 +158,7 @@ def genEnv(slctList, maxPos):
 # Simulation execution code
 def run(outFile):
 
-    dataOutput = {}
+    dataOut = {}
 
     maxPos = config.fieldSize[0] * config.fieldSize[1]
 
@@ -181,7 +171,7 @@ def run(outFile):
     for i in range(config.itrNum):
         print(f'running iteration {i+1}/{config.itrNum}')
 
-        dataOutput[i+1] = {}
+        dataOut[i+1] = {}
 
         itrData = runItr(maxPos, fieldTree, agentQueue)
         
@@ -189,11 +179,12 @@ def run(outFile):
         fieldTree = currEnv['field']
         agentQueue = currEnv['queue']
 
-        if (i % config.savePassedGenomes) == 0:
-            saveGenome(dataOutput, i+1, itrData)
+        dtOut.saveGenome(dataOut, i+1, itrData)
+        dtOut.savePassedNum(dataOut, i+1, itrData)
+
         
-    saveGenome(dataOutput, config.itrNum, itrData)
-    saveRunData(dataOutput, outFile)
+    dtOut.saveGenome(dataOut, config.itrNum, itrData)
+    dtOut.saveRunData(dataOut, outFile)
 
 dataFile = input('enter name of your out file: ')
 dataFile += '.json'

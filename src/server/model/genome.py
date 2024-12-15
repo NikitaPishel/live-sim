@@ -44,32 +44,3 @@ def getGenome(root, viewedGenome=[]):
             viewedGenome = getGenome(i, viewedGenome)
 
     return viewedGenome
-
-def makeGeneReadable(genome):
-    readableGene = []
-
-    cmdNameTable = {
-        nrnCmd.getVisionAny: "getVisionAny",
-        nrnCmd.getVisionCell: "getVisionCell",
-        nrnCmd.tanhList: "tanhList",
-        nrnCmd.reLU: "reLU",
-        nrnCmd.invert: "invert",
-        nrnCmd.outMoveNorth: "moveNorth",
-        nrnCmd.outMoveSouth: "moveSouth",
-        nrnCmd.outMoveEast: "moveEast",
-        nrnCmd.outMoveWest: "moveWest"
-        }
-
-    for i in range(len(genome)):
-        nrnjoints = []
-        for ref in genome[i].joints:
-            nrnjoints.append(genome.index(ref))
-
-        nrnData = {}
-        nrnData["id"] = i
-        nrnData["command"] = cmdNameTable[genome[i].cmd]
-        nrnData["joints"] = nrnjoints
-
-        readableGene.append(nrnData)
-
-    return readableGene
