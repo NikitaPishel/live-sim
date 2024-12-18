@@ -276,10 +276,9 @@ class AvlTree:
             return False
 
 # ================================================================
-#   QUEUE
-# ================================================================
+#   Queue
 
-class QueueNode:
+class _QueueNode:
 
     def __init__(self, data=None, child=None):
         self.data = data
@@ -310,7 +309,7 @@ class Queue:
         self.front = None
     
     def enqueue(self, data):
-        newNode = QueueNode(data)
+        newNode = _QueueNode(data)
 
         if self.rear == None:
             self.front = newNode
@@ -345,3 +344,70 @@ class Queue:
         
         else:
             return 0
+
+# ================================================================
+#   Stack
+
+class _StackNode:
+    def __init__(self):
+        self.data = None
+        self.child = None
+
+    def itrLength(self, currLength):
+        if self.child != None:
+            return self.child.itrLength(currLength + 1)
+        
+        else:
+            return currLength + 1
+
+    def itrFind(self, data):
+
+        if self.data == data:
+            return True
+        
+        elif self.child != None:
+            return self.child.itrFind(data)
+        
+        else:
+            return False
+
+class Stack:
+    def __init__(self):
+        self.front = None
+    
+    def isOccupied(self):
+        if self.front == None:
+            return False
+        
+        else:
+            return True
+    
+    def peek(self):
+        if self.isOccupied():
+            return self.front.data
+        
+        else:
+            return None
+    
+    def insert(self, data):
+        oldFront = self.front
+        newFront = _StackNode()
+
+        newFront.data = data
+        newFront.child = self.front
+        self.front = newFront
+    
+    def getLength(self):
+        if self.isOccupied():
+            return self.front.itrLength(0)
+    
+    def find(self, data):
+        if self.isOccupied():
+            return self.front.itrFind(data)
+    
+    def delete(self):
+        if self.isOccupied():
+            self.front = self.front.child
+        
+        else:
+            raise Exception ('deleting an element from an empty stack')
