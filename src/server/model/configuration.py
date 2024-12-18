@@ -116,5 +116,5 @@ class Configuration:
             self.outputPath = settings['outputPath']
             
 
-filePath = 'C:/projects/now/live-sim/src/server/data/presets/.example.json'
+filePath = 'C:/projects/now/live-sim/src/server/data/presets/config1.json'
 config = Configuration.getInstance(filePath)
