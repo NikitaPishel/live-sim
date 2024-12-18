@@ -232,5 +232,56 @@ class TestMutation(ut.TestCase):
         self.assertEqual(tTree.get(59).key, 59)
         self.assertRaises(Exception, tTree.get, 100)
 
+    def test_stackInsert(self):
+        tStack = dts.Stack()
+
+        tStack.insert(5)
+
+        self.assertEqual(tStack.peek(), 5)
+
+        tStack.insert(3)
+        tStack.insert(4)
+
+    def test_stackLength(self):
+        tStack = dts.Stack()
+
+        tStack.insert(5)
+        tStack.insert(3)
+        tStack.insert(4)
+
+        self.assertEqual(tStack.getLength(), 3)
+
+    def test_stackFind(self):
+        tStack = dts.Stack()
+
+        tStack.insert(5)
+        tStack.insert(3)
+        tStack.insert(4)
+
+        self.assertEqual(tStack.find(3), True)
+        self.assertEqual(tStack.find(4), True)
+        self.assertEqual(tStack.find(5), True)
+        self.assertEqual(tStack.find(6), False)
+
+    def test_stackDel(self):
+        tStack = dts.Stack()
+
+        tStack.insert(5)
+        tStack.insert(3)
+        tStack.insert(4)
+
+        self.assertEqual(tStack.peek(), 4)
+
+        tStack.delete()
+        self.assertEqual(tStack.peek(), 3)
+
+        tStack.delete()
+        self.assertEqual(tStack.peek(), 5)
+
+        tStack.delete()
+        self.assertEqual(tStack.peek(), None)
+        
+        self.assertRaises(Exception, tStack.delete)
+
 if __name__ == '__main__':
     ut.main()
