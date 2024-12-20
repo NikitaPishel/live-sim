@@ -46,21 +46,30 @@ def getGenome(root, viewedGenome=[]):
     return viewedGenome
 
 # Clone specific neuron
-def cloneNrn(nrn):
+def cloneNrn(nrn, cloneDict):
     print(nrn)
     nrnClone = nrn.__class__
-    nrnClone.joints = nrn.joints.copy()
-    
+    cloneDict[nrn] = nrnClone
+   
     if not isinstance(nrn, GeneRoot):
         nrnClone.cmd = nrn.cmd
 
+    for i in nrn.joints:
+        childClone = cloneDict.get(i)
+
+        if childClone == None:
+            childClone = cloneNrn(i, cloneDict)
+
+        nrnClone.joints.append(childClone)
+
     return nrnClone
 
-tRoot = GeneRoot()
+def cloneGene(root):
+    gene = getGenome(oldRoot, [])
+    
+    cloneDict = {}
 
-tRoot.joints.append(Sensor())
-tRoot.joints[0].cmd = 'test'
+    newRoot = cloneNrn(oldRoot, {})
+    
+    return newRoot
 
-tClone = cloneNrn(tRoot.joints[0])
-tClone.cmd = 'abc'
-print(tRoot.joints[0].cmd)
