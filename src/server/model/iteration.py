@@ -186,7 +186,7 @@ def run(outFile):
     dtOut.saveGenome(dataOut, config.itrNum, itrData)
     dtOut.saveRunData(dataOut, outFile)
 
-dataFile = input('enter name of your out file: ')
+dataFile = input('Enter name of your output file: ')
 dataFile += '.json'
 
 start = time()

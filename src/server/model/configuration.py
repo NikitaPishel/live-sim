@@ -5,7 +5,7 @@ import os
 class Configuration:
     _instance = None
 
-    def __init__(self, filename):
+    def __init__(self):
         Configuration._instance = self
         os.chdir('../')
         self._serverDir = os.getcwd()
@@ -13,20 +13,10 @@ class Configuration:
         # Load standart settings
         self.loadConfig(f'{self._serverDir}/data/presets/standart.json')
 
-        # Load non-standart settings
-        self.loadConfig(filename)
-    
-        # exceptions
-        if self.maxActions < 1:
-            raise Exception('configErr, maxActions below 1')
-        
-        if self.geneTime < 1:
-            raise Exception('configErr, maxActions below 1')
-
     @classmethod
-    def getInstance(cls, filename=None):
+    def getInstance(cls):
         if Configuration._instance == None:
-            Configuration(filename)
+            Configuration()
         return cls._instance
 
     @classmethod
@@ -114,7 +104,17 @@ class Configuration:
         
         if settings['outputPath'] != None:
             self.outputPath = settings['outputPath']
+
+        # exceptions
+        if self.maxActions < 1:
+            raise Exception('configErr, maxActions below 1')
+        
+        if self.geneTime < 1:
+            raise Exception('configErr, maxActions below 1')
+
             
 
-filePath = 'C:/projects/now/live-sim/src/server/data/presets/config1.json'
-config = Configuration.getInstance(filePath)
+config = Configuration.getInstance()
+
+filePath = input(f'Enter a config path: ')
+config.loadConfig(f'{filePath}.json')

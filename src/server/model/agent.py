@@ -19,6 +19,6 @@ class Agent:
         agentClone = Agent()
 
         agentClone.pos = self.pos
-        agentClone.gene = self.gene
+        agentClone.gene = gnm.cloneGene(self.gene)
 
         return agentClone
