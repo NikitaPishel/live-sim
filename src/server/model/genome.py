@@ -47,8 +47,8 @@ def getGenome(root, viewedGenome=[]):
 
 # Clone specific neuron
 def cloneNrn(nrn, cloneDict):
-    print(nrn)
-    nrnClone = nrn.__class__
+    # print(nrn)
+    nrnClone = type(nrn)()
     cloneDict[nrn] = nrnClone
    
     if not isinstance(nrn, GeneRoot):
@@ -64,7 +64,7 @@ def cloneNrn(nrn, cloneDict):
 
     return nrnClone
 
-def cloneGene(root):
+def cloneGene(oldRoot):
     gene = getGenome(oldRoot, [])
     
     cloneDict = {}
@@ -72,4 +72,3 @@ def cloneGene(root):
     newRoot = cloneNrn(oldRoot, {})
     
     return newRoot
-
