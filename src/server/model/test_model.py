@@ -52,31 +52,13 @@ class TestMutation(ut.TestCase):
             self.assertNotIn(genRoot, noRootGenome)
 
     def test_getGenome(self):
-        myGenome = gnm.GeneRoot()
+        myGenome = _genGenomeLoop()
 
-        myGenome.joints.append(gnm.Sensor())
-        signal1 = myGenome.joints[0]
-
-        signal1.joints.append(gnm.Processor())
-        signal1.joints.append(gnm.Processor())
-
-        signal1.joints[1].joints.append(signal1.joints[0])
-        signal1.joints[0].joints.append(gnm.Processor())
-
-        signal1.joints[0].joints[0].joints.append(
-                signal1.joints[1]
-                )
-
-        myGenome.joints.append(gnm.Sensor())
-        
-        signal2 = myGenome.joints[1]
-
-        signal2.joints.append(gnm.Processor())
-        myGenomeArr = gnm.getGenome(myGenome)
+        myGenomeArr = gnm.getGenome(myGenome, [])
 
         self.assertEqual(
-        signal1.joints[0].joints[0].joints[0],
-        signal1.joints[1]
+        myGenome.joints[0].joints[0].joints[0].joints[0],
+        myGenome.joints[0].joints[1]
         )
         self.assertEqual(len(myGenomeArr), 7)
 
@@ -282,6 +264,42 @@ class TestMutation(ut.TestCase):
         self.assertEqual(tStack.peek(), None)
         
         self.assertRaises(Exception, tStack.delete)
+    
+    def test_cloneGene(self):
+        myGenome = _genGenomeLoop()
+
+        geneClone = gnm.cloneGene(myGenome)
+
+        origGene = gnm.getGenome(myGenome)
+        newGene = gnm.getGenome(geneClone)
+
+        for i in range(len(origGene)):
+            self.assertEqual(type(origGene[i]), type(newGene[i]))
+
+
+def _genGenomeLoop():
+    myGenome = gnm.GeneRoot()
+
+    myGenome.joints.append(gnm.Sensor())
+    signal1 = myGenome.joints[0]
+
+    signal1.joints.append(gnm.Processor())
+    signal1.joints.append(gnm.Processor())
+
+    signal1.joints[1].joints.append(signal1.joints[0])
+    signal1.joints[0].joints.append(gnm.Processor())
+
+    signal1.joints[0].joints[0].joints.append(
+            signal1.joints[1]
+            )
+
+    myGenome.joints.append(gnm.Sensor())
+
+    signal2 = myGenome.joints[1]
+
+    signal2.joints.append(gnm.Processor())
+    
+    return myGenome
 
 if __name__ == '__main__':
     ut.main()
