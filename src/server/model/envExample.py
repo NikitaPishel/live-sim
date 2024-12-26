@@ -1,3 +1,6 @@
+# Example of environment used in the training model (cells moving on a field)
+
+# Preset for custom models
 import random as rnd
 import math
 from time import time
@@ -154,43 +157,3 @@ def genEnv(slctList, maxPos):
             agentQueue.enqueue(clonedAgent)
     
     return {'field': fieldTree, 'queue': agentQueue}
-
-# Simulation execution code
-def run(outFile):
-
-    dataOut = {}
-
-    maxPos = config.fieldSize[0] * config.fieldSize[1]
-
-    currEnv = genEnv([], maxPos)
-
-    fieldTree = currEnv['field']
-    agentQueue = currEnv['queue']
-
-    runSim = True
-    for i in range(config.itrNum):
-        print(f'running iteration {i+1}/{config.itrNum}')
-
-        dataOut[i+1] = {}
-
-        itrData = runItr(maxPos, fieldTree, agentQueue)
-        
-        currEnv = genEnv(itrData, maxPos)
-        fieldTree = currEnv['field']
-        agentQueue = currEnv['queue']
-
-        dtOut.saveGenome(dataOut, i+1, itrData)
-        dtOut.savePassedNum(dataOut, i+1, itrData)
-
-        
-    dtOut.saveGenome(dataOut, config.itrNum, itrData)
-    dtOut.saveRunData(dataOut, outFile)
-
-dataFile = input('Enter name of your output file: ')
-dataFile += '.json'
-
-start = time()
-run(dataFile)
-end = time()
-
-print(f'time taken: {(end - start)/60} min')
