@@ -53,7 +53,7 @@ def savePassedNum(dataOut, itrNum, itrData):
         srv = math.floor((slctAmount / config.maxAgents) * 1000) / 10
 
         dataOut[itrNum]['passedAmount'] = slctAmount
-        dataOut[itrNum]['survivability'] = srv
+        dataOut[itrNum]['survivability'] = f'{srv}%'
 
 def saveRunData(data, filename):
     with open(f'{config.outputPath}/{filename}', 'w') as path:

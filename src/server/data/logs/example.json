@@ -1,108 +1,343 @@
 {
     "1": {
-        "passedAmount": 16, 
-        "survivability": 12.5
+      "passedAmount": 3,
+      "survivability": "18.7%"
     },
-
     "2": {
-        "passedAmount": 19, 
-        "survivability": 14.8
-    }, 
-
-    "3": {
-        "passedAmount": 12, 
-        "survivability": 9.3
-    }, 
-
-    "4": {
-        "passedAmount": 36, 
-        "survivability": 28.1
-    }, 
-
-    "5": {
-        "passedAmount": 11, 
-        "survivability": 8.5
+      "passedAmount": 8,
+      "survivability": "50.0%"
     },
-
+    "3": {
+      "passedAmount": 13,
+      "survivability": "81.2%"
+    },
+    "4": {
+      "passedAmount": 13,
+      "survivability": "81.2%"
+    },
+    "5": {
+      "passedAmount": 15,
+      "survivability": "93.7%"
+    },
     "6": {
-        "passedAmount": 49, 
-        "survivability": 38.2
-    }, 
-
+      "passedAmount": 16,
+      "survivability": "100.0%"
+    },
     "7": {
-        "passedAmount": 10, 
-        "survivability": 7.8
-    }, 
-
+      "passedAmount": 15,
+      "survivability": "93.7%"
+    },
     "8": {
-        "passedAmount": 123, 
-        "survivability": 96.0
-    }, 
-
+      "passedAmount": 13,
+      "survivability": "81.2%"
+    },
     "9": {
-        "passedAmount": 11, 
-        "survivability": 8.5
-    }, 
-
+      "passedAmount": 15,
+      "survivability": "93.7%"
+    },
     "10": {
-        "succGenomes": [
-                [
-                    {"id": 0, "command": "getVisionAny", "joints": []}, 
-                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
-                    {"id": 2, "command": "moveEast", "joints": []}, 
-                    {"id": 3, "command": "moveSouth", "joints": []}, 
-                    {"id": 4, "command": "tanhList", "joints": []}
-                ], 
-                [
-                    {"id": 0, "command": "getVisionAny", "joints": []}, 
-                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
-                    {"id": 2, "command": "moveEast", "joints": []}, 
-                    {"id": 3, "command": "moveSouth", "joints": []}, 
-                    {"id": 4, "command": "tanhList", "joints": []}
-                ], 
-                [
-                    {"id": 0, "command": "getVisionAny", "joints": []}, 
-                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
-                    {"id": 2, "command": "moveEast", "joints": []}, 
-                    {"id": 3, "command": "moveSouth", "joints": []}, 
-                    {"id": 4, "command": "tanhList", "joints": []}
-                ], 
-                [
-                    {"id": 0, "command": "getVisionAny", "joints": []}, 
-                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
-                    {"id": 2, "command": "moveEast", "joints": []}, 
-                    {"id": 3, "command": "moveSouth", "joints": []}, 
-                    {"id": 4, "command": "tanhList", "joints": []}
-                ], 
-                [
-                    {"id": 0, "command": "getVisionAny", "joints": []}, 
-                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
-                    {"id": 2, "command": "moveEast", "joints": []}, 
-                    {"id": 3, "command": "moveSouth", "joints": []}, 
-                    {"id": 4, "command": "tanhList", "joints": []}
-                ], 
-                [
-                    {"id": 0, "command": "getVisionAny", "joints": []}, 
-                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]},
-                    {"id": 2, "command": "moveEast", "joints": []}, 
-                    {"id": 3, "command": "moveSouth", "joints": []}, 
-                    {"id": 4, "command": "tanhList", "joints": []}
-                ], 
-                [
-                    {"id": 0, "command": "getVisionAny", "joints": []}, 
-                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
-                    {"id": 2, "command": "moveEast", "joints": []}, 
-                    {"id": 3, "command": "moveSouth", "joints": []}, 
-                    {"id": 4, "command": "tanhList", "joints": []}
-                ], 
-                [
-                    {"id": 0, "command": "getVisionAny", "joints": []}, 
-                    {"id": 1, "command": "getVisionCell", "joints": [2, 3, 4]}, 
-                    {"id": 2, "command": "moveEast", "joints": []}, 
-                    {"id": 3, "command": "moveSouth", "joints": []}, 
-                    {"id": 4, "command": "tanhList", "joints": []}
-                ]
-            ], 
-            
-        "passedAmount": 8, 
-        "survivability": 6.2}}
+      "succGenomes": [
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 2, 3, 4]
+          },
+          {
+            "id": 1,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 2,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 3,
+            "command": "moveNorth",
+            "joints": []
+          },
+          {
+            "id": 4,
+            "command": "tanhList",
+            "joints": [1]
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 2, 3, 4]
+          },
+          {
+            "id": 1,
+            "command": "tanhList",
+            "joints": [2, 3]
+          },
+          {
+            "id": 2,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 3,
+            "command": "reLU",
+            "joints": [3]
+          },
+          {
+            "id": 4,
+            "command": "reLU",
+            "joints": [3]
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 3]
+          },
+          {
+            "id": 1,
+            "command": "tanhList",
+            "joints": [2]
+          },
+          {
+            "id": 2,
+            "command": "reLU",
+            "joints": []
+          },
+          {
+            "id": 3,
+            "command": "moveWest",
+            "joints": []
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 2, 3, 4]
+          },
+          {
+            "id": 1,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 2,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 3,
+            "command": "moveNorth",
+            "joints": []
+          },
+          {
+            "id": 4,
+            "command": "tanhList",
+            "joints": [2, 4]
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 2]
+          },
+          {
+            "id": 1,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 2,
+            "command": "moveEast",
+            "joints": []
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 2, 3]
+          },
+          {
+            "id": 1,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 2,
+            "command": "moveEast",
+            "joints": []
+          },
+          {
+            "id": 3,
+            "command": "moveSouth",
+            "joints": []
+          },
+          {
+            "id": 4,
+            "command": "getVisionCell",
+            "joints": [2]
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1]
+          },
+          {
+            "id": 1,
+            "command": "moveWest",
+            "joints": []
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 3, 4]
+          },
+          {
+            "id": 1,
+            "command": "tanhList",
+            "joints": [2]
+          },
+          {
+            "id": 2,
+            "command": "reLU",
+            "joints": [3]
+          },
+          {
+            "id": 3,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 4,
+            "command": "moveWest",
+            "joints": []
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 3, 4, 2]
+          },
+          {
+            "id": 1,
+            "command": "tanhList",
+            "joints": [2, 1, 4, 3]
+          },
+          {
+            "id": 2,
+            "command": "reLU",
+            "joints": [1, 3, 2, 4]
+          },
+          {
+            "id": 3,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 4,
+            "command": "moveEast",
+            "joints": []
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1]
+          },
+          {
+            "id": 1,
+            "command": "moveWest",
+            "joints": []
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 4, 3, 2]
+          },
+          {
+            "id": 1,
+            "command": "tanhList",
+            "joints": [2, 1, 3, 4]
+          },
+          {
+            "id": 2,
+            "command": "reLU",
+            "joints": [1, 2, 3]
+          },
+          {
+            "id": 3,
+            "command": "moveEast",
+            "joints": []
+          },
+          {
+            "id": 4,
+            "command": "moveWest",
+            "joints": []
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1, 2, 3, 4]
+          },
+          {
+            "id": 1,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 2,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 3,
+            "command": "moveNorth",
+            "joints": []
+          },
+          {
+            "id": 4,
+            "command": "tanhList",
+            "joints": [2, 4, 3]
+          }
+        ],
+        [
+          {
+            "id": 0,
+            "command": "getVisionCell",
+            "joints": [1]
+          },
+          {
+            "id": 1,
+            "command": "moveWest",
+            "joints": []
+          },
+          {
+            "id": 2,
+            "command": "getVisionCell",
+            "joints": [1]
+          },
+          {
+            "id": 3,
+            "command": "getVisionAny",
+            "joints": []
+          }
+        ]
+      ]
+    }
+  }
