@@ -1,14 +1,20 @@
 import math
 import json
 import os
+import sys
 
 class Configuration:
     _instance = None
 
     def __init__(self):
         Configuration._instance = self
+        
+        # Standart server directory path
         os.chdir('../')
         self._serverDir = os.getcwd()
+
+        # Changing recursion limit
+        sys.setrecursionlimit(2500)
 
         # Load standart settings
         self.loadConfig(f'{self._serverDir}/data/presets/standart.json')
