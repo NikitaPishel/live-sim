@@ -1,5 +1,5 @@
 # Preset for custom models
-
+# =====
 from time import time
 
 from configuration import config
@@ -13,9 +13,11 @@ def run():
 
         dataOut[i+1] = {}
 
+# Simple config input
 dataFile = input('Enter name of your output file: ')
 dataFile += '.json'
 
+# Run execution code
 start = time()
 run(dataFile)
 end = time()

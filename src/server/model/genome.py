@@ -34,7 +34,7 @@ class GeneRoot:
     def __init__(self):
         self.joints = []
 
-# DFS search
+# DFS search. Returns a list of all neurons in a genome, capable of loop detection
 def getGenome(root, viewedGenome=[]):
     viewedGenome.append(root)
 
@@ -45,7 +45,7 @@ def getGenome(root, viewedGenome=[]):
 
     return viewedGenome
 
-# Clone specific neuron
+# Create in memory an exact copy of a specific neuron
 def cloneNrn(nrn, cloneDict):
     # print(nrn)
     nrnClone = type(nrn)()
@@ -64,6 +64,7 @@ def cloneNrn(nrn, cloneDict):
 
     return nrnClone
 
+# Create in memory a clone of a genome
 def cloneGene(oldRoot):
     gene = getGenome(oldRoot, [])
     

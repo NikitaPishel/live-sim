@@ -25,6 +25,7 @@ class Configuration:
             Configuration()
         return cls._instance
 
+    # This method loads different parameters from the configurational JSON file.
     @classmethod
     def loadConfig(self, filename):
         with open(filename, 'r') as file:
