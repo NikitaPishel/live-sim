@@ -105,8 +105,8 @@ def selectAgents(agentQueue):
             selecting = False
         
         else:
-            # If an agent is in first for rows (0 to 3) it gets selected
-            if currAgent.pos[0] <= 3:
+            # If an agent is in first 16 rows (0 to 15) it gets selected
+            if currAgent.pos[0] <= 15:
                 slctList.append(currAgent)
             agentQueue.dequeue()
 
