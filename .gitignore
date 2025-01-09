@@ -3,7 +3,9 @@
 /env/
 
 # Ignore data except examples
-/src/server/data/
+/data/
+!/data/standart.json
+!standart.json
 !example.json
 
 # Other
