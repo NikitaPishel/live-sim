@@ -3,10 +3,9 @@
 /env/
 
 # Ignore data except examples
-/data/
-!/data/standart.json
-!standart.json
-!example.json
+/data/*
+!data/**/example.json
+!data/presets/standart.json
 
 # Other
 __pycache__/
