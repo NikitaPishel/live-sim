@@ -52,8 +52,8 @@ pip install -r requirements.txt
 ## Usage
 
 There's 2 different manuals about this project
-- [Short guide](./manual-short.md): short and user-friendly which gives a simple explanation. Good for people who are not as familiar with programming, or people who want to save time.
-- [Full manual](./manual-long.md): full with description of the code structure, its capabilities and limits. Good for people who want to deeply and correctly understand the framework and its capabilities.
+- [Short guide](./manuals/manual-short.md): short and user-friendly which gives a simple explanation. Good for people who are not as familiar with programming, or people who want to save time.
+- [Full manual](./manuals/manual-long.md): full with description of the code structure, its capabilities and limits. Good for people who want to deeply and correctly understand the framework and its capabilities.
 
 ## Example
 
