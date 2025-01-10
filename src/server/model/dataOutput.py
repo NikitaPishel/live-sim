@@ -9,8 +9,7 @@ def makeGeneReadable(gene):
     readableGene = []
 
     cmdNameTable = {
-        nrnCmd.getVisionAny: "getVisionAny",
-        nrnCmd.getVisionCell: "getVisionCell",
+        nrnCmd.constantOn: "ConstantOn",
         nrnCmd.tanhList: "tanhList",
         nrnCmd.reLU: "reLU",
         nrnCmd.invert: "invert",

@@ -54,11 +54,8 @@ def posTaken(node, givenPos):
 
 # Input commands
 
-def getVisionAny(fieldTree, agent) -> float:
-    return 1
-
-def getVisionCell(fieldTree, agent) -> float:
-    return 1
+def constantOn(fieldTree, agent) -> float:
+    return 1.0
 
 # Internal commadns
 
@@ -138,8 +135,7 @@ def outMoveRnd(fieldTree, agent, amp) -> bool:
         return False
 
 inputCmd = [
-    getVisionAny,
-    getVisionCell,
+    constantOn
 ]
 
 interCmd = [
