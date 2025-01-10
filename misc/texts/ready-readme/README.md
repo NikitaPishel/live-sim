@@ -1,11 +1,11 @@
 # Live Simulator Project
 
-## Contents table
+## Contents
 [Intro](#Introduction)
 [Installation Guide](#Installation-Guide)
-[Purpose](#Purpose)
 [Usage](#Usage)
 [Example](#Example)
+[Purpose](#Purpose)
 [Features](#features-of-the-project)
 [License](#./LICENSE.md)
 [Contact](#Contact)
@@ -45,19 +45,19 @@ env/Scripts/activate.bat
 
 3. install packages
 After environment is turned on, you need to install python packages:
-```
+```bash
 pip install -r requirements.txt
 ```
 
 ## Usage
 
 There's 2 different manuals about this project
-- [Short guide](./manuals/manual-short.md): short and user-friendly which gives a simple explanation. Good for people who are not as familiar with programming, or people who want to save time.
-- [Full manual](./manuals/manual-long.md): full with description of the code structure, its capabilities and limits. Good for people who want to deeply and correctly understand the framework and its capabilities.
+- [Quickstart](./manuals/manual-short.md): short and user-friendly text which gives the base of the project without any unnecessary details.
+- [Full documentation](./manuals/manual-long.md): full with description of the code structure, its capabilities and limits. Good for people who want to deeply and correctly understand the framework and its capabilities.
 
 ## Example
 
-There's a built-in example of a ready project, where small cells (agents) learn to move left.
+There's a built-in example of a ready project, where small cells (agents) learn to move left. It is used for new users to understand how model works, what and how you use it. More detail info can be found on [user manuals](#Usage).
 
 ---
 

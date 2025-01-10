@@ -48,5 +48,3 @@ run(dataFile)
 end = time()
 
 print(f'time taken: {(end - start)/60} min')
-
-# C:/projects/now/live-sim/src/server/data/presets/config1
