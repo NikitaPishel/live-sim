@@ -11,8 +11,8 @@ class Configuration:
         # Changing recursion limit
         sys.setrecursionlimit(2500)
 
-        # Load standart settings
-        self.loadConfig(f'./data/presets/standart.json')
+        # Load standard settings
+        self.loadConfig(f'./data/presets/standard.json')
 
     @classmethod
     def getInstance(cls):

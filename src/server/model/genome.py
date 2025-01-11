@@ -26,7 +26,7 @@ class Signal(Neuron):
         super().__init__()
         self.refs = 0   # stores amount of joints that are referenced to this neuron, used to check if can delete a signal
     
-    def recall(self, fieldTree,  agent, amp) -> None:
+    def recall(self, fieldTree,  agent, amp) -> bool:
         cmdOut = self.cmd(fieldTree, agent, amp)
         return cmdOut
 

@@ -5,7 +5,7 @@
 # Ignore data except examples
 /data/*
 !data/**/example.json
-!data/presets/standart.json
+!data/presets/standard.json
 
 # Other
 __pycache__/
