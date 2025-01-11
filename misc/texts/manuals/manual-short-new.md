@@ -11,10 +11,11 @@
 ## Getting Started
 This manual gives you a good intro to the topic. Before using this manual, don't forget to [install it!](../README.md)
 
-## First of all, let's talk abFirst of all, let's talk about the most essential part of all the project, genome. It has a specific structure, and it defines the whole way how out Neural Network works. This is very important because this all this different factors will affect the speed and efficiency of a model, its capabilities, efficiency, speed of training, etc.
+## About Genome
+First of all, let's talk about the most essential part of all the project, genome. It has a specific structure, and it defines the whole way how our Neural Network works. This is very important because all these different factors will affect the speed and efficiency of a model, its capabilities, efficiency, speed of training, etc.
 
 ##### Structure
-My NN structure is called oriented graph with loops. In Neural Networks, It doesn't meet as often. There's some reasons for this, but no we will look at how it looks like.
+My NN structure is called oriented graph with loops. In Neural Networks, It doesn't meet as often. There's some reasons for this, but now we will look at how it looks like.
 
 ```python
 class Neuron:
@@ -24,7 +25,7 @@ class Neuron:
 ```
 *src/server/model/genome.py*
 
-We've got a super class *Neuron*, which defines 2 only parameters that are same for all neurons, intertnal, inputs and outputs. other child classes define only function inputs.
+We've got a super class *Neuron*, which defines 2 only parameters that are same for all neurons, internal, inputs and outputs. other child classes define only function inputs.
 
 ```python
 class Sensor(Neuron):
@@ -63,7 +64,7 @@ class GeneRoot:
         self.joints = []
 ```
 
-It serves as a starter point for a genome. Its joints are only *Sensor* class Neuron, and *Sensor* class object can only be a children of *GeneRoot*. *Signal* objects can't have any joints, as they are "end points" of a genome, and they output their signal externally.
+It serves as a starter point for a genome. Its joints are only *Sensor* class Neuron, and *Sensor* class object can only be a child of *GeneRoot*. *Signal* objects can't have any joints, as they are "end points" of a genome, and they output their signal externally.
 
 #### Commands
 Commands in the project are stored in 4 lists, one for each neuron type and a combined one with a full list of functions.
@@ -118,7 +119,7 @@ class Agent:
 ```
 *[src/server/model/agent.py]()*
 
-As we can see, our cell has got 2 parameters: position and genome. Position allows our cell to move around the map, and gene - is our main tool, as it is neural nwtwork itself, in other words "brain" of a cell. Now let's look at functions that neurons can complete:
+As we can see, our cell has got 2 parameters: position and genome. Position allows our cell to move around the map, and gene - is our main tool, as it is neural network itself, in other words "brain" of a cell. Now let's look at functions that neurons can perform:
 
 
 ```python
@@ -143,10 +144,10 @@ allCmd = inputCmd + interCmd + outputCmd
 ```
 *[src/server/model/neuronCmd.py]()*
 
-Usually our internal functions stay the same as they are mathematical functions used in almost every AI. But our inputs and outputs are depend from the environment. In our situation, our only input is a function that always returns 1, and our outputs are 4 movement directions.
+Usually our internal functions stay the same as they are mathematical functions used in almost every AI. But our inputs and outputs depend on the environment. In our situation, our only input is a function that always returns 1, and our outputs are 4 movement directions.
 
 ## Configuration
-Our simulation can be configured with specified for this files. They've got a set of settings, which can configure either environment or Neural Network (genome) itself. Let's look at our standart settings:
+Our simulation can be configured with specified for this files. They've got a set of settings, which can configure either environment or Neural Network (genome) itself. Let's look at our standard settings:
 ```json
 {
     "fieldSize": [32, 32],
@@ -182,9 +183,9 @@ Our simulation can be configured with specified for this files. They've got a se
     "outputPath": "[./data/logs]()"
 }
 ```
-*data/presets/standart.json*
+*data/presets/standard.json*
 
-each setting corresponds for some value in code. Also, our configuration supports multilayer confoguration. Let's look at our 2nd-level json example file:
+each setting corresponds for some value in code. Also, our configuration supports multilayer configuration. Let's look at our 2nd-level json example file:
 ```json
 {
     "fieldSize": [64, 64],
@@ -217,7 +218,7 @@ each setting corresponds for some value in code. Also, our configuration support
 ```
 *[data/presets/example.json]()*
 
-As we can see, there's some settings set to value *null*. This means that they are not covered by the 2nd layer, and they keep values from a previus, standart configuration. You can add any amount of layers, but in example there's only 2 present.
+As we can see, there's some settings set to value *null*. This means that they are not covered by the 2nd layer, and they keep values from a previous, standard configuration. You can add any amount of layers, but in example there's only 2 present.
 
 **Full list of settings**:
 - fieldSize: list \[x, y\] which states the map size, e. g. [32, 64] will create a field with 32 tiles wide and 64 tiles tall
@@ -243,7 +244,7 @@ As we can see, there's some settings set to value *null*. This means that they a
 
 - numberOfIterations: amount of iterations present in a full training cycle
 
-- savingLevels: a set of paremeters used to find out which data should be stored in a log
+- savingLevels: a set of parameters used to find out which data should be stored in a log
     - passedNumber: states one of how many iterations it will store the amount of passed agent and survivability, e. g. if 10 it will store every 10th iteration's passed amount, if 20 every 20th, etc.
     - passedGenomes: states one of how many iterations it will store all the genomes of all passed agents
     - iteration: states one of how many iterations it will store every position of cells in every move of an iteration
@@ -253,8 +254,10 @@ As we can see, there's some settings set to value *null*. This means that they a
 Notice that many values from this configuration are needed only for built-in environment, but some (like mutation chance) are needed for Neural Network.
 
 ## Creating Model
-Now let's create a simple model for our environment. This is the simplest part, as we just implement our environment. First, we need to create a run function, in which all out code will be executed. Also we need to import our configuration class:
-ample of a working model
+Now let's create a simple model for our environment. This is the simplest part, as we just implement our environment. First, we need to create a run function, in which all our code will be executed. Also we need to import our configuration class:
+
+```python
+# Example of a working model
 from time import time
 from envExample import *
 
