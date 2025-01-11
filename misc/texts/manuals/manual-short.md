@@ -2,6 +2,8 @@
 
 ## Contents
 [Intro](#Getting-Started)
+[Genome](#About-Genome)
+[Mutation](Mutations-and-Genetic-Algorithm)
 [Environment](#Simple-Environment)
 [Configuration](#Configuration)
 [Model](#Creating-Model)
@@ -9,8 +11,14 @@
 ## Getting Started
 This manual gives you a good intro to the topic. Before using this manual, don't forget to [install it](../README.md)!
 
+## About Genome
+First of all, let's talk about genome.
+
+
+## Mutations and Genetic Algorithm
+
 ## Simple Environment
-First of all, we need an environment. For explanation I will use the built-in example. This model trains cells (in computing called agents) that can only move in any 4 directions: south, west, north and east. They can only move on a zone set by a user, so if they try to walk out of the map they will just hit the wall. Let's look at our agent's code:
+Now we need an environment. For explanation I will use the built-in example. This model trains cells that can only move in any 4 directions: south, west, north and east. They can only move on a zone set by a user, so if they try to walk out of the map they will just hit the wall. They will learn to move left. Let's look at our agent's code:
 
 ```python
 import random
@@ -62,7 +70,111 @@ allCmd = inputCmd + interCmd + outputCmd
 Usually our internal functions stay the same as they are mathematical functions used in almost every AI. But our inputs and outputs are depend from the environment. In our situation, our only input is a function that always returns 1, and our outputs are 4 movement directions.
 
 ## Configuration
+Our simulation can be configured with specified for this files. They've got a set of settings, which can configure either environment or Neural Network (genome) itself. Let's look at our standart settings:
+```json
+{
+    "fieldSize": [32, 32],
+    "maxAmountOfAgents": 10,
+	"startMutation": 5,
 
+    "maxGenomeLength": 10,
+    "mutationChance": 0.1,
+    "newNeuronChance": 0.3,
+    "leveledMutation": true,
+
+    "maxActions": 1,
+    "geneRuntime": {
+        "multiplier": 1,
+        "dependency": "fixed",
+
+        "fixedValue": 50
+    },
+
+    "newGenTrigger": "timer",
+    "triggerConditions": {
+        "timeLimit": 100
+    },
+
+    "numberOfIterations": 10,
+
+    "savingLevels": {
+        "passedNumber": 1,
+        "passedGenomes": 100,
+        "iteration": 100
+    },
+
+    "outputPath": "./data/logs"
+}
+```
+*data/presets/standart.json*
+
+each setting corresponds for some value in code. Also, our configuration supports multilayer confoguration. Let's look at our 2nd-level json example file:
+```json
+{
+    "fieldSize": [64, 64],
+    "maxAmountOfAgents": 128,
+	"startMutation": 20,
+
+    "maxGenomeLength": 20,
+    "mutationChance": 0.5,
+    "newNeuronChance": 0.5,
+    "leveledMutation": null,
+
+    "maxActions": 1,
+    "geneRuntime": null,
+
+    "newGenTrigger": "timer",
+    "triggerConditions": {
+        "timeLimit": 100
+    },
+
+    "numberOfIterations": 10,
+
+    "savingLevels": {
+        "passedNumber": 1,
+        "passedGenomes": 10,
+        "iteration": 1
+    },
+
+    "outputPath": null
+}
+```
+*data/presets/example.json*
+
+As we can see, there's some settings set to value *null*. This means that they are not covered by the 2nd layer, and they keep values from a previus, standart configuration. You can add any amount of layers, but in example there's only 2 present.
+
+**Full list of settings**:
+- fieldSize: list \[x, y\] which states the map size, e. g. [32, 64] will create a field with 32 tiles wide and 64 tiles tall
+- maxAmountOfAgents: amount of agents that are created in each simulation
+- startMutation: amount of mutations created on the start of training or when none of agents survived
+
+- maxGenomeLength: maximum size of neurons in a neural network
+- mutationChance: chance with which a genome of a new cell will mutate at the start of a new iteration
+- newNeuronChance: chance of creation of a new neuron instead of a new joint
+- leveledMutation: if *true*, and mutation appeared, it will "drop a dice" for a new mutation. it will repeat until mutation doesn't happen
+
+- maxActions: maximal amount of actions (outputs) that an agent can do during one move
+- geneRuntime: stores information about for how long can a genome run
+    - multiplier: multiplies value of a current runtime
+    - dependency: states from what factors runtime will depend. Environment support 2 types below
+        - fixed: it will be a constant number
+        - geneLength: it will correspond to maximal genome length, and can be combined with multiplier to reach more specific values
+    - fixedValue: of dependency is *fixed*, it will use this parameter to get the fixed runtime value. Notice, that it is still multiplied by the parameter *multiplier*
+
+- newGenTrigger: states trigger needed to start a new iteration. In example supports only *timer*
+- triggerConditions: a set of parameters to control iteration trigger
+    - timeLimit: time limit of simulation, used in *timer* trigger
+
+- numberOfIterations: amount of iterations present in a full training cycle
+
+- savingLevels: a set of paremeters used to find out which data should be stored in a log
+    - passedNumber: states one of how many iterations it will store the amount of passed agent and survivability, e. g. if 10 it will store every 10th iteration's passed amount, if 20 every 20th, etc.
+    - passedGenomes: states one of how many iterations it will store all the genomes of all passed agents
+    - iteration: states one of how many iterations it will store every position of cells in every move of an iteration
+
+- outputPath: path of output log folder
+
+Notice that many values from this configuration are needed only for built-in environment, but some (like mutation chance) are needed for Neural Network.
 
 ## Creating simple Model
 Now let's create a simple model for our environment. This is the simplest part, as we just implement our environment. First, we need to create a run function, in which all out code will be executed. Also we need to import our configuration class:

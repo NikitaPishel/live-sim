@@ -18,7 +18,7 @@ The Live-sim project is a tool that can be used for creating and training Neural
 ---
 
 ## Installation Guide
-**Before the installation it is recommended to read the description first.**
+**After the installation it is recommended to [read the manual](./manuals/manual-short.md).**
 
 Downloading a model is easy and can be implemented if you follow the instructions described bellow.
 
