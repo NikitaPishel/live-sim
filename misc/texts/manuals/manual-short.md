@@ -11,7 +11,8 @@
 ## Getting Started
 This manual gives you a good intro to the topic. Before using this manual, don't forget to [install it!](../README.md)
 
-## First of all, let's talk abFirst of all, let's talk about the most essential part of all the project, genome. It has a specific structure, and it defines the whole way how out Neural Network works. This is very important because this all this different factors will affect the speed and efficiency of a model, its capabilities, efficiency, speed of training, etc.
+## About Genome
+First of all, let's talk about the most essential part of all the project, genome. It has a specific structure, and it defines the whole way how our Neural Network works. This is very important because all these different factors will affect the speed and efficiency of a model, its capabilities, efficiency, speed of training, etc.
 
 ##### Structure
 My NN structure is called oriented graph with loops. In Neural Networks, It doesn't meet as often. There's some reasons for this, but no we will look at how it looks like.
@@ -89,12 +90,13 @@ allCmd = inputCmd + interCmd + outputCmd
 ```
 *[src/server/model/neuronCmd.py](../src/server/model/neuronCmd.py)*
 
-Command can be any function with specific inputs and outputs which depend from 
+Command can be any function with specific inputs and outputs which depend from either it's input command, internal or output. Commands is the main way how you train a model with the usage of an environment. The way NN behaves is dictated by commands. Internal neurons are the main brain which creates dependency graph, while inputs and outputs are used to work with external factors. In this example we've got constant 1 as an input, and 4 movement directions as outputs. If you want to add any new command, you give to it any specific parameters and add them to the list. Parameters for internal neurons always stay the same as they don't directly communicate with external factors.
 
 ## Mutations and Genetic Algorithm
+The model that is used to train a NN is called *Genetic Algorithm*. As said earlier, it has some sort of an environment, and NN tries to meet the condition by random mutations. Let's notice, that mutations don't create random neuron, they create random connetions between them. During the connection addition, there's a chance set by user that mutation will create a connection from random neuron to the new one, meaning it creates a new neuron. Also, when the only connection to the neuron is deleted, there's no more reference to the neuron, so it gets deleted.
 
 ## Simple Environment
-Now we need an environment. For explanation I will use the built-in example. This model trains cells that can only move in any 4 directions: south, west, north and east. They can only move on a zone set by a user, so if they try to walk out of the map they will just hit the wall. They will learn to move left. Let's look at our agent's code:
+Now we need an environment. To explain I will use the built-in example. This model trains cells that can only move in any 4 directions: south, west, north and east. They can only move on a zone set by a user, so if they try to walk out of the map they will just hit the wall. They will learn to move left. Let's look at our agent's code:
 
 ```python
 import random

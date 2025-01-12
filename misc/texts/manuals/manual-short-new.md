@@ -90,9 +90,24 @@ allCmd = inputCmd + interCmd + outputCmd
 ```
 *[src/server/model/neuronCmd.py](../src/server/model/neuronCmd.py)*
 
-Command can be any function with specific inputs and outputs which depend from 
+Command can be any function with specific inputs and outputs which depend from either it's input command, internal or output. Commands is the main way how you train a model with the usage of an environment. The way NN behaves is dictated by commands. Internal neurons are the main brain which creates dependency graph, while inputs and outputs are used to work with external factors. In this example we've got constant 1 as an input, and 4 movement directions as outputs. If you want to add any new command, you give to it any specific parameters and add them to the list. Parameters for internal neurons always stay the same as they don't directly communicate with external factors.
 
 ## Mutations and Genetic Algorithm
+The model that is used to train a NN is called *Genetic Algorithm*. As said earlier, it has some sort of an environment, and NN tries to meet the condition by random mutations. Notice, that mutations don't create random neuron, they create random connetions between them. During the connection addition, there's a chance set by user that mutation will create a connection from random neuron to the new one, meaning it creates a new neuron. Also, when the only connection to the neuron is deleted, there's no more reference to the neuron, so it gets deleted.
+
+There's also an additional function called *leveled mutation*:
+```python
+def rndMutate(agent):
+    dropChance = rnd.random()
+    
+    if dropChance <= config.mutationChance:
+        mutate(agent)
+
+        if config.lvldMutation:
+            rndMutate(agent)
+```
+
+It's a main mutation function. As we can see in the *lvldMutation* part if mutation is created, it will try to try to mutate once more, unil it fails to.
 
 ## Simple Environment
 Now we need an environment. For explanation I will use the built-in example. This model trains cells that can only move in any 4 directions: south, west, north and east. They can only move on a zone set by a user, so if they try to walk out of the map they will just hit the wall. They will learn to move left. Let's look at our agent's code:
@@ -185,7 +200,7 @@ Our simulation can be configured with specified for this files. They've got a se
 ```
 *data/presets/standard.json*
 
-each setting corresponds for some value in code. Also, our configuration supports multilayer configuration. Let's look at our 2nd-level json example file:
+each setting corresponds for some value in the code. Also, configuration supports multiple layers. In other words, configuration will keep some settings from the first layer, then it will take some more from the second one, etc. Let's look at our 2nd-level json example file:
 ```json
 {
     "fieldSize": [64, 64],
@@ -218,7 +233,7 @@ each setting corresponds for some value in code. Also, our configuration support
 ```
 *[data/presets/example.json]()*
 
-As we can see, there's some settings set to value *null*. This means that they are not covered by the 2nd layer, and they keep values from a previous, standard configuration. You can add any amount of layers, but in example there's only 2 present.
+As we can see, there's some settings that are set to value *null*. This means that they are not covered by the 2nd layer, and they keep values from a previous, standard configuration. You can add any amount of layers, but in example there's only 2 present.
 
 **Full list of settings**:
 - fieldSize: list \[x, y\] which states the map size, e. g. [32, 64] will create a field with 32 tiles wide and 64 tiles tall
