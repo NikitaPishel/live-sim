@@ -13,14 +13,14 @@
 ---
 
 ## Introduction  
-The Live-sim project is a tool that can be used for creating and training Neural Networks. It gives a set of functions, which allow a user to create and control NNs. Although this project has a ready model and environment, it is more of a framework with an example than a project, which means it can be modified for any purpose, but main stucture of genome and training will stay the same.
+The Live-sim project is a tool that can be used for creating and training Neural Networks. It gives a set of functions, which allow a user to create and control NNs. Although this project has a ready model and environment, it is more of a framework with an example than a project, which means it can be modified for any purpose, but main structure of genome and training will stay the same.
 
 ---
 
 ## Installation Guide
 **After the installation it is recommended to [read the manual](./manuals/manual-short.md).**
 
-Downloading a model is easy and can be implemented if you follow the instructions described bellow.
+Downloading a model is easy and can be implemented if you follow the instructions described below.
 
 1. Clone the repo
 First of all you need to git clone the repository. Just open your bash and enter the command:
@@ -29,11 +29,11 @@ git clone https://github.com/NikitaPishel/live-sim.git
 ```
 
 2. install and activate environment
-After you have the project installed on your computer, you need to install the environment using command promt:
+After you have the project installed on your computer, you need to install the environment using command prompt:
 ```bash
 python -m venv env
 ```
-Then you need to activate it depending from your command promt you launch one of the commands.
+Then you need to activate it depending from your command prompt you launch one of the commands.
 Power Shell:
 ```bash
 env/Scripts/Activate.ps1
@@ -63,7 +63,7 @@ There's a built-in example of a ready project, where small cells (agents) learn 
 
 ## Purpose 
 
-Live-sim also was developed as a fundation for improving my understanding of computing science, its practical implementation and demonstrating my competence as a programmer. This project is not just a tool, it's a challenge to myself. The whole point of a project is to build an AI from scratch, which is a pretty long and complex task. I started it on a set of restrictions, to make it more challenging and interesting:
+Live-sim also was developed as a foundation for improving my understanding of computing science, its practical implementation and demonstrating my competence as a programmer. This project is not just a tool, it's a challenge to myself. The whole point of a project is to build an AI from scratch, which is a pretty long and complex task. I started it on a set of restrictions, to make it more challenging and interesting:
 
 - The whole model should be built from scratch, so no AI modules or frameworks used (e. g. pyTorch or Tensorflow)
 - Only custom data structures (except for built-in to python skeleton, e. g. array or set)
@@ -71,7 +71,7 @@ Live-sim also was developed as a fundation for improving my understanding of com
 - There should be an environment example that should be user-friendly, so it can be used for learning or showcasing to people who are not very familiar with programming or/and how AI works.
 - No AI tools should be used (e. g. ChatGPT, Copilot)
 
-In the end I came up with hybrid model trained by evolutional process. In creation I worked with following topics:
+In the end I came up with hybrid model trained by evolutionary process. In creation I worked with following topics:
 
 - **Artificial Intelligence:** Creating neural networks from scratch and training them
 - **Optimization:** Making code space and time efficient as possible by different methods
@@ -96,8 +96,8 @@ The project has a range of features designed for model's efficiency and adaptabi
 2. **Customizability:**  
    The model is highly flexible. Its core can be trained and used in any imaginable task and will stay with no changes. This allows to use it in a wide range of tasks, from education and grocery to engineering and military.
 
-3. **Efficieny:**  
-   For its structute it gives optimal results by using a list of different algorithms and structures.
+3. **Efficiency:**  
+   For its structure it gives optimal results by using a list of different algorithms and structures.
 
 ---
 
