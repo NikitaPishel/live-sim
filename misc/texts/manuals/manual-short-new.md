@@ -4,8 +4,8 @@
 [Intro](#Getting-Started)
 [Genome](#About-Genome)
 [Mutation](#Mutations-and-Genetic-Algorithm)
-[Environment](#Simple-Environment)
 [Configuration](#Configuration)
+[Environment](#Simple-Environment)
 [Model](#Creating-Model)
 
 ## Getting Started
@@ -25,7 +25,7 @@ class Neuron:
 ```
 *src/server/model/genome.py*
 
-We've got a super class *Neuron*, which defines 2 only parameters that are same for all neurons, internal, inputs and outputs. other child classes define only function inputs.
+We've got a super class *Neuron*, which defines 2 the only parameters that are same for all neurons, not depending on whether they are internal, inputs, or outputs. other child classes define only function inputs.
 
 ```python
 class Sensor(Neuron):
@@ -90,10 +90,10 @@ allCmd = inputCmd + interCmd + outputCmd
 ```
 *[src/server/model/neuronCmd.py](../src/server/model/neuronCmd.py)*
 
-Command can be any function with specific inputs and outputs which depend from either it's input command, internal or output. Commands is the main way how you train a model with the usage of an environment. The way NN behaves is dictated by commands. Internal neurons are the main brain which creates dependency graph, while inputs and outputs are used to work with external factors. In this example we've got constant 1 as an input, and 4 movement directions as outputs. If you want to add any new command, you give to it any specific parameters and add them to the list. Parameters for internal neurons always stay the same as they don't directly communicate with external factors.
+Command can be any function with specific inputs and outputs which depend from either it's input command, internal or output. Commands is the main way how you train a model with the usage of an environment. The way NN behaves is dictated by the commands. Internal neurons are the main brain which creates dependency graph, while inputs and outputs are used to work with external factors. In this example we've got constant 1 as an input, and 4 movement directions as outputs. If you want to add any new command, you give to it any specific parameters and add them to the list. Parameters for internal neurons always stay the same as they don't directly communicate with external factors.
 
 ## Mutations and Genetic Algorithm
-The model that is used to train a NN is called *Genetic Algorithm*. As said earlier, it has some sort of an environment, and NN tries to meet the condition by random mutations. Notice, that mutations don't create random neuron, they create random connetions between them. During the connection addition, there's a chance set by user that mutation will create a connection from random neuron to the new one, meaning it creates a new neuron. Also, when the only connection to the neuron is deleted, there's no more reference to the neuron, so it gets deleted.
+The model that is used to train a NN is called *Genetic Algorithm*. As said earlier, it has some sort of an environment, and NN tries to meet the condition by random mutations. Notice, that mutations don't create random neuron, they create random connections between them. During the connection addition, there's a chance set by user that mutation will create a connection from random neuron to the new one, meaning it creates a new neuron. Also, when the only connection to the neuron is deleted, there's no more reference to the neuron, so it gets deleted.
 
 There's also an additional function called *leveled mutation*:
 ```python
@@ -107,62 +107,10 @@ def rndMutate(agent):
             rndMutate(agent)
 ```
 
-It's a main mutation function. As we can see in the *lvldMutation* part if mutation is created, it will try to try to mutate once more, unil it fails to.
-
-## Simple Environment
-Now we need an environment. For explanation I will use the built-in example. This model trains cells that can only move in any 4 directions: south, west, north and east. They can only move on a zone set by a user, so if they try to walk out of the map they will just hit the wall. They will learn to move left. Let's look at our agent's code:
-
-```python
-import random
-
-import genome
-from configuration import config
-import neuronCmd
-
-class Agent:
-    def __init__(self, x=0, y=0):
-        self.pos = [x, y]
-
-        # Creating root of the genome
-        self.gene = genome.GeneRoot() # decision map of an agent
-        
-        # Adding one random input to the genome as an agent is created, as genome functions work only with non-empty genes.
-        rndSensor = genome.Sensor()
-        rndCmd = random.choice(neuronCmd.inputCmd)
-        rndSensor.cmd = rndCmd
-        self.gene.joints.append(rndSensor)
-```
-*[src/server/model/agent.py]()*
-
-As we can see, our cell has got 2 parameters: position and genome. Position allows our cell to move around the map, and gene - is our main tool, as it is neural network itself, in other words "brain" of a cell. Now let's look at functions that neurons can perform:
-
-
-```python
-inputCmd = [
-    constantOn
-]
-
-interCmd = [
-    tanhList,
-    reLU,
-    invert
-]
-
-outputCmd = [
-    outMoveSouth,
-    outMoveNorth,
-    outMoveEast,
-    outMoveWest
-]
-
-allCmd = inputCmd + interCmd + outputCmd
-```
-*[src/server/model/neuronCmd.py]()*
-
-Usually our internal functions stay the same as they are mathematical functions used in almost every AI. But our inputs and outputs depend on the environment. In our situation, our only input is a function that always returns 1, and our outputs are 4 movement directions.
+It's a main mutation function. As we can see in the *lvldMutation* part if mutation is created, it will try to mutate once more, until it fails to.
 
 ## Configuration
-Our simulation can be configured with specified for this files. They've got a set of settings, which can configure either environment or Neural Network (genome) itself. Let's look at our standard settings:
+Our simulation can be configured with specified for these files. They've got a set of settings, which can configure either environment or Neural Network (genome) itself. Let's look at our standard settings:
 ```json
 {
     "fieldSize": [32, 32],
@@ -195,7 +143,7 @@ Our simulation can be configured with specified for this files. They've got a se
         "iteration": 100
     },
 
-    "outputPath": "[./data/logs]()"
+    "outputPath": "./data/logs"
 }
 ```
 *data/presets/standard.json*
@@ -231,7 +179,7 @@ each setting corresponds for some value in the code. Also, configuration support
     "outputPath": null
 }
 ```
-*[data/presets/example.json]()*
+*[data/presets/example.json](../data/presets/example.json)*
 
 As we can see, there's some settings that are set to value *null*. This means that they are not covered by the 2nd layer, and they keep values from a previous, standard configuration. You can add any amount of layers, but in example there's only 2 present.
 
@@ -251,7 +199,7 @@ As we can see, there's some settings that are set to value *null*. This means th
     - dependency: states from what factors runtime will depend. Environment support 2 types below
         - fixed: it will be a constant number
         - geneLength: it will correspond to maximal genome length, and can be combined with multiplier to reach more specific values
-    - fixedValue: of dependency is *fixed*, it will use this parameter to get the fixed runtime value. Notice, that it is still multiplied by the parameter *multiplier*
+    - fixedValue: if dependency is *fixed*, it will use this parameter to get the fixed runtime value. Notice, that it is still multiplied by the parameter *multiplier*
 
 - newGenTrigger: states trigger needed to start a new iteration. In example supports only *timer*
 - triggerConditions: a set of parameters to control iteration trigger
@@ -268,17 +216,132 @@ As we can see, there's some settings that are set to value *null*. This means th
 
 Notice that many values from this configuration are needed only for built-in environment, but some (like mutation chance) are needed for Neural Network.
 
-## Creating Model
-Now let's create a simple model for our environment. This is the simplest part, as we just implement our environment. First, we need to create a run function, in which all our code will be executed. Also we need to import our configuration class:
+## Simple Environment
+Now we need an environment. Same as earlier, for explanation I will use the built-in example. This model trains cells that can only move in any 4 directions: south, west, north and east. They can only move on a zone set by a user, so if they try to walk out of the map they will just hit the wall. They will learn to move left. Let's look at our agent's code:
 
 ```python
-# Example of a working model
+import random
+
+import genome
+from configuration import config
+import neuronCmd
+
+class Agent:
+    def __init__(self, x=0, y=0):
+        self.pos = [x, y]
+
+        # Creating root of the genome
+        self.gene = genome.GeneRoot() # decision map of an agent
+        
+        # Adding one random input to the genome as an agent is created, as genome functions work only with non-empty genes.
+        rndSensor = genome.Sensor()
+        rndCmd = random.choice(neuronCmd.inputCmd)
+        rndSensor.cmd = rndCmd
+        self.gene.joints.append(rndSensor)
+```
+*[src/server/model/agent.py](../src/server/model/agent.py)*
+
+As we can see, our cell has got 2 parameters: position and genome. Position allows our cell to move around the map, and gene - is our main tool, as it is neural network itself, in other words "brain" of a cell. Now let's look at functions that neurons can perform:
+
+
+```python
+inputCmd = [
+    constantOn
+]
+
+interCmd = [
+    tanhList,
+    reLU,
+    invert
+]
+
+outputCmd = [
+    outMoveSouth,
+    outMoveNorth,
+    outMoveEast,
+    outMoveWest
+]
+
+allCmd = inputCmd + interCmd + outputCmd
+```
+*[src/server/model/neuronCmd.py](../src/server/model/neuronCmd.py)*
+
+Usually our internal functions stay the same as they are mathematical functions used in almost every AI ever created. But our inputs and outputs depend on the environment. In our situation, the only input is a function that always returns 1, and our outputs are 4 movement directions.
+
+## Creating Model
+Now let's create a simple model for the environment. This is the simplest part, as we just need to conenct framework with an environment. First, we need to create a run function, in which all our code will be executed. Also we need to import our configuration class. Also, all our data will be stored in a dictionary, so it can be later formatted into JSON and displayed on a web client:
+
+```python
+# Preset for custom models
+# =====
 from time import time
+from configuration import config
+
+# Simulation execution code
+def run():
+    dataOut = {}
+
+    for i in range(config.itrNum):
+        print(f'running iteration {i+1}/{config.itrNum}')
+
+        dataOut[i+1] = {}
+
+# Simple config input
+dataFile = input('Enter name of your output file: ')
+dataFile += '.json'
+
+# Run execution code
+start = time()
+run(dataFile)
+end = time()
+
+print(f'time taken: {(end - start)/60} min')
+```
+*[src/server/model/modelPreset.py](../src/server/model/modelPreset.py)*
+
+After we've got our basic skeleton, we can implement our environment. We need to create an environment configuration before the *iteration loop*, then we need to write our iteration cycle inside of *iteration loop*. After the training process, we need to output information after the loop.
+
+```python
+from configuration import config
+import dataOutput as dtOut
 from envExample import *
 
 # Simulation execution code
 def run(outFile):
-    pass
+
+    # Data for info output
+    dataOut = {}
+
+    # Env setup
+    maxPos = config.fieldSize[0] * config.fieldSize[1]
+    itrData = []
+
+    # Training process
+    for i in range(config.itrNum):
+        print(f'running iteration {i+1}/{config.itrNum}')
+        # Creating new iteration record
+        dataOut[i+1] = {}
+
+        # Loading new iteration
+        currEnv = genEnv(itrData, maxPos)
+        fieldTree = currEnv['field']
+        agentQueue = currEnv['queue']
+
+        # Running an iteration
+        itrData = runItr(maxPos, fieldTree, agentQueue)
+
+        # Saving data into current iteration record
+        dtOut.saveGenome(dataOut, i+1, itrData)
+        dtOut.savePassedNum(dataOut, i+1, itrData)
+
+    # After sim end saving final result
+    dataOut[config.itrNum] = {}
+    dtOut.saveGenome(dataOut, config.itrNum, itrData)
+    dtOut.saveRunData(dataOut, outFile)
+
+# User input
+dataFile = input('Enter name of your output file: ')
+dataFile += '.json'
 
 # Run training
 start = time()
@@ -287,4 +350,6 @@ end = time()
 
 print(f'time taken: {(end - start)/60} min')
 ```
-*[src/server/model/modelExample.py]()*
+*[src/server/model/modelExample.py](../src/server/model/modelExample.py)*
+
+As we can see in an example of a model, we create *maxPos* and itrData list to configure our environment before the first launch. Then, in a loop, we create a dictionary addressed as *i+1* so we can store iteration result. After this we create a new environment, based on information given. Notice, that *itrData* is an empty list that is created before the loop, and later, when we've got some output from the previous iteration, we use it to train our future iteration. In our case this information is a list of successful agents. Finally, we run a simulation, store output in *itrData* list and add formatted data into the output dictionary. After the training process we store the output data in a file.
