@@ -25,7 +25,7 @@ class Neuron:
 ```
 *src/server/model/genome.py*
 
-We've got a super class *Neuron*, which defines 2 the only parameters that are same for all neurons, not depending on whether they are internal, inputs, or outputs. other child classes define only function inputs.
+We've got a super class *Neuron*, which defines 2 parameters that are same for all neurons, not depending on whether they are internal, inputs, or outputs. other child classes define only function inputs.
 
 ```python
 class Sensor(Neuron):
@@ -90,7 +90,7 @@ allCmd = inputCmd + interCmd + outputCmd
 ```
 *[src/server/model/neuronCmd.py](../src/server/model/neuronCmd.py)*
 
-Command can be any function with specific inputs and outputs which depend from either it's input command, internal or output. Commands is the main way how you train a model with the usage of an environment. The way NN behaves is dictated by the commands. Internal neurons are the main brain which creates dependency graph, while inputs and outputs are used to work with external factors. In this example we've got constant 1 as an input, and 4 movement directions as outputs. If you want to add any new command, you give to it any specific parameters and add them to the list. Parameters for internal neurons always stay the same as they don't directly communicate with external factors.
+Commands can be any function with specific inputs and outputs which depend from either it's input command, internal or output. Commands is the main way how you train a model with the usage of an environment. The way NN behaves is dictated by the commands. Internal neurons are the main brain which creates dependency graph, while inputs and outputs are used to work with external factors. In this example we've got constant 1 as an input, and 4 movement directions as outputs. If you want to add any new command, you give to it any specific parameters and add them to the list. Parameters for internal neurons always stay the same as they don't directly communicate with external factors.
 
 ## Mutations and Genetic Algorithm
 The model that is used to train a NN is called *Genetic Algorithm*. As said earlier, it has some sort of an environment, and NN tries to meet the condition by random mutations. Notice, that mutations don't create random neuron, they create random connections between them. During the connection addition, there's a chance set by user that mutation will create a connection from random neuron to the new one, meaning it creates a new neuron. Also, when the only connection to the neuron is deleted, there's no more reference to the neuron, so it gets deleted.
@@ -325,10 +325,10 @@ def genEnv(slctList, maxPos):
 ```
 *[src/server/model/envExample.py](../src/server/model/envExample.py)*
 
-As we can see it create a new field and new run queue of agents. After this it will use list of succesful agents from the previous iteration to create copies of them until we reach the needed amount of agents. Then it creates random mutations among their Neural Networks and places new agents in random places arond the map. Finally it returns ready environment so it can be used in our model.
+As we can see it create a new field and new run queue of agents. After this it will use list of succesful agents from the previous iteration to create copies of them until we reach the needed amount of agents. Then it creates random mutations among their Neural Networks and places new agents in random places around the map. Finally it returns ready environment so it can be used in our model.
 
 ## Creating Model
-Now let's create a simple model for the environment. This is the simplest part, as we just need to conenct framework with an environment. First, we need to create a run function, in which all our code will be executed. Also we need to import our configuration class. Also, all our data will be stored in a dictionary, so it can be later formatted into JSON and displayed on a web client:
+Now let's create a simple model for the environment. This is the simplest part, as we just need to connect framework with an environment. First, we need to create a run function, in which all our code will be executed. Also we need to import our configuration class. Also, all our data will be stored in a dictionary, so it can be later formatted into JSON and displayed on a web client:
 
 ```python
 # Preset for custom models
