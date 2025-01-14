@@ -200,8 +200,16 @@ This manual gives a full explanation of the whole code, each function, class, et
 
 ### Classes
 
+#### Agent
+```python
+```
+
 
 ### Functions
+
+#### clone (Agent)
+```python
+```
 
 ---
 
@@ -514,11 +522,39 @@ def rndMutate(agent):
 
 ### Functions
 
+#### enqueueJoints
+```python
+```
+
+#### saveInput
+```python
+```
+
+#### runGene
+```python
+```
+
 ---
 
 ## Neuron Commands
 
 ### Functions
+
+#### getSum
+```python
+```
+
+#### tanhList
+```python
+```
+
+#### reLU
+```python
+```
+
+#### invert
+```python
+```
 
 ---
 
@@ -526,8 +562,26 @@ def rndMutate(agent):
 
 ### Functions
 
+#### makeGeneReadable
+```python
+```
+
+#### saveGenome
+```python
+```
+
+#### savePassedNum
+```python
+```
+
+#### saveRunData
+```python
+```
+
 ---
 
 ## Model
 
-### Functions
+### function run
+```python
+```
