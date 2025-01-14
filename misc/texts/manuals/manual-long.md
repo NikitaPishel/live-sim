@@ -18,18 +18,179 @@ This manual gives a full explanation of the whole code, each function, class, et
 
 ### Classes
 
+#### AvlNode
+```python
+```
+
+#### AvlTree
+```python
+```
+
+#### QueueNode
+```python
+```
+
+#### Queue
+```python
+```
+
+#### StackNode
+```python
+```
+
+#### Stack
+```python
+```
 
 ### Functions
+
+#### searchNode (AvlNode)
+```python
+```
+
+#### inTree (AvlNode)
+```python
+```
+
+#### insertNode (AvlNode)
+```python
+```
+
+#### deleteNode (AvlNode)
+```python
+```
+
+#### findSuccessorParent (AvlNode)
+```python
+```
+
+#### updateHeight (AvlNode)
+```python
+```
+
+#### lowest (AvlNode)
+```python
+```
+
+#### getBalance (AvlNode)
+```python
+```
+
+#### balanceTree (AvlNode)
+```python
+```
+
+#### lTurn (AvlNode)
+```python
+```
+
+#### rTurn (AvlNode)
+```python
+```
+
+#### lrTurn (AvlNode)
+```python
+```
+
+#### rlTurn (AvlNode)
+```python
+```
+
+#### rlTurn (AvlNode)
+```python
+```
+
+#### get (AvlTree)
+```python
+```
+
+#### setData (AvlTree)
+```python
+```
+
+#### insert (AvlTree)
+```python
+```
+
+#### delete (AvlTree)
+```python
+```
+
+#### exists (AvlTree)
+```python
+```
+
+#### searchData (QueueNode)
+```python
+```
+
+#### itrLength (QueueNode)
+```python
+```
+
+#### enqueue (Queue)
+```python
+```
+
+#### dequeue (Queue)
+```python
+```
+
+#### peek (Queue)
+```python
+```
+
+#### getLength (Queue)
+```python
+```
+
+#### itrLength (StackNode)
+```python
+```
+
+#### itrFind (StackNode)
+```python
+```
+
+#### isOccupied (Stack)
+```python
+```
+
+#### peek (Stack)
+```python
+```
+
+#### insert (Stack)
+```python
+```
+
+#### getLength (Stack)
+```python
+```
+
+#### find (Stack)
+```python
+```
+
+#### delete (Stack)
+```python
+```
 
 ---
 
 ## Configuration
 
 ### Classes
-
+#### Configuration
 
 ### Functions
+#### getInstance
+```python
+```
 
+#### loadConfig
+```python
+```
 
 ### JSON files
 
