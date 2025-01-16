@@ -825,8 +825,6 @@ class GeneRoot:
 ```
 
 ### Functions
-```python
-```
 
 #### Find genome
 ```python

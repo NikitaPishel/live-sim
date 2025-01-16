@@ -10,3 +10,7 @@
   <chartComponent></chartComponent>
 
 </template>
+
+<script>
+
+</script>
