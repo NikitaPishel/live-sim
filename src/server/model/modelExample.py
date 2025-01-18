@@ -1,5 +1,8 @@
 # Example of a working model
 from time import time
+import os
+
+print(os.getcwd())
 
 from configuration import config
 import dataOutput as dtOut
@@ -37,14 +40,3 @@ def run(outFile):
     dataOut[config.itrNum] = {}
     dtOut.saveGenome(dataOut, config.itrNum, itrData)
     dtOut.saveRunData(dataOut, outFile)
-
-# User input
-dataFile = input('Enter name of your output file: ')
-dataFile += '.json'
-
-# Run training
-start = time()
-run(dataFile)
-end = time()
-
-print(f'time taken: {(end - start)/60} min')
