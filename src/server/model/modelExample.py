@@ -8,19 +8,21 @@ from configuration import config
 import dataOutput as dtOut
 from envExample import *
 
+# Data for info output
+dataOut = {}
+
+def getData():
+    return dataOut
+
 # Simulation execution code
 def run(outFile):
-
-    # Data for info output
-    dataOut = {}
-
     # Env setup
     maxPos = config.fieldSize[0] * config.fieldSize[1]
     itrData = []
 
     # Training process
     for i in range(config.itrNum):
-        print(f'running iteration {i+1}/{config.itrNum}')
+        #print(f'running iteration {i+1}/{config.itrNum}')
         # Creating new iteration record
         dataOut[i+1] = {}
 

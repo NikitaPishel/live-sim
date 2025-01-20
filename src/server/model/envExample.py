@@ -119,8 +119,8 @@ def genEnv(slctList, maxPos):
     slctAmount = len(slctList)
 
     srv = math.floor((slctAmount / config.maxAgents) * 1000) / 10
-    print(f'agents passed: {slctAmount}')
-    print(f'survivability: {srv}%')
+    #print(f'agents passed: {slctAmount}')
+    #print(f'survivability: {srv}%')
 
     if slctAmount == 0:
         for i in range(config.maxAgents):
