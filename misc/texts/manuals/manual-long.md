@@ -15,6 +15,7 @@ This manual gives a full explanation of the whole code, each function, class, et
 ---
 
 ## Data Structures
+Data structures are used for optimizing code, but instead of them all the data structures are custom (made on plain python).
 
 ### Classes
 
@@ -29,6 +30,7 @@ class _AvlNode:
         self.height = 1
         self.balance = 0
 ```
+Node used to store data in a tree.
 
 #### AvlTree
 ```python
@@ -36,6 +38,7 @@ class AvlTree:
     def __init__(self):
         self.root = None
 ```
+Tree class, made as a wrapper for nodes.
 
 #### QueueNode
 ```python
@@ -45,13 +48,16 @@ class _QueueNode:
         self.data = data
         self.child = child
 ```
+Node used inside of Queue, makes linked-list-like structure.
 
 #### Queue
 ```python
 class Queue:
     def __init__(self):
         self.rear = None
+        self.front = None
 ```
+Functional queue part with pointers to front and end.
 
 #### StackNode
 ```python
@@ -60,6 +66,7 @@ class _StackNode:
         self.data = None
         self.child = None
 ```
+Node used inside of Stack data structure, makes linked-list-like structure. Pretty same to Queue.
 
 #### Stack
 ```python
@@ -67,6 +74,7 @@ class Stack:
     def __init__(self):
         self.front = None
 ```
+Functional part of a stack with stack front pointer. Consists of external functions.
 
 ### Functions
 
@@ -540,6 +548,7 @@ def _rlTurn(node):
 ---
 
 ## Configuration
+Made for configuring model and environment. Supports loads from JSON file
 
 ### Classes
 #### Configuration
@@ -556,6 +565,7 @@ class Configuration:
         # Load standard settings
         self.loadConfig(f'./data/presets/standard.json')
 ```
+Singleton class used to store all the parameters in the code
 
 ### Functions
 #### getInstance
@@ -566,6 +576,7 @@ class Configuration:
             Configuration()
         return cls._instance
 ```
+Signleton parameter used to get instance of a ready singleton. If there's no instance, it creates a new one.
 
 #### loadConfig
 ```python
@@ -663,6 +674,7 @@ class Configuration:
         if self.geneTime < 1:
             raise Exception('configErr, maxActions below 1')
 ```
+Function used to load parameters from a given JSON file as singleton parameters.
 
 ### JSON files
 #### Standart.json
@@ -701,6 +713,7 @@ class Configuration:
     "outputPath": "./data/logs"
 }
 ```
+Standartly loaded config file by a singleton class
 
 #### example.json
 ```json
@@ -733,6 +746,8 @@ class Configuration:
     "outputPath": null
 }
 ```
+Another JSON files can be loaded as a 2nd, 3rd, etc layer.
+
 ---
 
 ## Agents
