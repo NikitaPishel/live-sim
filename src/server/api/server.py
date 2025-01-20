@@ -7,4 +7,5 @@ def get_status():
     return jsonify({"status": "OK", "message": "Server is running"})
 
 if __name__ == '__main__':
+    
     app.run(debug=True)
