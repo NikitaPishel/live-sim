@@ -117,6 +117,3 @@ class Configuration:
             
 
 config = Configuration.getInstance()
-
-filePath = input(f'Enter a config path: ')
-config.loadConfig(f'{filePath}.json')

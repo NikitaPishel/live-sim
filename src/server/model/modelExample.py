@@ -1,5 +1,5 @@
 # Example of a working model
-from time import time
+from time import sleep
 import os
 
 print(os.getcwd())
@@ -20,11 +20,14 @@ def run(outFile):
     maxPos = config.fieldSize[0] * config.fieldSize[1]
     itrData = []
 
+    num = 0
+
     # Training process
-    for i in range(config.itrNum):
-        #print(f'running iteration {i+1}/{config.itrNum}')
+    while True:
+
+        #print(f'running iteration {num+1}/{config.itrNum}')
         # Creating new iteration record
-        dataOut[i+1] = {}
+        dataOut[num] = {}
 
         # Loading new iteration
         currEnv = genEnv(itrData, maxPos)
@@ -35,10 +38,21 @@ def run(outFile):
         itrData = runItr(maxPos, fieldTree, agentQueue)
 
         # Saving data into current iteration record
-        dtOut.saveGenome(dataOut, i+1, itrData)
-        dtOut.savePassedNum(dataOut, i+1, itrData)
+        dtOut.saveGenomeMiddle(dataOut, num, itrData)
+        dtOut.savePassedNum(dataOut, num, itrData)
+
+        sleep(0.5)
+
+        
+        if config.itrNum > 0:
+            num += 1
+
+            if num >= config.itrNum:
+                break
 
     # After sim end saving final result
-    dataOut[config.itrNum] = {}
-    dtOut.saveGenome(dataOut, config.itrNum, itrData)
-    dtOut.saveRunData(dataOut, outFile)
+    
+    if config.itrNum > 0:
+        print(f'Iteration Number: {config.itrNum}')
+        dtOut.saveGenome(dataOut, config.itrNum-1, itrData)
+        dtOut.saveRunData(dataOut, outFile)

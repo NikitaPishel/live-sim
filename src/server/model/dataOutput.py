@@ -34,7 +34,6 @@ def makeGeneReadable(gene):
     return readableGene
 
 def saveGenome(dataOut, itrNum, itrData):
-    if itrNum % config.savePassedGenomes == 0:
         dataOut[itrNum]['succGenomes'] = []
 
         for agentIndex in range(len(itrData)):
@@ -44,6 +43,10 @@ def saveGenome(dataOut, itrNum, itrData):
             rdblGene = makeGeneReadable(slctGene)
 
             dataOut[itrNum]['succGenomes'].append(rdblGene)
+
+def saveGenomeMiddle(dataOut, itrNum, itrData):
+    if itrNum % config.savePassedGenomes == 0:
+        saveGenome(dataOut, itrNum, itrData)
 
 def savePassedNum(dataOut, itrNum, itrData):
     if itrNum % config.savePassedNumber == 0:
