@@ -17,14 +17,6 @@ filePath = './data/presets/config1'
 config.loadConfig(f'{filePath}.json')
 
 # Run threads
-'''
-serverThr = threading.Thread(
-    target=server.runServer,
-    args=[model.getData],
-    daemon=False
-    )
-'''
-
 modelThr = threading.Thread(
     target=model.run,
     args=[dataFile],
