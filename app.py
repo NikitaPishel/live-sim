@@ -6,30 +6,35 @@ from src.server.api import server
 sys.path.append('./src/server/model')
 
 import modelExample as model
+from configuration import config
 
 #dataFile = input('Enter name of your output file: ')
 #dataFile += '.json'
 dataFile = 'testlog1.json'
 
-# Run threads
+#filePath = input(f'Enter a config path: ')
+filePath = './data/presets/config1'
+config.loadConfig(f'{filePath}.json')
 
+# Run threads
+'''
 serverThr = threading.Thread(
     target=server.runServer,
     args=[model.getData],
     daemon=False
     )
+'''
 
 modelThr = threading.Thread(
     target=model.run,
     args=[dataFile],
-    daemon=True
+    daemon=False
     )
 
 start = time()
-serverThr.start()
 modelThr.start()
+server.runServer(model.getData)
 
-serverThr.join()
 modelThr.join()
 
 end = time()

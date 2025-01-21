@@ -9,7 +9,7 @@ def get_status():
 @app.route('/model/data', methods=['GET'])
 def get_data():
     data = app.config['dataFunc']()
-    return jsonify({"status": "OK", "Data": data})
+    return jsonify({"status": "OK", "data": data})
 
 def runServer(dataFunc):
     app.config['dataFunc'] = dataFunc
