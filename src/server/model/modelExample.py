@@ -53,6 +53,5 @@ def run(outFile):
     # After sim end saving final result
     
     if config.itrNum > 0:
-        print(f'Iteration Number: {config.itrNum}')
         dtOut.saveGenome(dataOut, config.itrNum-1, itrData)
         dtOut.saveRunData(dataOut, outFile)

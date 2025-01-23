@@ -53,7 +53,7 @@ pip install -r requirements.txt
 
 There's 2 different manuals about this project
 - [Quickstart](./manuals/manual-short.md): short and user-friendly text which gives the base of the project without any unnecessary details.
-- [Full documentation](./manuals/manual-long.md): full with description of the code structure, its capabilities and limits. Good for people who want to deeply and correctly understand the framework and its capabilities.
+- [Full documentation](./manuals/manual-long.md): full with description of the code structure, its capabilities and limits. Good for people who want to deeply and correctly understand the framework and its capabilities **(in progress)**.
 
 ## Example
 
