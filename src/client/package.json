@@ -12,7 +12,9 @@
   "dependencies": {
     "axios": "^1.7.7",
     "chart.js": "^4.4.4",
-    "vue": "^3.4.29"
+    "pinia": "^2.3.1",
+    "vue": "^3.4.29",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
