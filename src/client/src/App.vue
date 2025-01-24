@@ -1,6 +1,5 @@
 <script setup>
   import { ref } from 'vue';
-  import chartComponent from './components/ChartComponent.vue';
   import { RouterView } from 'vue-router'
 
   import axios from 'axios';
