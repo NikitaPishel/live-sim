@@ -16,15 +16,15 @@ async function getStatus() {
     }
 }
 
-getStatus();
+//getStatus();
 
 </script>
 
 <template>
   <div class="page">
     <div class="header">
-      <div>Menu 1</div>
-      <div>Menu 2</div>
+      <div class="navigation">Menu 1</div>
+      <div class="navigation">Menu 2</div>
     </div>
     <div class="content">
       <RouterView />
@@ -33,6 +33,39 @@ getStatus();
   
 </template>
 
-<script>
+<style>
+.navigation {
+  margin-left: 0.3%;
+  margin-right: 0.3%;
+}
 
-</script>
+.page {
+  background-color: #d5c4b7;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #d5c4b7;
+  
+  border-color: #3d3d3d;
+  border-bottom-width: 5px;
+  
+  margin: 0;
+  padding: 12px;
+
+  height: 20%;
+
+  display: flex;
+}
+
+.content {
+  background-color: #efe3da;
+  margin: 0%;
+  padding: 0%;
+
+  height: 80%;
+}
+</style>
