@@ -6,7 +6,7 @@
 
 <template>
     <div class="popupPanel">
-        <div class="popupCell">
+        <div class="dataCell">
             <h3 class="sectnHead">Genomes </h3>
 
             <div class="sectnContent">
@@ -14,23 +14,84 @@
             </div>
         </div>
 
-        <div class="popupCell">
+        <div class="dataCell">
             <h3 class="sectnHead">Amount of passed agents</h3>
             
             <div class="sectnContent">
                 <button class="menuButton">Open menu</button>
-                <div class="miniData">Hello World</div>
+                <div class="miniData">
+                    <div>
+                        <a>Last: </a>
+                        <a></a>
+                    </div>
+                    
+                    <div>
+                        <a>Average: </a>
+                        <a></a>
+                    </div>
+                    
+                    <div>
+                        <a>Growth from the start: </a>
+                        <a></a>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="popupCell">
+        <div class="dataCell">
             <h3 class="sectnHead">Survivability percentage</h3>
             <div class="sectnContent">
                 <button class="menuButton">Open menu</button>
                 <div class="miniData">
-                    <p>Hello World</p>
-                    <p>Hello World</p>
-                    <p>Hello World</p>
+                    <div>
+                        <a>Last: </a>
+                        <a></a>
+                    </div>
+                    
+                    <div>
+                        <a>Average: </a>
+                        <a></a>
+                    </div>
+                    
+                    <div>
+                        <a>Growth from the start: </a>
+                        <a></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dataCell">
+            <div class="miniData">
+                <div>
+                    <a>Current iteration: </a>
+                    <a></a>
+                </div>
+                <div>
+                    <a>Last Iteration: </a>
+                    <a></a>
+                </div>
+            </div>
+
+            <div class="miniData">
+                <div>
+                    <a>Time since start of the session: </a>
+                    <a></a>
+                </div>
+                <div>
+                    <a>Average time per iteration: </a>
+                    <a></a>
+                </div>
+            </div>
+
+            <div class="miniData">
+                <div>
+                    <a>Last Iteration Survivability: </a>
+                    <a></a>
+                </div>
+                <div>
+                    <a>Survivability Growth: </a>
+                    <a></a>
                 </div>
             </div>
         </div>
@@ -60,7 +121,7 @@
     padding: 0.5%;
 }
 
-.popupCell {
+.dataCell {
     border-style: solid;
     border-width: 2px;
     border-color: #3d3d3d;

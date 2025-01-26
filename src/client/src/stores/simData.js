@@ -29,6 +29,7 @@ export const useChannelsStore = defineStore(STORE_NAME, () => {
     }
   };
   
+  getStatus()
   loadStat();
   
   return {
