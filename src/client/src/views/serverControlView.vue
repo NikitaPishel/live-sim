@@ -37,6 +37,17 @@
                     <a></a>
                 </div>
             </div>
+
+            <div class="miniData">
+                <div>
+                    <a>Last Iteration Survivability: </a>
+                    <a></a>
+                </div>
+                <div>
+                    <a>Survivability Growth: </a>
+                    <a></a>
+                </div>
+            </div>
         </div>
     </div>
 </template>
