@@ -1,10 +1,10 @@
 .navigation {
-    padding: 0.5%;
+    padding: 1%;
     padding-left: 1%;
     padding-right: 1%;
   
-    margin-left: 0.2%;
-    margin-right: 0.2%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
   
     border-style: solid;
     border-bottom-style: none;
@@ -56,7 +56,7 @@
     border-radius: 24px;
     
     background-color: #efe3da;
-    margin: 2%;
+    margin: 3%;
     padding: 2%;
   
     width: 80%;
@@ -69,21 +69,21 @@
   
       color: #3d3d3d;
   
-      margin: 1%;
+      margin: 3%;
       padding: 1%;
   }
-
-.panelHead {
-  size: 36px;
-}
   
+  .panelHead {
+    size: 36px;
+  }
+
 .miniData {
     border-left-style: solid;
     border-color: #3d3d3d;
     border-width: 1px;
 
-    margin: 0.5%;
-    padding: 0.5%;
+    margin: 2%;
+    padding: 1%;
 }
 
 .sectnContent {

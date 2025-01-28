@@ -10,73 +10,20 @@
       <div class="navigation" id="write" @click="$router.push({ name: 'ctrl-panel', params: {} })"><a>Control</a></div>
       <div class="navigation" id="theme" @click=""><img id="theme-icon" src="@/img/light-256.png"></div>
     </div>
-    <div class="content">
-      <RouterView />
+    <div class="pageContainer">
+      <div class="content">
+        <RouterView />
+      </div>
     </div>
   </div>
   
 </template>
 
 <style>
-.navigation {
-  padding: 0.5%;
-  padding-left: 1%;
-  padding-right: 1%;
-
-  margin-left: 0.2%;
-  margin-right: 0.2%;
-
-  border-style: solid;
-  border-bottom-style: none;
-  border-width: 2px;
-
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-
-  border-color: #3d3d3d;
-
-  background-color: #efe3da;
-}
-
-.page {
-  background-color: #d5c4b7;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.header {
-  background-color: #d5c4b7;
-  border-color: #3d3d3d;
-
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
   
-  margin: 0;
-  padding: 0;
+  #theme-icon {
+    width: 18px;
+    height: 18px;
+  }
 
-  display: flex;
-}
-
-.content {
-  background-color: #efe3da;
-  margin: 0%;
-  padding: 0%;
-}
-
-#read {
-
-}
-
-#control {
-
-}
-
-#theme-icon {
-  width: 24px;
-  height: 24px;
-}
 </style>

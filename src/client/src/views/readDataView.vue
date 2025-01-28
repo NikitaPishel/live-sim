@@ -7,6 +7,10 @@
 <template>
     <div class="popupPanel">
         <div class="dataCell">
+            <h3 class="panelHead">Read Panel</h3>
+        </div>
+
+        <div class="dataCell">
             <h3 class="sectnHead">Genomes </h3>
 
             <div class="sectnContent">
@@ -102,46 +106,13 @@
 
 .menuButton {
     border-style: solid;
-    border-radius: 0%;
-    border-width: 2px;
+    border-radius: 24px;
+    border-width: 1px;
     border-color: #3d3d3d;
 
     width: 72px;
     height: 5%;
     margin: 5px;
     padding: 1%;
-}
-
-.miniData {
-    border-left-style: solid;
-    border-color: #3d3d3d;
-    border-width: 2px;
-
-    margin: 0.5%;
-    padding: 0.5%;
-}
-
-.dataCell {
-    border-style: solid;
-    border-width: 2px;
-    border-color: #3d3d3d;
-
-    color: #3d3d3d;
-
-    margin: 1%;
-    padding: 1%;
-}
-
-.sectnContent {
-    display: flex;
-}
-
-.sectnHead {
-    font-size: 16px;
-}
-
-.popupPanel {
-    padding: 12px;
-    background-color: #efe3da;
 }
 </style>

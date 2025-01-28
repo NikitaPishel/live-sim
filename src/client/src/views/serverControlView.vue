@@ -5,7 +5,11 @@
 </script>
 
 <template>
-    <div class="popupPanel">
+    <div class="controlPanel">
+        <div class="dataCell">
+            <h3 class="panelHead">Control Panel</h3>
+        </div>
+
         <div class="dataCell">
             <h3 class="sectnHead">Control</h3>
 
@@ -53,15 +57,10 @@
 </template>
 
 <style>
-
-.fillScreen {
-    overflow: hidden;
-}
-
 .ctrlButton {
     border-style: solid;
-    border-radius: 0%;
-    border-width: 2px;
+    border-radius: 24px;
+    border-width: 1px;
     border-color: #3d3d3d;
 
     width: 96px;
@@ -70,36 +69,10 @@
     padding: 1%;
 }
 
-.miniData {
-    border-left-style: solid;
-    border-color: #3d3d3d;
-    border-width: 2px;
-
-    margin: 0.5%;
-    padding: 0.5%;
-}
-
-.dataCell {
-    border-style: solid;
-    border-width: 2px;
-    border-color: #3d3d3d;
-
-    color: #3d3d3d;
-
+.controlPanel {
     margin: 1%;
-    padding: 1%;
-}
-
-.sectnContent {
-    display: flex;
-}
-
-.sectnHead {
-    font-size: 16px;
-}
-
-.popupPanel {
-    padding: 12px;
-    background-color: #efe3da;
+    padding: 0%;
+    padding-top: 4%;
+    padding-bottom: 4%;
 }
 </style>
