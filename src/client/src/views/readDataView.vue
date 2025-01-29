@@ -105,10 +105,12 @@
 <style>
 
 .menuButton {
-    border-style: solid;
+    border-style: none;
     border-radius: 24px;
     border-width: 1px;
     border-color: #3d3d3d;
+
+    background-color: #efe3da;
 
     width: 72px;
     height: 5%;
