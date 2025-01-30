@@ -72,7 +72,7 @@
 .controlPanel {
     margin: 1%;
     padding: 0%;
-    padding-top: 4%;
-    padding-bottom: 4%;
+    padding-top: 6%;
+    padding-bottom: 8%;
 }
 </style>
