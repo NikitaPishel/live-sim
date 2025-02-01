@@ -1,6 +1,14 @@
 <!-- Page where you can read info about simulation  -->
 
 <script>
+import leftBarBox from '@/components/dataBoxes/leftBarBox.vue'
+import { ref } from 'vue'
+
+export default {
+    components: {
+        leftBarBox
+    }
+}
 
 </script>
 
@@ -9,102 +17,59 @@
         <div class="dataCell">
             <h3 class="panelHead">Read Panel</h3>
         </div>
-
         <div class="dataCell">
             <h3 class="sectnHead">Genomes </h3>
-
             <div class="sectnContent">
-                <button class="menuButton">Open menu</button>
+                <button class="popupButton">Open menu</button>
             </div>
         </div>
 
         <div class="dataCell">
-            <h3 class="sectnHead">Amount of passed agents</h3>
             
+            <h3 class="sectnHead">Amount of passed agents</h3>
             <div class="sectnContent">
-                <button class="menuButton">Open menu</button>
-                <div class="miniData">
-                    <div>
-                        <a>Last: </a>
-                        <a></a>
-                    </div>
-                    
-                    <div>
-                        <a>Average: </a>
-                        <a></a>
-                    </div>
-                    
-                    <div>
-                        <a>Growth from the start: </a>
-                        <a></a>
-                    </div>
-                </div>
+                <button class="popupButton">Open menu</button>
+                <leftBarBox>
+                    <div>Last: {{  }}</div>
+                    <div>Average: {{  }}</div>
+                    <div>Growth from the start: {{  }}</div>
+                </leftBarBox>
             </div>
         </div>
 
         <div class="dataCell">
             <h3 class="sectnHead">Survivability percentage</h3>
             <div class="sectnContent">
-                <button class="menuButton">Open menu</button>
-                <div class="miniData">
-                    <div>
-                        <a>Last: </a>
-                        <a></a>
-                    </div>
-                    
-                    <div>
-                        <a>Average: </a>
-                        <a></a>
-                    </div>
-                    
-                    <div>
-                        <a>Growth from the start: </a>
-                        <a></a>
-                    </div>
-                </div>
+                <button class="popupButton">Open menu</button>
+                <leftBarBox>
+                    <div>Last: {{  }}</div>
+                    <div>Average: {{  }}</div>
+                    <div>Growth from the start: {{  }}</div>
+                </leftBarBox>
             </div>
         </div>
 
         <div class="dataCell">
-            <div class="miniData">
-                <div>
-                    <a>Current iteration: </a>
-                    <a></a>
-                </div>
-                <div>
-                    <a>Last Iteration: </a>
-                    <a></a>
-                </div>
-            </div>
+            <leftBarBox>
+                <div>Current iteration: {{  }}</div>
+                <div>Last Iteration: {{  }}</div>
+            </leftBarBox>
+            <leftBarBox>
+                <div>Time since start of the session: </div>
+                <div>Average time per iteration: </div>
+            </leftBarBox>
 
-            <div class="miniData">
-                <div>
-                    <a>Time since start of the session: </a>
-                    <a></a>
-                </div>
-                <div>
-                    <a>Average time per iteration: </a>
-                    <a></a>
-                </div>
-            </div>
-
-            <div class="miniData">
-                <div>
-                    <a>Last Iteration Survivability: </a>
-                    <a></a>
-                </div>
-                <div>
-                    <a>Survivability Growth: </a>
-                    <a></a>
-                </div>
-            </div>
+            <leftBarBox>
+                <div>Last Iteration Survivability: </div>
+                <div>Survivability Growth: </div>
+            </leftBarBox>
         </div>
     </div>
 </template>
 
-<style>
+<style scoped>
 
-.menuButton {
+.popupButton {
     border-style: none;
     border-radius: 24px;
     border-width: 1px;

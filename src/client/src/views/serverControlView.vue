@@ -1,7 +1,14 @@
 <!-- Page where you can control server from client  -->
 
 <script>
+import leftBarBox from '@/components/dataBoxes/leftBarBox.vue'
+import { ref } from 'vue'
 
+export default {
+    components: {
+        leftBarBox
+    }
+}
 </script>
 
 <template>
@@ -20,43 +27,25 @@
         </div>
 
         <div class="dataCell">
-            <div class="miniData">
-                <div>
-                    <a>Current iteration: </a>
-                    <a></a>
-                </div>
-                <div>
-                    <a>Last Iteration: </a>
-                    <a></a>
-                </div>
-            </div>
+            <leftBarBox>
+                <a>Current iteration: </a>
+                <a>Last Iteration: </a>
+            </leftBarBox>
 
-            <div class="miniData">
-                <div>
-                    <a>Time since start of the session: </a>
-                    <a></a>
-                </div>
-                <div>
-                    <a>Average time per iteration: </a>
-                    <a></a>
-                </div>
-            </div>
+            <leftBarBox>
+                <a>Time since start of the session: </a>
+                <a>Average time per iteration: </a>
+            </leftBarBox>
 
-            <div class="miniData">
-                <div>
-                    <a>Last Iteration Survivability: </a>
-                    <a></a>
-                </div>
-                <div>
-                    <a>Survivability Growth: </a>
-                    <a></a>
-                </div>
-            </div>
+            <leftBarBox>
+                <a>Last Iteration Survivability: </a>
+                <a>Survivability Growth: </a>
+            </leftBarBox>
         </div>
     </div>
 </template>
 
-<style>
+<style scoped>
 .ctrlButton {
     border-style: solid;
     border-radius: 24px;
