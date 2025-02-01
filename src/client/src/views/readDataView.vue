@@ -71,15 +71,14 @@ export default {
 
 .popupButton {
     border-style: none;
-    border-radius: 24px;
+    border-radius: 4px;
     border-width: 1px;
-    border-color: #3d3d3d;
+    border-color: #727272;
 
     background-color: #efe3da;
 
-    width: 72px;
-    height: 5%;
-    margin: 5px;
+    width: 96px;
+    margin: 1%;
     padding: 1%;
 }
 </style>

@@ -15,6 +15,8 @@
     border-width: 1px;
 
     margin: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     padding: 0.5%;
 }
 </style>

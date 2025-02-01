@@ -5,19 +5,19 @@
   
     margin: 0.3%;
   
-    border-style: solid;
+    border-style: none;
     border-width: 1px;
   
     border-radius: 10px;
   
     border-color: #3d3d3d;
   
-    background-color: #b9a99d;
+    background-color: #f5eadd;
   }
   
   .page {
+    font-family: arial, sans-serif;
     color: #3d3d3d;
-    background-color: #d5c4b7;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -25,7 +25,7 @@
   }
   
   .header {
-    background-color: #d5c4b7;
+    background-color: #ccc5bb;
     border-color: #3d3d3d;
   
     border-bottom-width: 1px;
@@ -38,7 +38,7 @@
   }
   
   .pageContainer {
-    background-color: #b9a99d;
+    background-color: #eae5e0;
   
     display: flex;
     justify-content: center;
@@ -51,7 +51,7 @@
     border-width: 1px;
     border-radius: 24px;
     
-    background-color: #e3d4c8;
+    background-color: #fef4ee;
     margin: 2%;
     padding: 2%;
   

@@ -47,15 +47,15 @@ export default {
 
 <style scoped>
 .ctrlButton {
-    border-style: solid;
-    border-radius: 24px;
+    border-style: none;
+    border-radius: 4px;
     border-width: 1px;
-    border-color: #3d3d3d;
+    border-color: #727272;
+    background-color: #efe3da;
 
     width: 96px;
-    height: 5%;
-    margin: 5px;
-    padding: 1%;
+    margin: 1%;
+    padding: 1.5%;
 }
 
 .controlPanel {
