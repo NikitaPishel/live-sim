@@ -37,8 +37,6 @@ const closePopup = () => {
 }
 
 #popupData {
-    background-color: #fef4ee;
-
     margin: 0;
     padding: 4%;
 }

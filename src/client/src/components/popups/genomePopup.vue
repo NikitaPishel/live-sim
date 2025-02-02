@@ -11,9 +11,14 @@ const genome = computed (() => popupStore.popupsDisplay.genome)
 
 <template>
 <popupControl v-if="genome" :displayState="'genome'">
-    <div>
-        <h1>Genome</h1>
-        <p>{{ genome }}</p>
+    <div class="dataCell">
+        <h3 class="panelHead">Genomes</h3>
+    </div>
+    
+    <div class="dataCell">
+        <h3 class="sectnHead">Table</h3>
+        <div class="sectnContent">
+        </div>
     </div>
 </popupControl>
 </template>
