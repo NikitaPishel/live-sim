@@ -21,8 +21,8 @@ export default {
             <h3 class="sectnHead">Control</h3>
 
             <div class="sectnContent">
-                <button class="ctrlButton">Pause</button>
-                <button class="ctrlButton">Shutdown</button>
+                <button class="popupButton" id="ctrlButton">Pause</button>
+                <button class="popupButton" id="ctrlButton">Shutdown</button>
             </div>
         </div>
 
@@ -46,13 +46,7 @@ export default {
 </template>
 
 <style scoped>
-.ctrlButton {
-    border-style: none;
-    border-radius: 4px;
-    border-width: 1px;
-    border-color: #727272;
-    background-color: #efe3da;
-
+#ctrlButton {
     width: 96px;
     margin: 1%;
     padding: 1.5%;

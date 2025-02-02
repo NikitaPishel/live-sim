@@ -1,15 +1,17 @@
 <!-- Page where you can read info about simulation  -->
 
-<script>
+<script setup>
 import leftBarBox from '@/components/dataBoxes/leftBarBox.vue'
+import popupControl from '@/components/popups/popupControl.vue';
+import { usePopupStore } from '@/stores/popupStore.js';
+
 import { ref } from 'vue'
 
-export default {
-    components: {
-        leftBarBox
-    }
-}
+const popupStore = usePopupStore()
 
+const switchPopup = popupStore.switchPopup
+
+const genome = popupStore.popupsDisplay.genome
 </script>
 
 <template>
@@ -28,7 +30,7 @@ export default {
             
             <h3 class="sectnHead">Amount of passed agents</h3>
             <div class="sectnContent">
-                <button class="popupButton">Open menu</button>
+                <button class="popupButton" @click="() => switchPopup('genome')">Open menu</button>
                 <leftBarBox>
                     <div>Last: {{  }}</div>
                     <div>Average: {{  }}</div>
@@ -65,20 +67,16 @@ export default {
             </leftBarBox>
         </div>
     </div>
+
+    <popupControl v-if="genome">
+        <div>
+            <p>Hello world!</p>
+            <p>{{ genome }}</p>
+        </div>
+    </popupControl>
+
 </template>
 
 <style scoped>
 
-.popupButton {
-    border-style: none;
-    border-radius: 4px;
-    border-width: 1px;
-    border-color: #727272;
-
-    background-color: #efe3da;
-
-    width: 96px;
-    margin: 1%;
-    padding: 1%;
-}
 </style>

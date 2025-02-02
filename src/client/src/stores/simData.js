@@ -5,7 +5,7 @@ import { defineStore } from 'pinia'
 const STORE_NAME = 'simData'
 const BASE_URL = 'http://127.0.0.1:5000'
 
-export const useChannelsStore = defineStore(STORE_NAME, () => {
+export const useMainStore = defineStore(STORE_NAME, () => {
   const jsonData = ref({});
 
   const simStat = computed(() => jsonData.value.data);
