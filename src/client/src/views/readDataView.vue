@@ -5,13 +5,13 @@ import leftBarBox from '@/components/dataBoxes/leftBarBox.vue'
 import popupControl from '@/components/popups/popupControl.vue';
 import { usePopupStore } from '@/stores/popupStore.js';
 
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const popupStore = usePopupStore()
 
 const switchPopup = popupStore.switchPopup
 
-const genome = popupStore.popupsDisplay.genome
+const genome = computed (() => popupStore.popupsDisplay.genome)
 </script>
 
 <template>
@@ -30,7 +30,11 @@ const genome = popupStore.popupsDisplay.genome
             
             <h3 class="sectnHead">Amount of passed agents</h3>
             <div class="sectnContent">
-                <button class="popupButton" @click="() => switchPopup('genome')">Open menu</button>
+                <button 
+                class="popupButton"
+                @click="() => switchPopup('genome')"
+                :displayState="genome"
+                >Open menu</button>
                 <leftBarBox>
                     <div>Last: {{  }}</div>
                     <div>Average: {{  }}</div>

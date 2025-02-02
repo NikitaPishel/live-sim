@@ -12,6 +12,7 @@ export const usePopupStore = defineStore(STORE_NAME, () => {
   });
 
   function switchPopup (trigger) {
+    console.log(`switching state ${trigger} from ${popupsDisplay.value[trigger]} to ${!popupsDisplay.value[trigger]}`)
     popupsDisplay.value[trigger] = !popupsDisplay.value[trigger]
   };
   

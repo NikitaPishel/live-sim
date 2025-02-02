@@ -1,15 +1,11 @@
-<script>
+<script setup>
 import { usePopupStore } from '@/stores/popupStore.js';
 
 const popupStore = usePopupStore()
 
 const switchPopup = popupStore.switchPopup
 
-export default {
-    setup () {
-        props: ['displayState']
-    }
-}
+defineProps(['displayState'])
 </script>
 
 <template>
@@ -17,7 +13,7 @@ export default {
         <div class="content" id="popupData">
             <slot />
 
-            <button class="popupButton" @click="() => switchPopup('displayState')">
+            <button class="popupButton" @click="() => switchPopup('genome')">
                 Close
             </button>
         </div>
