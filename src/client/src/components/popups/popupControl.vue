@@ -1,11 +1,13 @@
 <script setup>
+import { computed } from 'vue'
 import { usePopupStore } from '@/stores/popupStore.js';
 
 const popupStore = usePopupStore()
+const props = defineProps(['displayState'])
 
-const switchPopup = popupStore.switchPopup
-
-defineProps(['displayState'])
+const closePopup = () => {
+    popupStore.switchPopup(props.displayState)
+}
 </script>
 
 <template>
@@ -13,7 +15,7 @@ defineProps(['displayState'])
         <div class="content" id="popupData">
             <slot />
 
-            <button class="popupButton" @click="() => switchPopup('genome')">
+            <button class="popupButton" @click="() => closePopup()">
                 Close
             </button>
         </div>

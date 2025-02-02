@@ -1,6 +1,10 @@
 <!-- Page where you can read info about simulation  -->
 
 <script setup>
+import genomePopup from '@/components/popups/genomePopup.vue';
+import passedPopup from '@/components/popups/passedPopup.vue';
+import survivPopup from '@/components/popups/survivPopup.vue';
+
 import leftBarBox from '@/components/dataBoxes/leftBarBox.vue'
 import popupControl from '@/components/popups/popupControl.vue';
 import { usePopupStore } from '@/stores/popupStore.js';
@@ -22,7 +26,7 @@ const genome = computed (() => popupStore.popupsDisplay.genome)
         <div class="dataCell">
             <h3 class="sectnHead">Genomes </h3>
             <div class="sectnContent">
-                <button class="popupButton">Open menu</button>
+                <button class="popupButton" @click="() => switchPopup('genome')">Open menu</button>
             </div>
         </div>
 
@@ -31,10 +35,7 @@ const genome = computed (() => popupStore.popupsDisplay.genome)
             <h3 class="sectnHead">Amount of passed agents</h3>
             <div class="sectnContent">
                 <button 
-                class="popupButton"
-                @click="() => switchPopup('genome')"
-                :displayState="genome"
-                >Open menu</button>
+                class="popupButton" @click="() => switchPopup('passedNum')">Open menu</button>
                 <leftBarBox>
                     <div>Last: {{  }}</div>
                     <div>Average: {{  }}</div>
@@ -46,7 +47,7 @@ const genome = computed (() => popupStore.popupsDisplay.genome)
         <div class="dataCell">
             <h3 class="sectnHead">Survivability percentage</h3>
             <div class="sectnContent">
-                <button class="popupButton">Open menu</button>
+                <button class="popupButton" @click="() => switchPopup('surviv')">Open menu</button>
                 <leftBarBox>
                     <div>Last: {{  }}</div>
                     <div>Average: {{  }}</div>
@@ -72,13 +73,9 @@ const genome = computed (() => popupStore.popupsDisplay.genome)
         </div>
     </div>
 
-    <popupControl v-if="genome">
-        <div>
-            <p>Hello world!</p>
-            <p>{{ genome }}</p>
-        </div>
-    </popupControl>
-
+    <genomePopup />
+    <passedPopup />
+    <survivPopup />
 </template>
 
 <style scoped>
