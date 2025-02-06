@@ -10,6 +10,7 @@
         <div class="navigation" id="read" @click="$router.push({ name: 'read-data', params: {} })"><a>Read</a></div>
         <div class="navigation" id="write" @click="$router.push({ name: 'ctrl-panel', params: {} })"><a>Control</a></div>
         <div class="navigation" id="theme" @click=""><img id="theme-icon" src="@/img/light-256.png"></div>
+        <div class="navigation" id="theme" @click="$router.push({ name: 'sign-in', params: {} })"><img id="theme-icon" src="@/img/light-256.png"></div>
       </div>
       <div class="pageContainer">
         <div class="content">

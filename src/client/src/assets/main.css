@@ -1,76 +1,81 @@
-.navigation {
-    padding: 0.5%;
-    padding-left: 1%;
-    padding-right: 1%;
-  
-    margin: 0.3%;
-  
-    border-style: none;
-    border-width: 1px;
-  
-    border-radius: 10px;
-  
-    border-color: #3d3d3d;
-  
-    background-color: #f5eadd;
-  }
-  
-  .page {
-    font-family: arial, sans-serif;
-    color: #3d3d3d;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .header {
-    background-color: #ccc5bb;
-    border-color: #3d3d3d;
-  
-    border-bottom-width: 1px;
-    border-bottom-style: none;
-    
-    margin: 0;
-    padding: 0;
-  
-    display: flex;
-  }
-  
-  .pageContainer {
-    background-color: #eae5e0;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .content {
-    border-style: none;
-    border-color: #3d3d3d;
-    border-width: 1px;
-    border-radius: 24px;
-    
-    background-color: #fef4ee;
-    margin: 2%;
-    padding: 2%;
-  
-    width: 70%;
-  }
+body {
+  font-size: 14px;
+  font-family: arial, sans-serif;
+}
 
-  .dataCell {
-      border-bottom-style: solid;
-      border-width: 1px;
-      border-color: #3d3d3d;
+.navigation {
+  padding: 0.5%;
+  padding-left: 1%;
+  padding-right: 1%;
+
+  margin: 0.3%;
+
+  border-style: none;
+  border-width: 1px;
+
+  border-radius: 10px;
+
+  border-color: #3d3d3d;
+
+  background-color: #f5eadd;
+}
   
-      color: #3d3d3d;
+.page {
+  font-family: arial, sans-serif;
+  color: #3d3d3d;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #ccc5bb;
+  border-color: #3d3d3d;
+
+  border-bottom-width: 1px;
+  border-bottom-style: none;
   
-      margin: 1%;
-      padding: 1%;
-  }
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+}
+
+.pageContainer {
+  background-color: #eae5e0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  border-style: none;
+  border-color: #3d3d3d;
+  border-width: 1px;
+  border-radius: 24px;
+  
+  background-color: #fef4ee;
+  margin: 2%;
+  padding: 2%;
+
+  width: 70%;
+}
+
+.dataCell {
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: #3d3d3d;
+
+    color: #3d3d3d;
+
+    margin: 1%;
+    padding: 1%;
+}
 
 .panelHead {
-  size: 36px;
+  font-size: 24px;
 }
 
 .sectnContent {
@@ -88,6 +93,7 @@
   border-color: #727272;
 
   background-color: #efe3da;
+  font-size: 14px;
 
   width: 96px;
   margin: 1%;

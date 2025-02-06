@@ -47,7 +47,8 @@ export default {
 
 <style scoped>
 #ctrlButton {
-    width: 96px;
+    font-size: 14px;
+    width: 128px;
     margin: 1%;
     padding: 1.5%;
 }
