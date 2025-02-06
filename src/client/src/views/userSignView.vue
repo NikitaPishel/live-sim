@@ -79,7 +79,9 @@
     
     background-color: #e4d9d2;
     margin: 1%;
-    padding: 1%;
+    padding: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
 
     font-size: 14px;
     overflow: hidden;
