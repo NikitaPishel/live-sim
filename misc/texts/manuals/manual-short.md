@@ -14,7 +14,7 @@ This manual gives you a good intro to the topic. Before using this manual, don't
 ## About Genome
 First of all, let's talk about the most essential part of all the project, genome. It has a specific structure, and it defines the whole way how our Neural Network works. This is very important because all these different factors will affect the speed and efficiency of a model, its capabilities, efficiency, speed of training, etc.
 
-##### Structure
+#### Structure
 My NN structure is called oriented graph with loops. In Neural Networks, It doesn't meet as often. There's some reasons for this, but now we will look at how it looks like.
 
 ```python
@@ -65,6 +65,7 @@ class GeneRoot:
 ```
 
 It serves as a starter point for a genome. Its joints are only *Sensor* class Neuron, and *Sensor* class object can only be a child of *GeneRoot*. *Signal* objects can't have any joints, as they are "end points" of a genome, and they output their signal externally.
+*[src/server/model/genome.py](../src/server/model/genome.py)*
 
 #### Commands
 Commands in the project are stored in 4 lists, one for each neuron type and a combined one with a full list of functions.
@@ -93,7 +94,10 @@ allCmd = inputCmd + interCmd + outputCmd
 Commands can be any function with specific inputs and outputs which depend from either it's input command, internal or output. Commands is the main way how you train a model with the usage of an environment. The way NN behaves is dictated by the commands. Internal neurons are the main brain which creates dependency graph, while inputs and outputs are used to work with external factors. In this example we've got constant 1 as an input, and 4 movement directions as outputs. If you want to add any new command, you give to it any specific parameters and add them to the list. Parameters for internal neurons always stay the same as they don't directly communicate with external factors.
 
 ## Mutations and Genetic Algorithm
-The model that is used to train a NN is called *Genetic Algorithm*. As said earlier, it has some sort of an environment, and NN tries to meet the condition by random mutations. Notice, that mutations don't create random neuron, they create random connections between them. During the connection addition, there's a chance set by user that mutation will create a connection from random neuron to the new one, meaning it creates a new neuron. Also, when the only connection to the neuron is deleted, there's no more reference to the neuron, so it gets deleted.
+The model that is used to train a NN is called *Genetic Algorithm*. As said earlier, it has some sort of an environment, and NN tries to meet the condition by random mutations. It meets the requirement using mutations with a mechanism which picks agents who met the requirement, and these successful agents create a new population with some mutations, which can randomly produce more successful genome (Neural Network).
+[flowchart](../images/evolution-chart-2.png)
+
+Notice, that mutations don't create random neuron, they create random connections between them. During the connection addition, there's a chance set by user that mutation will create a connection from random neuron to the new one, meaning it creates a new neuron. Also, when the only connection to the neuron is deleted, there's no more reference to the neuron, so it gets deleted.
 
 There's also an additional function called *leveled mutation*:
 ```python
@@ -106,6 +110,7 @@ def rndMutate(agent):
         if config.lvldMutation:
             rndMutate(agent)
 ```
+*[src/server/model/mutation.py](../src/server/model/mutation.py)*
 
 It's a main mutation function. As we can see in the *lvldMutation* part if mutation is created, it will try to mutate once more, until it fails to.
 
@@ -146,7 +151,7 @@ Our simulation can be configured with specified for these files. They've got a s
     "outputPath": "./data/logs"
 }
 ```
-*data/presets/standard.json*
+*[data/presets/standard.json](../data/presets/standard.json)*
 
 each setting corresponds for some value in the code. Also, configuration supports multiple layers. In other words, configuration will keep some settings from the first layer, then it will take some more from the second one, etc. Let's look at our 2nd-level json example file:
 ```json
