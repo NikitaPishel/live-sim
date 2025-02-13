@@ -96,7 +96,7 @@ Commands can be any function with specific inputs and outputs which depend from 
 ## Mutations and Genetic Algorithm
 The model that is used to train a NN is called *Genetic Algorithm*. As said earlier, it has some sort of an environment, and NN tries to meet the condition by random mutations. It meets the requirement using mutations with a mechanism which picks agents who met the requirement, and these successful agents create a new population with some mutations, which can randomly produce more successful genome (Neural Network). 
 
-![flowchart](../images/evolution-chart-2.png)
+![flowchart](../images/evolution-chart-2-small.png)
 
 Notice, that mutations don't create random neuron, they create random connections between them. During the connection addition, there's a chance set by user that mutation will create a connection from random neuron to the new one, meaning it creates a new neuron. Also, when the only connection to the neuron is deleted, there's no more reference to the neuron, so it gets deleted.
 
