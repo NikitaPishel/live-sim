@@ -26,7 +26,9 @@ const genome = computed (() => popupStore.popupsDisplay.genome)
         <div class="dataCell">
             <h3 class="sectnHead">Genomes </h3>
             <div class="sectnContent">
-                <button class="popupButton" @click="() => switchPopup('genome')">Open menu</button>
+                <button class="popupButton icon" @click="() => switchPopup('genome')">
+                    Open menu
+                </button>
             </div>
         </div>
 

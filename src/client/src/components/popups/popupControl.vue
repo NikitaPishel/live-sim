@@ -22,7 +22,7 @@ const closePopup = () => {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .popupShade {
     position: fixed;
     top: 0;
@@ -30,7 +30,7 @@ const closePopup = () => {
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.3);
-
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,5 +39,11 @@ const closePopup = () => {
 #popupData {
     margin: 0;
     padding: 4%;
+}
+
+.dark {
+    .popupShade {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
 }
 </style>

@@ -39,19 +39,24 @@
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #submitButton {
     border-style: none;
     border-radius: 4px;
     border-width: 1px;
     border-color: #727272;
 
-    background-color: #efe3da;
+    background-color: rgba(239, 227, 218, 1);
+    color: rgba(61, 61, 61, 1);
 
     width: 128px;
     margin: 2%;
     padding: 1%;
     font-size: 24px;
+
+    &:hover {
+        background-color: rgba(243, 231, 222, 1);
+    }
 }
 
 .centerBox {
@@ -77,7 +82,9 @@
     border-width: 1px;
     border-radius: 24px;
     
-    background-color: #e4d9d2;
+    background-color: rgba(239, 227, 218, 1);;
+    color: rgba(61, 61, 61, 1);
+    
     margin: 1%;
     padding: 2%;
     padding-left: 4%;
@@ -85,6 +92,10 @@
 
     font-size: 14px;
     overflow: hidden;
+
+    &:hover {
+        background-color: rgba(243, 231, 222, 1);
+    }
 }
 
 .signHead {
@@ -93,38 +104,48 @@
 }
 
 /* dark */
-#submitButton {
-    border-style: none;
-    border-radius: 4px;
-    border-width: 1px;
-    border-color: #727272;
+.dark {
+    #submitButton {
+        border-style: none;
+        border-radius: 4px;
+        border-width: 1px;
+        border-color: #727272;
 
-    background-color: #202029;
-    color: #ffffff;
+        background-color: rgba(10, 10, 16, 1);;
+        color: rgba(254, 250, 243, 1);
+        
+        width: 128px;
+        margin: 2%;
+        padding: 1%;
+        font-size: 24px;
 
-    width: 128px;
-    margin: 2%;
-    padding: 1%;
-    font-size: 24px;
-}
+        &:hover {
+            background-color: rgba(14, 14, 20, 1);
+        }
+    }
 
-.textField {
-    margin: 0%;
-    border-style: none;
-    border-bottom-style: none;
-    border-color: #3d3d3d;
-    border-width: 1px;
-    border-radius: 24px;
-    
-    background-color: #202029;
-    color: #ffffff;
-
-    margin: 1%;
-    padding: 2%;
-    padding-left: 4%;
-    padding-right: 4%;
-
-    font-size: 14px;
-    overflow: hidden;
+    .textField {
+        margin: 0%;
+        border-style: none;
+        border-bottom-style: none;
+        border-color: #3d3d3d;
+        border-width: 1px;
+        border-radius: 24px;
+        
+        background-color: rgba(10, 10, 16, 1);
+        color: rgba(254, 250, 243, 1);;
+        
+        margin: 1%;
+        padding: 2%;
+        padding-left: 4%;
+        padding-right: 4%;
+        
+        font-size: 14px;
+        overflow: hidden;
+        
+        &:hover {
+            background-color: rgba(14, 14, 20, 1);
+        }
+    }
 }
 </style>
