@@ -61,7 +61,7 @@
 }
 
 .signContainer {
-    margin: 20%;
+    margin: 12%;
     width: 40%;
 }
 
@@ -90,5 +90,41 @@
 .signHead {
     font-size: 24px;
     margin: 2%;
+}
+
+/* dark */
+#submitButton {
+    border-style: none;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: #727272;
+
+    background-color: #202029;
+    color: #ffffff;
+
+    width: 128px;
+    margin: 2%;
+    padding: 1%;
+    font-size: 24px;
+}
+
+.textField {
+    margin: 0%;
+    border-style: none;
+    border-bottom-style: none;
+    border-color: #3d3d3d;
+    border-width: 1px;
+    border-radius: 24px;
+    
+    background-color: #202029;
+    color: #ffffff;
+
+    margin: 1%;
+    padding: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+
+    font-size: 14px;
+    overflow: hidden;
 }
 </style>

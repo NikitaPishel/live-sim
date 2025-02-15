@@ -1,6 +1,7 @@
 body {
   font-size: 14px;
   font-family: arial, sans-serif;
+  color: #3d3d3d;
 }
 
 .navigation {
@@ -22,7 +23,6 @@ body {
   
 .page {
   font-family: arial, sans-serif;
-  color: #3d3d3d;
   height: 100%;
   width: 100%;
   margin: 0;
@@ -68,8 +68,6 @@ body {
     border-width: 1px;
     border-color: #3d3d3d;
 
-    color: #3d3d3d;
-
     margin: 1%;
     padding: 1%;
 }
@@ -93,6 +91,114 @@ body {
   border-color: #727272;
 
   background-color: #efe3da;
+  font-size: 14px;
+
+  width: 96px;
+  margin: 1%;
+  padding: 1%;
+}
+
+/* dark theme */
+
+.dark body {
+  font-size: 14px;
+  font-family: arial, sans-serif;
+  color: #ffffff;
+}
+
+.dark .navigation {
+  padding: 0.5%;
+  padding-left: 1%;
+  padding-right: 1%;
+
+  margin: 0.3%;
+
+  border-style: none;
+  border-width: 1px;
+
+  border-radius: 10px;
+
+  border-color: #3d3d3d;
+
+  background-color: #0e0e12;
+  color: #ffffff;
+}
+  
+.dark .page {
+  font-family: arial, sans-serif;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.dark .header {
+  font-family: arial, sans-serif;
+  background-color: #050509;
+  border-color: #3d3d3d;
+
+  border-bottom-width: 1px;
+  border-bottom-style: none;
+  
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+}
+
+.dark .pageContainer {
+  background-color: #0e0e12;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dark .content {
+  border-style: none;
+  border-color: #fff;
+  border-width: 1px;
+  border-radius: 24px;
+
+  color: #ffffff;
+  
+  background-color: #121217;
+  margin: 2%;
+  padding: 2%;
+
+  width: 70%;
+}
+
+.dark .dataCell {
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: #ffffff;
+
+    margin: 1%;
+    padding: 1%;
+}
+
+.dark .panelHead {
+  font-size: 24px;
+}
+
+.dark .sectnContent {
+    display: flex;
+}
+
+.dark .sectnHead {
+    font-size: 16px;
+}
+
+.dark .popupButton {
+  border-style: none;
+  border-radius: 4px;
+  border-width: 1px;
+  border-color: #727272;
+
+  color: #ffffff;
+
+  background-color: #202029;
   font-size: 14px;
 
   width: 96px;

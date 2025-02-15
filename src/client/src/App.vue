@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <main>
+  <main class="dark">
     <div class="page">
       <div class="header">
         <div class="navigation" id="read" @click="$router.push({ name: 'read-data', params: {} })"><a>Read</a></div>
