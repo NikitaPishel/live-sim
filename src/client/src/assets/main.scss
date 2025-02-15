@@ -1,0 +1,225 @@
+body {
+  font-size: 14px;
+  font-family: arial, sans-serif;
+  color: rgba(61, 61, 61, 1);
+}
+
+.navigation {
+  padding: 0.5%;
+  padding-left: 1%;
+  padding-right: 1%;
+
+  margin: 0.3%;
+
+  border-style: none;
+  border-width: 1px;
+
+  border-radius: 10px;
+
+  border-color: rgba(61, 61, 61, 1);
+
+  background-color: rgba(245, 234, 221, 1);
+
+  &:hover {
+    background-color: rgba(250, 240, 234, 1);
+  }
+}
+  
+.page {
+  font-family: arial, sans-serif;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #ccc5bb;
+  border-color: rgba(61, 61, 61, 1);
+
+  border-bottom-width: 1px;
+  border-bottom-style: none;
+  
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+}
+
+.pageContainer {
+  background-color: #eae5e0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  border-style: none;
+  border-color: rgba(61, 61, 61, 1);
+  border-width: 1px;
+  border-radius: 24px;
+  
+  background-color: #fef4ee;
+  margin: 2%;
+  padding: 2%;
+
+  width: 70%;
+}
+
+.dataCell {
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: rgba(61, 61, 61, 1);
+
+    margin: 1%;
+    padding: 1%;
+}
+
+.panelHead {
+  font-size: 24px;
+}
+
+.sectnContent {
+    display: flex;
+}
+
+.sectnHead {
+    font-size: 16px;
+}
+
+.popupButton {
+  border-style: none;
+  border-radius: 4px;
+  border-width: 1px;
+  border-color: #727272;
+
+  background-color: rgba(239, 227, 218, 1);
+  font-size: 14px;
+  
+  width: 96px;
+  margin: 1%;
+  padding: 1%;
+  
+  &:hover {
+    background-color: rgba(243, 231, 222, 1);
+  }
+}
+
+/* dark theme */
+.dark {
+  body {
+    font-size: 14px;
+    font-family: arial, sans-serif;
+    color: rgba(254, 250, 243, 1);
+  }
+  
+  .navigation {
+    padding: 0.5%;
+    padding-left: 1%;
+    padding-right: 1%;
+  
+    margin: 0.3%;
+  
+    border-style: none;
+    border-width: 1px;
+  
+    border-radius: 10px;
+  
+    border-color: rgba(61, 61, 61, 1);
+  
+    background-color: rgba(14, 14, 18, 1);
+    color: rgba(254, 250, 243, 1);
+
+    &:hover {
+      background-color: rgba(20, 20, 25, 1);
+    }
+  }
+    
+  .page {
+    font-family: arial, sans-serif;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    font-family: arial, sans-serif;
+    background-color: #050509;
+    border-color: rgba(61, 61, 61, 1);
+  
+    border-bottom-width: 1px;
+    border-bottom-style: none;
+    
+    margin: 0;
+    padding: 0;
+  
+    display: flex;
+  }
+  
+  .pageContainer {
+    background-color: rgba(14, 14, 18, 1);
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content {
+    border-style: none;
+    border-color: rgba(14, 14, 18, 1);
+    border-width: 1px;
+    border-radius: 24px;
+  
+    color: rgba(254, 250, 243, 1);
+    
+    background-color: #121217;
+    margin: 2%;
+    padding: 2%;
+  
+    width: 70%;
+  }
+  
+  .dataCell {
+      border-bottom-style: solid;
+      border-width: 1px;
+      border-color: rgba(254, 250, 243, 1);
+  
+      margin: 1%;
+      padding: 1%;
+  }
+  
+  .panelHead {
+    font-size: 24px;
+  }
+  
+  .sectnContent {
+      display: flex;
+  }
+  
+  .sectnHead {
+      font-size: 16px;
+  }
+  
+  .popupButton {
+    border-style: none;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: #727272;
+    cursor: pointer;
+  
+    color: rgba(254, 250, 243, 1);
+  
+    background-color: rgba(10, 10, 16, 1);
+    font-size: 14px;
+  
+    width: 96px;
+    margin: 1%;
+    padding: 1%;
+
+    &:hover {
+      background-color: rgba(10, 10, 16, 0.6);
+    }
+  }
+}
