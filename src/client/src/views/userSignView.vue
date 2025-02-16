@@ -49,6 +49,8 @@
     background-color: rgba(239, 227, 218, 1);
     color: rgba(61, 61, 61, 1);
 
+    cursor: pointer;
+
     width: 128px;
     margin: 2%;
     padding: 1%;
@@ -113,6 +115,8 @@
 
         background-color: rgba(10, 10, 16, 1);;
         color: rgba(254, 250, 243, 1);
+
+        cursor: pointer;
         
         width: 128px;
         margin: 2%;

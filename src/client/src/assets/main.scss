@@ -8,14 +8,13 @@ body {
   padding: 0.5%;
   padding-left: 1%;
   padding-right: 1%;
-
   margin: 0.3%;
+
+  cursor: pointer;
 
   border-style: none;
   border-width: 1px;
-
   border-radius: 10px;
-
   border-color: rgba(61, 61, 61, 1);
 
   background-color: rgba(245, 234, 221, 1);
@@ -96,6 +95,7 @@ body {
 
   background-color: rgba(239, 227, 218, 1);
   font-size: 14px;
+  cursor: pointer;
   
   width: 96px;
   margin: 1%;
@@ -120,12 +120,12 @@ body {
     padding-right: 1%;
   
     margin: 0.3%;
+
+    cursor: pointer;
   
     border-style: none;
     border-width: 1px;
-  
     border-radius: 10px;
-  
     border-color: rgba(61, 61, 61, 1);
   
     background-color: rgba(14, 14, 18, 1);
