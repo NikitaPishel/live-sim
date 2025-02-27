@@ -3,8 +3,8 @@
   import { RouterView } from 'vue-router';
 
   const themeName = ref('dark')
-  const themeIcon = ref("/src/img/light-256.png")
-  const signIcon = ref("/src/img/sign-light-256.png")
+  const themeIcon = ref("/src/img/theme-light.png")
+  const profileIcon = ref("/src/img/profile-light.png")
   
   
   const switchTeme = () => {
@@ -12,16 +12,17 @@
     
     if (themeName.value === 'dark') {
       themeName.value = 'light';
-      themeIcon.value = '/src/img/dark-256.png';
-      signIcon.value = "/src/img/sign-dark-256.png"
+      themeIcon.value = '/src/img/theme-dark.png';
+      profileIcon.value = "/src/img/profile-dark.png"
     }
     
     else {
       themeName.value = 'dark';
-      themeIcon.value = '/src/img/light-256.png';
-      signIcon.value = "/src/img/sign-light-256.png"
+      themeIcon.value = '/src/img/theme-light.png';
+      profileIcon.value = "/src/img/profile-light.png"
     };
   };
+
 </script>
 
 <template>
@@ -30,7 +31,7 @@
       <div class="header">
         <div class="navigation" id="read" @click="$router.push({ name: 'read-data', params: {} })"><a>Read</a></div>
         <div class="navigation" id="write" @click="$router.push({ name: 'ctrl-panel', params: {} })"><a>Control</a></div>
-        <div class="navigation" id="theme" @click="$router.push({ name: 'sign-in', params: {} })">Sign</div>
+        <div class="navigation" id="theme" @click="$router.push({ name: 'sign-in', params: {} })"><img id="profile-icon" :src="profileIcon"></div>
         <div class="navigation" id="theme" @click="switchTeme"><img id="theme-icon" :src="themeIcon"></div>
       </div>
       <div class="pageContainer">
@@ -47,6 +48,11 @@
   #theme-icon {
     width: 18px;
     height: 18px;
+  }
+
+  #profile-icon {
+    width: 22px;
+    height: 22px;
   }
 
 </style>
