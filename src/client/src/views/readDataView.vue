@@ -7,15 +7,20 @@ import survivPopup from '@/components/popups/survivPopup.vue';
 
 import leftBarBox from '@/components/dataBoxes/leftBarBox.vue'
 import popupControl from '@/components/popups/popupControl.vue';
+import { useMainStore } from '@/stores/simData.js';
 import { usePopupStore } from '@/stores/popupStore.js';
 
 import { ref, computed } from 'vue'
 
-const popupStore = usePopupStore()
+// Get data from popup store
+const popupStore = usePopupStore();
 
 const switchPopup = popupStore.switchPopup
 
 const genome = computed (() => popupStore.popupsDisplay.genome)
+
+// Get data from sim store
+const simStore = useMainStore();
 </script>
 
 <template>

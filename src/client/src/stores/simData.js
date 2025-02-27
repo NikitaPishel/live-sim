@@ -8,7 +8,7 @@ const BASE_URL = 'http://127.0.0.1:5000'
 export const useMainStore = defineStore(STORE_NAME, () => {
   const jsonData = ref({});
 
-  const simStat = computed(() => jsonData.value.data);
+  const simStat = computed(() => jsonData.value);
   
   // fetch status from the server
   async function getStatus() {
@@ -22,15 +22,18 @@ export const useMainStore = defineStore(STORE_NAME, () => {
 
   async function loadStat() {
     try {
-      const response = await axios.get(BASE_URL)
+      const response = await axios.get(`${BASE_URL}/model/data`)
       jsonData.value = response.data
     } catch(e) {
       console.error('Error fetching the JSON file:', e);
     }
   };
   
-  getStatus()
-  loadStat();
+  //getStatus();
+
+  //loadStat();
+
+  //console.log(jsonData);
   
   return {
     simStat,
