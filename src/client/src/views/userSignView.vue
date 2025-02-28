@@ -8,6 +8,7 @@
     <div class="centerBox">
         <div class="signContainer">
             <div class="dataCell">
+                <div id="logoDiv"><img id="logoIcon" src="../img/logo.png"></div>
                 <h3 class="panelHead">Sign in</h3>
             </div>
 
@@ -40,6 +41,17 @@
 </template>
 
 <style scoped lang="scss">
+#logoDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logoIcon {
+    width: 128px;
+    height: 128px;
+}
+
 #submitButton {
     border-style: none;
     border-radius: 4px;

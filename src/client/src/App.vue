@@ -51,8 +51,7 @@
   }
 
   #profile-icon {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
   }
-
 </style>
