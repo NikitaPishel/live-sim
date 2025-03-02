@@ -101,3 +101,8 @@ The project has a range of features designed for model's efficiency and adaptabi
 
 For any bugs or this project discussion, **contact me on dedicated for this section** of the repo. For other reasons, use my email.
 Email: pogerproger@gmail.com
+
+
+#### Other Contributors
+Special thanks to Mariana Polishchuk for creating the logo and other icons.
+Email: polishchukmariana3@gmail.com
