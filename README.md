@@ -21,27 +21,36 @@ The Live-sim project is a tool that can be used for creating and training Neural
 Downloading a model is easy and can be implemented if you follow the instructions described below.
 
 1. Clone the repo
+
 First of all you need to git clone the repository. Just open your bash and enter the command:
 ```bash
 git clone https://github.com/NikitaPishel/live-sim.git
 ```
 
 2. install and activate environment
+
 After you have the project installed on your computer, you need to install the environment using command prompt:
 ```bash
 python -m venv env
 ```
 Then you need to activate it depending from your command prompt you launch one of the commands.
+
 Power Shell:
 ```bash
 env/Scripts/Activate.ps1
 ```
-On other shells:
+On other shells (windows):
 ```bash
 env/Scripts/activate.bat
 ```
 
+On linux or macOS:
+```bash
+source env/bin/activate
+```
+
 3. install packages
+
 After environment is turned on, you need to install python packages:
 ```bash
 pip install -r requirements.txt
@@ -51,7 +60,7 @@ pip install -r requirements.txt
 
 There's 2 different manuals about this project
 - [Quickstart](./manuals/manual-short.md): short and user-friendly text which gives the base of the project without any unnecessary details.
-- [Full documentation](./manuals/manual-long.md): full with description of the code structure, its capabilities and limits. Good for people who want to deeply and correctly understand the framework and its capabilities **(in progress)**.
+- Full documentation **(in progress)**: full with description of the code structure, its capabilities and limits. Good for people who want to deeply and correctly understand the framework and its capabilities.
 
 #### Example
 
@@ -62,10 +71,10 @@ There's a built-in example of a ready project, where small cells (agents) learn 
 Live-sim also was developed as a foundation for improving my understanding of computing science, its practical implementation and demonstration of my competence as a programmer. This project is not just a tool, it's a challenge to myself. The whole point of a project is to build an AI from scratch and go through a full cycle of application development, including software development, backend and front-end. I started it on a set of restrictions, to make it more challenging and interesting:
 
 - The whole model should be built from scratch, so no AI modules or frameworks used (e. g. pyTorch or Tensorflow)
-- Only custom data structures (except for built-in to python skeleton, e. g. array or set)
+- Only custom data structures (except for built-in to python skeleton ones, e. g. arrays, sets)
 - Model must be able to train
-- There should be an environment example that should be user-friendly, so it can be used for learning or showcasing to people who are not very familiar with programming or/and how AI works.
-- No AI tools should be used (e. g. ChatGPT, Copilot)
+- There should be an environment example that should be user-friendly, so it can be used for learning or showcasing to people who are not very familiar with programming and how AI works.
+- No AI tools should be used (e. g. ChatGPT, Grok Copilot) so I have to handwrite all the solutions
 
 In the end I came up with hybrid model trained by evolutionary process. In creation I worked with following topics:
 
@@ -89,13 +98,13 @@ In the end I came up with hybrid model trained by evolutionary process. In creat
 The project has a range of features designed for model's efficiency and adaptability:  
 
 1. **Hybrid NN Architecture:**  
-   Combines features of both **Recurrent Neural Networks** and **Feedforward Neural Networks**. The model supports looped structures in a larger system, giving more dynamic adaptability for varied tasks.
+   Combines features of both **Recurrent Neural Networks** and **Feedforward Neural Networks**. The model supports looped structures in a larger system, giving more dynamic and adaptive system for varied tasks.
 
 2. **Customizability:**  
-   The model is highly flexible. Its core can be trained and used in any imaginable task and will stay with no changes. This allows to use it in a wide range of tasks, from education and grocery to engineering and military.
+   The model is highly flexible. Its core can be trained and used in any imaginable task.
 
 3. **Efficiency:**  
-   For its structure it gives optimal results by using a list of different algorithms and structures.
+   For its structure and python specifics it gives optimal results.
 
 ## Contact
 

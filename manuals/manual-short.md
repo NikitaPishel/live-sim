@@ -12,7 +12,7 @@
 This manual gives you a good intro to the topic. Before using this manual, don't forget to [install it!](../README.md)
 
 ## About Genome
-First of all, let's talk about the most essential part of all the project, genome. It has a specific structure, and it defines the whole way how our Neural Network works. This is very important because all these different factors will affect the speed and efficiency of a model, its capabilities, efficiency, speed of training, etc.
+First of all, let's discuss the most essential part of all the project: the genome. It has a specific structure, and it defines how our Neural Network operates. This is important because various factors related to it will drastically affect the efficiency of a model, its end-trained capabilities, and the speed of training.
 
 #### Structure
 My NN structure is called oriented graph with loops. In Neural Networks, It doesn't meet as often. There's some reasons for this, but now we will look at how it looks like.
@@ -91,7 +91,7 @@ allCmd = inputCmd + interCmd + outputCmd
 ```
 *[src/server/model/neuronCmd.py](../src/server/model/neuronCmd.py)*
 
-Commands can be any function with specific inputs and outputs which depend from either it's input command, internal or output. Commands is the main way how you train a model with the usage of an environment. The way NN behaves is dictated by the commands. Internal neurons are the main brain which creates dependency graph, while inputs and outputs are used to work with external factors. In this example we've got constant 1 as an input, and 4 movement directions as outputs. If you want to add any new command, you give to it any specific parameters and add them to the list. Parameters for internal neurons always stay the same as they don't directly communicate with external factors.
+Commands can be any function with specific inputs and outputs which depend on either it's input command, internal or output. Commands are the primary way a model is trained with the usage of an environment. The way NN behaves is dictated by these commands. Internal neurons are the main brain which creates dependency graph, while inputs and outputs are used to work with external factors. In this example we've got constant 1 as an input, and 4 movement directions as outputs. If you want to add any new command, you give to it any specific parameters and add them to the list. Parameters for internal neurons always stay the same as they don't directly communicate with external factors.
 
 ## Mutations and Genetic Algorithm
 The model that is used to train a NN is called *Genetic Algorithm*. As said earlier, it has some sort of an environment, and NN tries to meet the condition by random mutations. It meets the requirement using mutations with a mechanism which picks agents who met the requirement, and these successful agents create a new population with some mutations, which can randomly produce more successful genome (Neural Network). 
