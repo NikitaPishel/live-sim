@@ -46,7 +46,7 @@ body {
 }
 
 .pageContainer {
-  background-color: #eae5e0;
+  background-color: rgba(254, 244, 238, 1);
 
   display: flex;
   justify-content: center;
@@ -59,7 +59,7 @@ body {
   border-width: 1px;
   border-radius: 24px;
   
-  background-color: #fef4ee;
+  background-color: rgba(254, 244, 238, 1);
   margin: 2%;
   padding: 2%;
 
@@ -93,7 +93,8 @@ body {
   border-width: 1px;
   border-color: #727272;
 
-  background-color: rgba(239, 227, 218, 1);
+  color: rgba(254, 244, 238, 1);
+  background-color: rgba(80, 180, 60, 1);
   font-size: 14px;
   cursor: pointer;
   
@@ -102,7 +103,7 @@ body {
   padding: 1%;
   
   &:hover {
-    background-color: rgba(243, 231, 222, 1);
+    background-color: rgba(80, 180, 60, 0.8);
   }
 }
 
@@ -174,7 +175,7 @@ body {
   
     color: rgba(254, 250, 243, 1);
     
-    background-color: #121217;
+    background-color: rgba(14, 14, 18, 1);
     margin: 2%;
     padding: 2%;
   
@@ -211,7 +212,7 @@ body {
   
     color: rgba(254, 250, 243, 1);
   
-    background-color: rgba(10, 10, 16, 1);
+    background-color: rgba(20, 100, 40, 1);
     font-size: 14px;
   
     width: 96px;
@@ -219,7 +220,7 @@ body {
     padding: 1%;
 
     &:hover {
-      background-color: rgba(10, 10, 16, 0.6);
+      background-color: rgba(20, 100, 40, 0.8);
     }
   }
 }

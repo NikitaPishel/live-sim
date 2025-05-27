@@ -33,7 +33,7 @@
 
             </div>
 
-            <div class="dataCell">
+            <div class="dataCell" id="submitCell">
                 <button id="submitButton">Submit</button>
             </div>
         </div>
@@ -58,8 +58,8 @@
     border-width: 1px;
     border-color: #727272;
 
-    background-color: rgba(239, 227, 218, 1);
-    color: rgba(61, 61, 61, 1);
+    background-color: rgba(120, 180, 60, 1);
+    color: rgba(254, 250, 243, 1);
 
     cursor: pointer;
 
@@ -69,7 +69,7 @@
     font-size: 24px;
 
     &:hover {
-        background-color: rgba(243, 231, 222, 1);
+        background-color: rgba(80, 180, 60, 0.8);
     }
 }
 
@@ -96,7 +96,7 @@
     border-width: 1px;
     border-radius: 24px;
     
-    background-color: rgba(239, 227, 218, 1);;
+    background-color: rgba(238, 228, 218, 1);
     color: rgba(61, 61, 61, 1);
     
     margin: 1%;
@@ -112,6 +112,12 @@
     }
 }
 
+#submitCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .signHead {
     font-size: 24px;
     margin: 2%;
@@ -125,7 +131,7 @@
         border-width: 1px;
         border-color: #727272;
 
-        background-color: rgba(10, 10, 16, 1);;
+        background-color: rgba(53, 100, 32, 1);
         color: rgba(254, 250, 243, 1);
 
         cursor: pointer;
@@ -136,7 +142,7 @@
         font-size: 24px;
 
         &:hover {
-            background-color: rgba(14, 14, 20, 1);
+            background-color: rgba(53, 100, 32, 0.8);
         }
     }
 
