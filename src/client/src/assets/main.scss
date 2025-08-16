@@ -1,3 +1,9 @@
+main, html, #app, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-size: 14px;
   font-family: arial, sans-serif;
@@ -39,13 +45,18 @@ body {
   border-bottom-width: 1px;
   border-bottom-style: none;
   
-  margin: 0;
+  margin: 0;  
   padding: 0;
-
+  
   display: flex;
 }
 
 .pageContainer {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+
   background-color: rgba(254, 244, 238, 1);
 
   display: flex;
